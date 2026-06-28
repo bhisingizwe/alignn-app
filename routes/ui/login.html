@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝒜lignn — Login</title>
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="login-page">
+  <div class="auth-background">
+  <img src="./backgrounds/login.jpg" alt="">
+  <div class="auth-overlay"></div>
+</div>
+
+  <!-- Header -->
+  <header class="header">
+    <div>
+      <a class="brandLink" href="./home.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+
+    <section class="card auth-card">
+
+      <h1 class="title">Welcome Back</h1>
+
+      <p class="subtitle">
+        Log in to continue your wellness journey.
+      </p>
+
+      <p class="auth-switch">
+        Don't have an account?
+        <a href="./signup.html">Sign Up</a>
+      </p>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+
+        <div class="checkinSection">
+          <label class="label" for="emailInput">
+            Email
+          </label>
+
+          <input
+            id="emailInput"
+            class="input"
+            type="email"
+            name="username"
+            autocomplete="username"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="checkinSection">
+          <label class="label" for="passwordInput">
+            Password
+          </label>
+
+          <input
+            id="passwordInput"
+            class="input"
+            type="password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <div class="loginActions">
+
+          <button
+            id="loginBtn"
+            class="primary"
+            type="submit"
+          >
+            Log In
+          </button>
+
+          <button
+            id="signupBtn"
+            class="secondaryAuthBtn"
+            type="button"
+          >
+            Sign Up
+          </button>
+
+        </div>
+
+        <div class="forgot-container">
+          <a
+            id="forgotPasswordLink"
+            href="./forgot-password.html"
+            class="forgot-link"
+          >
+            Forgot password?
+          </a>
+        </div>
+
+      </form>
+
+      <div
+        id="authStatus"
+        class="status muted"
+      ></div>
+
+      <!-- Terms -->
+      <footer class="auth-footer">
+
+        <p class="terms-text">
+          By continuing, you agree to our
+          <a href="./terms.html">Terms</a>
+          and acknowledge our
+          <a href="./privacy.html">Privacy Policy</a>.
+        </p>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="./about.html" class="footer-link">
+        About
+      </a>
+
+      <a href="./contact.html" class="footer-link">
+        Contact
+      </a>
+
+      <a href="./crisis-support.html" class="footer-link">
+        Crisis Support
+      </a>
+    </div>
+  </footer>
+
+  <script src="./auth.js"></script>
+  <script src="./login.js"></script>
+
+</body>
+</html>

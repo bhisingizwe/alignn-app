@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crisis Support | 𝒜lignn</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="crisis-page">
+    <div class="crisis-card">
+      <h1>Crisis Support</h1>
+
+      <p class="crisis-text">
+        If you need immediate support, choose your region.
+      </p>
+
+      <div class="region-buttons">
+        <button onclick="showRegion('us')">United States</button>
+        <button onclick="showRegion('na')">North America</button>
+        <button onclick="showRegion('europe')">Europe</button>
+        <button onclick="showRegion('africa')">Africa</button>
+        <button onclick="showRegion('asia')">Asia</button>
+        <button onclick="showRegion('sa')">South America</button>
+        <button onclick="showRegion('me')">Middle East</button>
+        <button onclick="showRegion('oceania')">Oceania</button>
+      </div>
+
+      <div id="region-content" class="region-content">
+        <p>Select a region to view crisis support resources.</p>
+      </div>
+
+      <a href="dashboard.html" class="back-button">Back</a>
+    </div>
+  </main>
+
+  <script>
+    function showRegion(region) {
+      const content = document.getElementById("region-content");
+
+      if (region === "us") {
+        content.innerHTML = `
+          <h2>United States</h2>
+          <p><strong>988</strong> — Suicide & Crisis Lifeline (call/text/chat)</p>
+          <p><strong>911</strong> — Emergency</p>
+        `;
+      } else if (region === "na") {
+        content.innerHTML = `
+          <h2>North America</h2>
+
+          <p><strong>Canada</strong><br>
+          1-833-456-4566 — Talk Suicide Canada<br>
+          45645 — Text (hours vary)<br>
+          911 — Emergency</p>
+
+          <p><strong>Mexico</strong><br>
+          800-273-8255 — SAPTEL (24/7)</p>
+        `;
+      } else if (region === "europe") {
+        content.innerHTML = `
+          <h2>Europe</h2>
+
+          <p><strong>United Kingdom</strong><br>
+          116 123 — Samaritans (free, 24/7)</p>
+
+          <p><strong>Ireland</strong><br>
+          116 123 — Samaritans Ireland</p>
+
+          <p><strong>European Union (EU)</strong><br>
+          112 — General emergency<br>
+          116 123 — Emotional Support Helpline (varies by country)</p>
+
+          <p><strong>France</strong><br>
+          3114 — Suicide Crisis Line</p>
+
+          <p><strong>Germany</strong><br>
+          0800 111 0 111<br>
+          0800 111 0 222 — TelefonSeelsorge</p>
+
+          <p><strong>Spain</strong><br>
+          024 — Suicide Crisis Line</p>
+
+          <p><strong>Italy</strong><br>
+          199 284 284 — Telefono Amico</p>
+
+          <p><strong>Netherlands</strong><br>
+          113 or 0800 0113 — Suicide Prevention</p>
+
+          <p><strong>Sweden</strong><br>
+          90101 — Mind Suicide Line</p>
+
+          <p><strong>Norway</strong><br>
+          116 123 — Mental Health Helpline</p>
+
+          <p><strong>Switzerland</strong><br>
+          143 — Suicide Prevention</p>
+        `;
+      } else if (region === "africa") {
+        content.innerHTML = `
+          <h2>Africa</h2>
+
+          <p><strong>South Africa</strong><br>
+          0800 567 567 — Suicide Crisis Line<br>
+          0800 12 13 14 — Lifeline</p>
+
+          <p><strong>Kenya</strong><br>
+          1199 — Kenya Red Cross Mental Health (24/7)</p>
+
+          <p><strong>Nigeria</strong><br>
+          0800 800 6000 — Suicide Prevention Initiative<br>
+          <em>Availability may vary</em></p>
+
+          <p><strong>Rwanda</strong><br>
+          3525 — RBC Mental Health Crisis Line</p>
+        `;
+      } else if (region === "asia") {
+        content.innerHTML = `
+          <h2>Asia</h2>
+
+          <p><strong>India</strong><br>
+          9152987821 — Aasra (24/7)</p>
+
+          <p><strong>Philippines</strong><br>
+          0966-351-4518 — National Suicide Prevention Hotline<br>
+          1553 — Hopeline (landline)</p>
+
+          <p><strong>Japan</strong><br>
+          03-5774-0992 — TELL Lifeline<br>
+          #8103 — Yorisoi Hotline</p>
+
+          <p><strong>South Korea</strong><br>
+          1577-0199 — National Lifeline<br>
+          1393 — Suicide Prevention Hotline</p>
+
+          <p><strong>China</strong><br>
+          800-810-1117 — Lifeline China<br>
+          010-8295-1332 — Beijing Suicide Research</p>
+
+          <p><strong>Singapore</strong><br>
+          1767 — Samaritans of Singapore</p>
+        `;
+      } else if (region === "sa") {
+        content.innerHTML = `
+          <h2>South America</h2>
+
+          <p><strong>Brazil</strong><br>
+          188 — CVV Suicide Hotline</p>
+
+          <p><strong>Argentina</strong><br>
+          135 — Buenos Aires<br>
+          (011) 5275-1135 — Nationwide</p>
+        `;
+      } else if (region === "me") {
+        content.innerHTML = `
+          <h2>Middle East</h2>
+
+          <p><strong>Israel</strong><br>
+          1201 — ERAN Crisis Hotline</p>
+
+          <p><strong>Turkey</strong><br>
+          182 — Mental Health Hotline</p>
+
+          <p><strong>UAE</strong><br>
+          800-4673 — National Mental Health Support</p>
+        `;
+      } else if (region === "oceania") {
+        content.innerHTML = `
+          <h2>Oceania</h2>
+
+          <p><strong>Australia</strong><br>
+          13 11 14 — Lifeline Australia</p>
+
+          <p><strong>New Zealand</strong><br>
+          1737 — Need to Talk? (call/text)</p>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>

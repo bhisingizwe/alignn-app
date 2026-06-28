@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝒜lignn — Dashboard</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="soul-bg">
+    <video class="soul-bg-video" autoplay muted loop playsinline>
+      <source src="./backgrounds/meadow.mp4" type="video/mp4">
+    </video>
+    <div class="soul-bg-overlay"></div>
+  </div>
+
+  <header class="header dashboard-topbar">
+    <div>
+      <a class="brandLink" href="./dashboard.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <main class="dashboard-shell">
+    <aside class="dashboard-left-panel">
+      <div class="dashboard-left-heading">
+        <div class="dashboard-side-logo">Workout Plans</div>
+        <div class="dashboard-side-tag">Choose what supports you</div>
+      </div>
+
+      <div class="dashboard-left-stack">
+        <div class="dashboard-left-card workout-plan-card" data-plan="build-muscle">
+          <h3>Build muscle</h3>
+          <p>Build strength, muscle, and confidence through structured training for beginner, intermediate, and advanced levels.</p>
+        </div>
+
+        <div class="dashboard-left-card workout-plan-card" data-plan="fat-loss">
+          <h3>Fat loss</h3>
+          <p>Strength, circuits, and conditioning to support fat loss.</p>
+        </div>
+
+        <div class="dashboard-left-card workout-plan-card" data-plan="maintenance">
+          <h3>Maintain</h3>
+          <p>Balanced fitness, movement, strength, and recovery support.</p>
+        </div>
+
+        <div class="dashboard-left-card workout-plan-card" data-plan="progressive-overload">
+          <h3>Progressive overload</h3>
+          <p>Educational videos and guidance for building strength over time.</p>
+        </div>
+
+        <div class="dashboard-left-card workout-plan-card" data-plan="nutrition">
+          <h3>Nutrition</h3>
+          <p>Simple support for muscle gain, fat loss, and maintenance.</p>
+        </div>
+
+        <div class="dashboard-left-card workout-plan-card" data-plan="recovery">
+          <h3>Recovery</h3>
+          <p>Rest and recovery guidance to support growth and consistency.</p>
+        </div>
+      </div>
+    </aside>
+
+    <section class="dashboard-center-panel">
+      <div class="dashboard-center-header">
+        <h1 class="dashboard-title-main">Welcome Back!</h1>
+        <p class="dashboard-title-sub">
+          A soft look at where you’ve been and where you can go next
+        </p>
+      </div>
+
+      <div class="dashboard-greeting-block">
+        <h2 class="dashboard-greeting-heading">
+          <span id="timeGreeting">Good evening</span>, <span id="profileName">there</span>
+        </h2>
+        <p id="profileEmail" class="dashboard-greeting-email">—</p>
+      </div>
+
+      <section class="dashboard-ai-card ai-chat-card">
+        <div class="ai-chat-header">
+          <div>
+            <h3>𝒜lignn AI</h3>
+            <p>Your supportive wellness assistant</p>
+            <p id="aiUsageText" class="ai-usage-text">5/5 messages left today</p>
+          </div>
+          <span class="ai-status">Beta</span>
+        </div>
+
+        <div class="ai-chat-messages" id="aiChatMessages">
+          <div class="message assistant-message">
+            <p>Hi, I’m here with you. Tell me how you’re feeling, or ask for support with mood, workouts, food, journaling, or routines.</p>
+          </div>
+        </div>
+
+        <div class="ai-suggestion-row">
+          <button type="button" class="ai-suggestion-btn">I feel overwhelmed</button>
+          <button type="button" class="ai-suggestion-btn">Suggest a workout</button>
+          <button type="button" class="ai-suggestion-btn">Give me a journal prompt</button>
+        </div>
+
+        <form class="ai-chat-form" id="aiChatForm">
+          <input type="text" id="aiChatInput" placeholder="Ask 𝒜lignn AI..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+
+      <div id="dashboardStatus" class="status muted">Status: idle</div>
+
+      <section class="dashboard-stats-grid">
+        <article class="dashboard-stat-card">
+          <div class="dashboardLabel">Total reflections</div>
+          <div id="reflectionCount" class="dashboardValue">0</div>
+        </article>
+
+        <article class="dashboard-stat-card">
+          <div class="dashboardLabel">Latest reflection</div>
+          <div id="latestReflection" class="dashboardText">No reflections yet.</div>
+        </article>
+
+        <article class="dashboard-stat-card">
+          <div class="dashboardLabel">Last mood</div>
+          <div id="lastMood" class="dashboardText">No moods yet.</div>
+        </article>
+
+        <article class="dashboard-stat-card">
+          <div class="dashboardLabel">Last journal entry</div>
+          <div id="lastJournalEntry" class="dashboardText">No journal entries yet.</div>
+        </article>
+      </section>
+    </section>
+
+    <aside class="dashboard-right-panel">
+      <a class="dashboard-icon-link active" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
+      <a class="dashboard-icon-link" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
+      <a class="dashboard-icon-link" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
+      <a class="dashboard-icon-link" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
+      <a class="dashboard-icon-link" href="./index.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
+      <a class="dashboard-icon-link" href="./profile.html"><span class="dashboard-icon-circle">◯</span><span>Profile</span></a>
+      <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
+
+      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+    </div>
+  </footer>
+
+  <script src="./translations.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./dashboard.js"></script>
+</body>
+</html>

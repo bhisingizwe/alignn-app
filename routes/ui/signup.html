@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>𝒜lignn — Sign Up</title>
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="signup-page">
+  <div class="auth-background">
+  <img src="./backgrounds/signup.jpg" alt="">
+  <div class="auth-overlay"></div>
+</div>
+
+  <header class="header">
+    <div>
+      <a class="brandLink" href="./home.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card auth-card">
+
+      <h1 class="title">Create Your 𝒜lignn</h1>
+
+      <p class="subtitle">
+        Start your space for reflection, wellness, and growth.
+      </p>
+
+      <p class="auth-switch">
+        Already have an account?
+        <a href="./login.html">Log In</a>
+      </p>
+
+      <form id="signupForm">
+
+        <div class="checkinSection">
+          <label class="label" for="nameInput">Name</label>
+
+          <input
+            id="nameInput"
+            class="input"
+            type="text"
+            autocomplete="name"
+            placeholder="Your name"
+            required
+          />
+        </div>
+
+        <div class="checkinSection">
+          <label class="label" for="emailInput">Email</label>
+
+          <input
+            id="emailInput"
+            class="input"
+            type="email"
+            autocomplete="username"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="checkinSection">
+          <label class="label" for="passwordInput">Password</label>
+
+          <input
+            id="passwordInput"
+            class="input"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Create a password"
+            required
+          />
+        </div>
+
+        <div class="checkinSection consent-section">
+  <label class="consent-label">
+    <input
+      id="termsCheckbox"
+      type="checkbox"
+      required
+    />
+
+    <span>
+      I confirm that I am at least 16 years old and agree to the
+      <a href="./terms.html">Terms of Service</a>
+      and
+      <a href="./privacy.html">Privacy Policy</a>.
+    </span>
+  </label>
+</div>
+
+<div class="wellness-disclaimer">
+  𝒜lignn is a wellness and self-reflection platform and is not a replacement
+  for licensed medical, mental health, or emergency services.
+</div>
+
+        <div class="loginActions">
+          <button
+            id="createAccountBtn"
+            class="primary"
+            type="submit"
+          >
+            Create Account
+          </button>
+
+          <button
+            id="loginPageBtn"
+            class="secondaryAuthBtn"
+            type="button"
+          >
+            Log In
+          </button>
+        </div>
+
+      </form>
+
+      <div id="signupStatus" class="status muted"></div>
+
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="./about.html" class="footer-link">About</a>
+      <a href="./contact.html" class="footer-link">Contact</a>
+      <a href="./crisis-support.html" class="footer-link">Crisis Support</a>
+    </div>
+  </footer>
+
+  <script src="./auth.js"></script>
+  <script src="./signup.js"></script>
+
+</body>
+</html>

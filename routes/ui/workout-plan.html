@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workout Plan | 𝒜lignn</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+<div class="soul-bg">
+  <img id="workoutBgImage" class="soul-bg-image active-bg" src="./backgrounds/fitness.jpg" alt="">
+
+  <video id="workoutBgVideo" class="soul-bg-video" src="./backgrounds/recovery.mp4" autoplay muted loop playsinline></video>
+
+  <div class="soul-bg-overlay"></div>
+</div>
+
+  <main class="workout-page-shell">
+    <aside class="workout-left-sidebar">
+      <button id="backBtn" class="workout-back-btn">← Back to Dashboard</button>
+
+      <div class="workout-sidebar-stack">
+        <button class="workout-category-btn" data-plan="build-muscle">Build Muscle</button>
+        <button class="workout-category-btn" data-plan="fat-loss">Fat Loss</button>
+        <button class="workout-category-btn" data-plan="maintenance">Maintain</button>
+        <button class="workout-category-btn" data-plan="progressive-overload">Progressive Overload</button>
+        <button class="workout-category-btn" data-plan="nutrition">Nutrition</button>
+        <button class="workout-category-btn" data-plan="recovery">Recovery</button>
+      </div>
+    </aside>
+
+    <section class="workout-main-content">
+      <header class="workout-plan-heading">
+        <p id="planCategory" class="workout-category-label"></p>
+        <h1 id="planTitle">Loading...</h1>
+        <p id="planDescription"></p>
+      </header>
+
+      <section class="workout-video-hero">
+        <h2 id="videoSectionTitle">Educational Videos</h2>
+        <div id="videosContainer" class="workout-video-slider"></div>
+      </section>
+
+      <section class="workout-level-section">
+        <h2 id="levelSectionTitle">Choose Your Level</h2>
+        <div id="levelsContainer" class="workout-level-grid"></div>
+      </section>
+
+      <section id="selectedProgramContainer" class="selected-program-container"></section>
+    </section>
+  </main>
+
+  <script src="./translations.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./workout-plan.js"></script>
+</body>
+</html>

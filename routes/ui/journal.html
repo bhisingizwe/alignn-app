@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝒜lignn — Journal</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="soul-bg">
+  <img class="soul-bg-image" src="./backgrounds/journal.jpg" alt="">
+  <div class="soul-bg-overlay"></div>
+</div>
+
+  <header class="header dashboard-topbar">
+    <div>
+      <a class="brandLink" href="./dashboard.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <main class="mood-shell">
+    <aside class="mood-left-panel">
+      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+
+      <h2 class="mood-left-title">Journal Resources</h2>
+
+      <details class="mood-resource-card">
+  <summary>✍️ Free Writing Support</summary>
+
+  <ul class="resource-list">
+    <li>What's been on my mind lately?</li>
+    <li>What am I thinking about right now?</li>
+    <li>What do I wish I could say out loud?</li>
+  </ul>
+</details>
+
+<details class="mood-resource-card">
+  <summary>💭 Reflection Starters</summary>
+
+  <ul class="resource-list">
+    <li>What am I feeling right now?</li>
+    <li>What influenced my mood today?</li>
+    <li>What went well today?</li>
+    <li>What is one thing I learned about myself?</li>
+  </ul>
+</details>
+
+<details class="mood-resource-card">
+  <summary>❤️ Emotional Release Prompts</summary>
+
+  <ul class="resource-list">
+    <li>What am I carrying that feels heavy?</li>
+    <li>What do I need to let go of?</li>
+    <li>What would I say if I knew I wouldn't be judged?</li>
+    <li>What emotion needs more space today?</li>
+  </ul>
+</details>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>Journal</h1>
+        <p>Write freely. No prompt required.</p>
+      </div>
+
+      <section class="mood-form-card">
+        <div class="moodSection">
+          <label class="label" for="titleInput">Title optional</label>
+          <input
+            id="titleInput"
+            class="input"
+            placeholder="e.g. Today felt heavy"
+          />
+        </div>
+
+        <div class="moodSection">
+          <label class="label" for="contentInput">Journal Entry</label>
+          <textarea
+            id="contentInput"
+            class="textarea mood-notes-box"
+            rows="8"
+            placeholder="Write what's on your mind..."
+          ></textarea>
+        </div>
+
+        <div class="row end">
+          <button id="saveJournalBtn" class="primary">Save Journal Entry</button>
+        </div>
+
+        <div id="journalStatus" class="status muted">Status: idle</div>
+      </section>
+
+      <section class="mood-history-section">
+        <div class="mood-section-row">
+          <h2>Journal History</h2>
+
+          <button id="loadJournalHistoryBtn" class="primary secondaryBtn">
+            Load Journal History
+          </button>
+        </div>
+
+        <div id="journalHistoryList" class="historyList">
+          <div class="muted small">Your journal entries will appear here.</div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="app-right-panel">
+      <a class="dashboard-icon-link" href="./dashboard.html">
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./mood.html">
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./checkin.html">
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a class="dashboard-icon-link active" href="./journal.html">
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./index.html">
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./profile.html">
+        <span class="dashboard-icon-circle">◯</span>
+        <span>Profile</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./history.html">
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+    </div>
+  </footer>
+
+  <script src="./translations.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./journal.js"></script>
+</body>
+</html>

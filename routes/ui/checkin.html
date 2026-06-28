@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝒜lignn — Daily Check-In</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div class="soul-bg">
+  <img class="soul-bg-image" src="./backgrounds/checkin.jpg" alt="">
+  <div class="soul-bg-overlay"></div>
+</div>
+
+  <header class="header dashboard-topbar">
+    <div>
+      <a class="brandLink" href="./dashboard.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <main class="mood-shell">
+    <aside class="mood-left-panel">
+      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+
+      <h2 class="mood-left-title">Check-In Resources</h2>
+
+      <details class="mood-resource-card">
+  <summary>💧 Hydration</summary>
+
+  <ul class="resource-list">
+    <li>Drink a glass of water</li>
+    <li>Refill your water bottle</li>
+    <li>Choose water with your next meal</li>
+    <li>Add electrolytes after intense activity</li>
+    <li>Eat water-rich foods (watermelon, cucumber, oranges)</li>
+  </ul>
+</details>
+
+<details class="mood-resource-card">
+  <summary>🍽 Nutrition</summary>
+
+  <ul class="resource-list">
+    <li>Eat a source of protein today</li>
+    <li>Include a fruit or vegetable with a meal</li>
+    <li>Don't skip meals if possible</li>
+    <li>Choose foods that give lasting energy</li>
+    <li>Fuel your body before and after exercise</li>
+  </ul>
+</details>
+
+<details class="mood-resource-card">
+  <summary>❤️ Self-Care</summary>
+
+  <ul class="resource-list">
+    <li>Take a 5-minute break</li>
+    <li>Go outside for fresh air</li>
+    <li>Practice deep breathing</li>
+    <li>Stretch or move your body</li>
+    <li>Reach out to someone you trust</li>
+    <li>Journal your thoughts</li>
+    <li>Do one thing that brings you joy</li>
+  </ul>
+</details>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>Daily Check-In</h1>
+        <p>Pause for a second. Where are you mentally right now?</p>
+      </div>
+
+      <section class="mood-form-card">
+        <div class="moodSection">
+          <label class="label" for="mentalStateInput">Mental state</label>
+          <input
+            id="mentalStateInput"
+            class="input"
+            placeholder="e.g. overwhelmed, calm, tired, hopeful"
+          />
+        </div>
+
+        <div class="moodSection">
+          <label class="label" for="reflectionInput">Optional reflection</label>
+          <textarea
+            id="reflectionInput"
+            class="textarea mood-notes-box"
+            rows="6"
+            placeholder="What's been on your mind?"
+          ></textarea>
+        </div>
+
+        <div class="row end">
+          <button id="saveCheckinBtn" class="primary">Save Check-In</button>
+        </div>
+
+        <div id="checkinStatus" class="status muted">Status: idle</div>
+      </section>
+
+      <section class="mood-history-section">
+        <div class="mood-section-row">
+          <h2>Check-In History</h2>
+          <button id="loadCheckinHistoryBtn" class="primary secondaryBtn">
+            Load Check-In History
+          </button>
+        </div>
+
+        <div id="checkinHistoryList" class="historyList">
+          <div class="muted small">Your check-ins will appear here.</div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="app-right-panel">
+      <a class="dashboard-icon-link" href="./dashboard.html">
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./mood.html">
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a class="dashboard-icon-link active" href="./checkin.html">
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./journal.html">
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./index.html">
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./profile.html">
+        <span class="dashboard-icon-circle">◯</span>
+        <span>Profile</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./history.html">
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+    </div>
+  </footer>
+
+  <script src="./translations.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./checkin.js"></script>
+</body>
+</html>

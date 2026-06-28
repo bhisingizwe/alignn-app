@@ -1,0 +1,52 @@
+const BASE_URL = "http://localhost:5000";
+
+const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+const forgotEmailInput = document.getElementById("forgotEmailInput");
+const forgotPasswordStatus = document.getElementById("forgotPasswordStatus");
+const resetLinkBox = document.getElementById("resetLinkBox");
+const sendResetBtn = document.getElementById("sendResetBtn");
+
+function setStatus(msg) {
+  forgotPasswordStatus.textContent = `Status: ${msg}`;
+}
+
+forgotPasswordForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = forgotEmailInput.value.trim();
+
+  if (!email) {
+    setStatus("enter your email first");
+    return;
+  }
+
+  sendResetBtn.disabled = true;
+  resetLinkBox.textContent = "";
+  setStatus("generating reset link...");
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/auth/forgot-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await res.json();
+    sendResetBtn.disabled = false;
+
+    if (!res.ok) {
+      setStatus(data.error || "failed to generate reset link");
+      return;
+    }
+
+    setStatus(data.message || "If that email exists, a reset link has been sent.");
+resetLinkBox.textContent = "";
+
+  } catch (err) {
+    sendResetBtn.disabled = false;
+    setStatus("server error");
+    console.error(err);
+  }
+});

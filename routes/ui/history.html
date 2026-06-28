@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝒜lignn — History</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="history-page">
+  <div class="soul-bg">
+  <video class="soul-bg-video" autoplay muted loop playsinline>
+      <source src="./backgrounds/history.mp4" type="video/mp4">
+    </video>
+  <div class="soul-bg-overlay"></div>
+</div>
+
+  <header class="header dashboard-topbar">
+    <div>
+      <a class="brandLink" href="./dashboard.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <main class="mood-shell">
+    <aside class="mood-left-panel">
+      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>History</h1>
+        <p>A look back at what you’ve been carrying, processing, and growing through.</p>
+      </div>
+
+      <div class="mood-section-row">
+        <h2>Your Activity</h2>
+        <button id="loadHistoryBtn" class="primary">Load History</button>
+      </div>
+
+      <div id="historyStatus" class="status muted">Status: idle</div>
+
+      <section class="history-summary-grid">
+        <button class="history-summary-card" data-type="reflections">
+          <h3>Reflections</h3>
+          <p id="reflectionCount">— entries</p>
+          <span id="reflectionLatest">Latest will appear here.</span>
+        </button>
+
+        <button class="history-summary-card" data-type="moods">
+          <h3>Mood Logs</h3>
+          <p id="moodCount">— entries</p>
+          <span id="moodLatest">Latest will appear here.</span>
+        </button>
+
+        <button class="history-summary-card" data-type="journals">
+          <h3>Journal Entries</h3>
+          <p id="journalCount">— entries</p>
+          <span id="journalLatest">Latest will appear here.</span>
+        </button>
+
+        <button class="history-summary-card" data-type="checkins">
+          <h3>Check-Ins</h3>
+          <p id="checkinCount">— entries</p>
+          <span id="checkinLatest">Latest will appear here.</span>
+        </button>
+      </section>
+
+      <section class="mood-history-section">
+        <div class="mood-section-row">
+          <h2 id="detailTitle">Select a card</h2>
+        </div>
+
+        <div id="historyList" class="historyList">
+          <div class="muted small">Click a history card above to view entries.</div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="app-right-panel">
+      <a class="dashboard-icon-link" href="./dashboard.html">
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./mood.html">
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./checkin.html">
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./journal.html">
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./index.html">
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./profile.html">
+        <span class="dashboard-icon-circle">◯</span>
+        <span>Profile</span>
+      </a>
+
+      <a class="dashboard-icon-link active" href="./history.html">
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+    </div>
+  </footer>
+
+  <script src="./translations.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./history.js"></script>
+</body>
+</html>

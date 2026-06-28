@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝒜lignn — Profile</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div class="soul-bg">
+  <img class="soul-bg-image" src="./backgrounds/profile.jpg" alt="">
+  <div class="soul-bg-overlay"></div>
+</div>
+
+  <header class="header dashboard-topbar">
+    <div>
+      <a class="brandLink" href="./dashboard.html">
+        <div class="brand">𝒜lignn</div>
+      </a>
+      <div class="tagline">A place for you</div>
+    </div>
+  </header>
+
+  <main class="mood-shell">
+    <aside class="mood-left-panel">
+      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>Profile</h1>
+        <p>Manage your account details and preferences.</p>
+      </div>
+
+      <section class="mood-form-card">
+        <div class="profile-option-card">
+          <div class="profile-option-icon">🔒</div>
+
+          <div>
+            <h2>Change Password</h2>
+            <p>Update your password through the reset page.</p>
+          </div>
+
+          <a href="./forgot-password.html" class="primary profile-action-btn">
+            Change
+          </a>
+        </div>
+
+        <div class="profile-option-card profile-account-card" id="accountDetailsCard">
+          <div class="profile-option-icon">👤</div>
+
+          <div>
+            <h2>Account Details</h2>
+            <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
+            <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+
+            <div id="nameEditBox" class="name-edit-box hidden">
+              <label for="displayNameInput" class="label">Display name</label>
+              <input
+                id="displayNameInput"
+                class="input"
+                type="text"
+                placeholder="Enter your name"
+              />
+
+              <button id="saveNameBtn" class="primary profile-language-save" type="button">
+                Save Name
+              </button>
+            </div>
+
+            <p class="muted small profile-note">
+              Click account details to add or change your display name.
+            </p>
+          </div>
+        </div>
+
+        <div class="profile-option-card danger-zone-card">
+  <div class="profile-option-icon danger-icon">⚠️</div>
+
+  <div>
+    <h2>Delete Account</h2>
+    <p>
+      Permanently delete your 𝒜lignn account and saved data.
+      This action cannot be undone.
+    </p>
+
+    <div class="delete-account-box">
+      <label for="deleteConfirmInput" class="label">
+        Type DELETE to confirm
+      </label>
+
+      <input
+        id="deleteConfirmInput"
+        class="input"
+        type="text"
+        placeholder="Type DELETE"
+      />
+
+      <button id="deleteAccountBtn" class="danger-btn" type="button">
+        Delete My Account
+      </button>
+    </div>
+  </div>
+</div>
+
+        <div id="profileStatus" class="status muted">Status: idle</div>
+      </section>
+    </section>
+
+    <aside class="app-right-panel">
+      <a class="dashboard-icon-link" href="./dashboard.html">
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./mood.html">
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./checkin.html">
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./journal.html">
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./index.html">
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a class="dashboard-icon-link active" href="./profile.html">
+        <span class="dashboard-icon-circle">◯</span>
+        <span>Profile</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./history.html">
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About</a>
+      <a href="contact.html" class="footer-link">Contact</a>
+      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+    </div>
+  </footer>
+  
+<script src="./auth.js"></script>
+<script src="./profile.js"></script>
+</body>
+</html>
