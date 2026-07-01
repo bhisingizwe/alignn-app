@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://alignn-app.vercel.app";
 
 const titleInput = document.getElementById("titleInput");
 const contentInput = document.getElementById("contentInput");

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://alignn-app.vercel.app";
 
 const dashboardStatus = document.getElementById("dashboardStatus");
 const reflectionCount = document.getElementById("reflectionCount");

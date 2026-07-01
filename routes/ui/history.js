@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://alignn-app.vercel.app";
 
 const loadHistoryBtn = document.getElementById("loadHistoryBtn");
 const historyStatus = document.getElementById("historyStatus");

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://alignn-app.vercel.app";
 
 const resetPasswordForm = document.getElementById("resetPasswordForm");
 const newPasswordInput = document.getElementById("newPasswordInput");
