@@ -11,11 +11,11 @@ const forgotLoginSwitch = document.getElementById("forgotLoginSwitch");
 const token = localStorage.getItem("token");
 
 if (token) {
-  forgotBackBtn?.classList.remove("hidden");
-  forgotLoginSwitch?.classList.add("hidden");
+  if (forgotBackBtn) forgotBackBtn.style.display = "block";
+  if (forgotLoginSwitch) forgotLoginSwitch.style.display = "none";
 } else {
-  forgotBackBtn?.classList.add("hidden");
-  forgotLoginSwitch?.classList.remove("hidden");
+  if (forgotBackBtn) forgotBackBtn.style.display = "none";
+  if (forgotLoginSwitch) forgotLoginSwitch.style.display = "block";
 }
 
 function setStatus(msg) {
@@ -39,9 +39,7 @@ forgotPasswordForm.addEventListener("submit", async (e) => {
   try {
     const res = await fetch(`${BASE_URL}/api/auth/forgot-password`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email })
     });
 
@@ -54,7 +52,6 @@ forgotPasswordForm.addEventListener("submit", async (e) => {
     }
 
     setStatus(data.message || "If that email exists, a reset link has been sent.");
-    resetLinkBox.textContent = "";
   } catch (err) {
     sendResetBtn.disabled = false;
     setStatus("server error");
