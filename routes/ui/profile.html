@@ -34,70 +34,39 @@
 
       <section class="mood-form-card">
         <div class="profile-option-card">
-          <div class="profile-option-icon">🔒</div>
-
-          <div>
-            <h2>Change Password</h2>
-            <p>Update your password through the reset page.</p>
-          </div>
-
-          <a href="./forgot-password.html" class="primary profile-action-btn">
-            Change
-          </a>
-        </div>
-
-        <div class="profile-option-card profile-account-card" id="accountDetailsCard">
-          <div class="profile-option-icon">👤</div>
-
-          <div>
-            <h2>Account Details</h2>
-            <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
-            <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
-
-            <div id="nameEditBox" class="name-edit-box hidden">
-              <label for="displayNameInput" class="label">Display name</label>
-              <input
-                id="displayNameInput"
-                class="input"
-                type="text"
-                placeholder="Enter your name"
-              />
-
-              <button id="saveNameBtn" class="primary profile-language-save" type="button">
-                Save Name
-              </button>
-            </div>
-
-            <p class="muted small profile-note">
-              Click account details to add or change your display name.
-            </p>
-          </div>
-        </div>
-
-        <div class="profile-option-card danger-zone-card">
-  <div class="profile-option-icon danger-icon">⚠️</div>
+  <div class="profile-option-icon">🔒</div>
 
   <div>
-    <h2>Delete Account</h2>
-    <p>
-      Permanently delete your 𝒜lignn account and saved data.
-      This action cannot be undone.
-    </p>
+    <h2>Change Password</h2>
+    <p>Update your password without leaving your account.</p>
 
-    <div class="delete-account-box">
-      <label for="deleteConfirmInput" class="label">
-        Type DELETE to confirm
-      </label>
-
+    <div class="password-change-box">
+      <label for="currentPasswordInput" class="label">Current password</label>
       <input
-        id="deleteConfirmInput"
+        id="currentPasswordInput"
         class="input"
-        type="text"
-        placeholder="Type DELETE"
+        type="password"
+        placeholder="Enter current password"
       />
 
-      <button id="deleteAccountBtn" class="danger-btn" type="button">
-        Delete My Account
+      <label for="newProfilePasswordInput" class="label">New password</label>
+      <input
+        id="newProfilePasswordInput"
+        class="input"
+        type="password"
+        placeholder="Enter new password"
+      />
+
+      <label for="confirmPasswordInput" class="label">Confirm new password</label>
+      <input
+        id="confirmPasswordInput"
+        class="input"
+        type="password"
+        placeholder="Confirm new password"
+      />
+
+      <button id="changePasswordBtn" class="primary profile-action-btn" type="button">
+        Update Password
       </button>
     </div>
   </div>

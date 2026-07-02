@@ -13,8 +13,15 @@ const saveNameBtn = document.getElementById("saveNameBtn");
 const deleteConfirmInput = document.getElementById("deleteConfirmInput");
 const deleteAccountBtn = document.getElementById("deleteAccountBtn");
 
+const currentPasswordInput = document.getElementById("currentPasswordInput");
+const newProfilePasswordInput = document.getElementById("newProfilePasswordInput");
+const confirmPasswordInput = document.getElementById("confirmPasswordInput");
+const changePasswordBtn = document.getElementById("changePasswordBtn");
+
 function setStatus(msg) {
-  profileStatus.textContent = `Status: ${msg}`;
+  if (profileStatus) {
+    profileStatus.textContent = `Status: ${msg}`;
+  }
 }
 
 function logout() {
@@ -37,8 +44,8 @@ async function loadProfile() {
     const data = await res.json();
 
     if (!res.ok) {
-      profileName.textContent = "Unavailable";
-      profileEmail.textContent = "Unavailable";
+      if (profileName) profileName.textContent = "Unavailable";
+      if (profileEmail) profileEmail.textContent = "Unavailable";
       setStatus(data.error || "failed to load profile");
       return;
     }
@@ -46,21 +53,96 @@ async function loadProfile() {
     const user = data.user;
     saveUser(user);
 
-    profileName.textContent = user.name || "No name added yet";
-    profileEmail.textContent = user.email || "No email available";
+    if (profileName) profileName.textContent = user.name || "No name added yet";
+    if (profileEmail) profileEmail.textContent = user.email || "No email available";
 
     setStatus("profile loaded");
   } catch (err) {
     console.error(err);
-    profileName.textContent = "Unavailable";
-    profileEmail.textContent = "Unavailable";
+    if (profileName) profileName.textContent = "Unavailable";
+    if (profileEmail) profileEmail.textContent = "Unavailable";
     setStatus("server error");
+  }
+}
+
+async function changePassword() {
+  const token = requireAuth();
+  if (!token) return;
+
+  if (!currentPasswordInput || !newProfilePasswordInput || !confirmPasswordInput) {
+    setStatus("password form is missing from the page");
+    return;
+  }
+
+  const currentPassword = currentPasswordInput.value.trim();
+  const newPassword = newProfilePasswordInput.value.trim();
+  const confirmPassword = confirmPasswordInput.value.trim();
+
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    setStatus("fill out all password fields");
+    return;
+  }
+
+  if (newPassword.length < 6) {
+    setStatus("new password must be at least 6 characters");
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    setStatus("new passwords do not match");
+    return;
+  }
+
+  if (currentPassword === newPassword) {
+    setStatus("new password must be different");
+    return;
+  }
+
+  changePasswordBtn.disabled = true;
+  setStatus("updating password...");
+
+  try {
+    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me/password`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        currentPassword,
+        newPassword,
+        confirmPassword
+      })
+    });
+
+    if (!res) {
+      changePasswordBtn.disabled = false;
+      setStatus("request failed");
+      return;
+    }
+
+    const data = await res.json();
+    changePasswordBtn.disabled = false;
+
+    if (!res.ok) {
+      setStatus(data.error || "failed to update password");
+      return;
+    }
+
+    currentPasswordInput.value = "";
+    newProfilePasswordInput.value = "";
+    confirmPasswordInput.value = "";
+
+    setStatus("password updated successfully");
+  } catch (err) {
+    console.error(err);
+    changePasswordBtn.disabled = false;
+    setStatus("server error while updating password");
   }
 }
 
 async function saveDisplayName() {
   const token = requireAuth();
-  if (!token) return;
+  if (!token || !displayNameInput) return;
 
   const name = displayNameInput.value.trim();
 
@@ -89,19 +171,68 @@ async function saveDisplayName() {
       return;
     }
 
-    profileName.textContent = data.user.name || "No name added yet";
+    if (profileName) profileName.textContent = data.user.name || "No name added yet";
     saveUser(data.user);
     setStatus("name saved");
 
-    nameEditBox.classList.add("hidden");
+    if (nameEditBox) nameEditBox.classList.add("hidden");
   } catch (err) {
     console.error(err);
     setStatus("server error while saving name");
   }
 }
 
+async function deleteAccount() {
+  const token = requireAuth();
+  if (!token || !deleteConfirmInput || !deleteAccountBtn) return;
+
+  const confirmText = deleteConfirmInput.value.trim();
+
+  if (confirmText !== "DELETE") {
+    setStatus("type DELETE to confirm account deletion");
+    return;
+  }
+
+  const confirmed = confirm(
+    "Are you sure you want to permanently delete your 𝒜lignn account? This cannot be undone."
+  );
+
+  if (!confirmed) return;
+
+  deleteAccountBtn.disabled = true;
+  setStatus("deleting account...");
+
+  try {
+    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ confirmText })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      deleteAccountBtn.disabled = false;
+      setStatus(data.error || "failed to delete account");
+      return;
+    }
+
+    localStorage.clear();
+    alert("Your 𝒜lignn account has been deleted.");
+    window.location.replace("./signup.html");
+  } catch (err) {
+    console.error(err);
+    deleteAccountBtn.disabled = false;
+    setStatus("server error while deleting account");
+  }
+}
+
 if (accountDetailsCard) {
   accountDetailsCard.addEventListener("click", () => {
+    if (!nameEditBox || !displayNameInput || !profileName) return;
+
     nameEditBox.classList.toggle("hidden");
 
     if (!nameEditBox.classList.contains("hidden")) {
@@ -150,67 +281,8 @@ if (deleteAccountBtn) {
   deleteAccountBtn.addEventListener("click", deleteAccount);
 }
 
-async function deleteAccount() {
-  const token = requireAuth();
-  if (!token) return;
-
-  const confirmText = deleteConfirmInput.value.trim();
-
-  if (confirmText !== "DELETE") {
-    setStatus("type DELETE to confirm account deletion");
-    return;
-  }
-
-  const confirmed = confirm(
-    "Are you sure you want to permanently delete your 𝒜lignn account? This cannot be undone."
-  );
-
-  if (!confirmed) return;
-
-  deleteAccountBtn.disabled = true;
-  setStatus("deleting account...");
-
-  try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ confirmText })
-    });
-
-    if (!res) {
-      deleteAccountBtn.disabled = false;
-      setStatus("request failed before reaching server");
-      return;
-    }
-
-    const text = await res.text();
-    let data = {};
-
-    try {
-      data = text ? JSON.parse(text) : {};
-    } catch {
-      console.error("Non-JSON response:", text);
-      deleteAccountBtn.disabled = false;
-      setStatus("server returned invalid response");
-      return;
-    }
-
-    if (!res.ok) {
-      deleteAccountBtn.disabled = false;
-      setStatus(data.error || "failed to delete account");
-      return;
-    }
-
-    localStorage.clear();
-    alert("Your 𝒜lignn account has been deleted.");
-    window.location.replace("./signup.html");
-  } catch (err) {
-    console.error("Delete account frontend error:", err);
-    deleteAccountBtn.disabled = false;
-    setStatus(err.message || "server error while deleting account");
-  }
+if (changePasswordBtn) {
+  changePasswordBtn.addEventListener("click", changePassword);
 }
 
 window.addEventListener("DOMContentLoaded", () => {

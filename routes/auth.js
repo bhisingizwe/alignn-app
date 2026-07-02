@@ -296,6 +296,70 @@ router.put("/me/name", authenticate, async (req, res) => {
   }
 });
 
+// CHANGE PASSWORD WHILE LOGGED IN
+router.put("/me/password", authenticate, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      return res.status(400).json({ error: "All password fields are required" });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ error: "New passwords do not match" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: "New password must be at least 6 characters" });
+    }
+
+    if (currentPassword === newPassword) {
+      return res.status(400).json({ error: "New password must be different from current password" });
+    }
+
+    const { data: user, error: userError } = await supabase
+      .from("users")
+      .select("id, password")
+      .eq("id", userId)
+      .single();
+
+    if (userError || !user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const validCurrentPassword = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
+
+    if (!validCurrentPassword) {
+      return res.status(401).json({ error: "Current password is incorrect" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    const { error: updateError } = await supabase
+      .from("users")
+      .update({
+        password: hashedPassword,
+        reset_token_hash: null,
+        reset_token_expires: null
+      })
+      .eq("id", userId);
+
+    if (updateError) {
+      console.error("Change password update error:", updateError);
+      return res.status(500).json({ error: "Failed to update password" });
+    }
+
+    return res.json({ message: "Password updated successfully" });
+  } catch (error) {
+    console.error("Change password route error:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
 // DELETE CURRENT USER ACCOUNT
 router.delete("/me", authenticate, async (req, res) => {
   try {
