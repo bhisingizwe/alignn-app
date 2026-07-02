@@ -5,6 +5,20 @@ const forgotEmailInput = document.getElementById("forgotEmailInput");
 const forgotPasswordStatus = document.getElementById("forgotPasswordStatus");
 const resetLinkBox = document.getElementById("resetLinkBox");
 const sendResetBtn = document.getElementById("sendResetBtn");
+const forgotBackBtn = document.getElementById("forgotBackBtn");
+
+const forgotLoginSwitch = document.getElementById("forgotLoginSwitch");
+
+const isLoggedIn = localStorage.getItem("token");
+
+if (isLoggedIn) {
+  if (forgotBackBtn) forgotBackBtn.classList.remove("hidden");
+  if (forgotLoginSwitch) forgotLoginSwitch.classList.add("hidden");
+}
+
+if (forgotBackBtn && localStorage.getItem("token")) {
+  forgotBackBtn.classList.remove("hidden");
+}
 
 function setStatus(msg) {
   forgotPasswordStatus.textContent = `Status: ${msg}`;

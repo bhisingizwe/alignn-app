@@ -296,6 +296,77 @@ router.put("/me/name", authenticate, async (req, res) => {
   }
 });
 
+// SEND RESET LINK TO LOGGED-IN USER
+router.post("/me/send-reset-link", authenticate, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    const { data: user, error: userError } = await supabase
+      .from("users")
+      .select("id, email")
+      .eq("id", userId)
+      .single();
+
+    if (userError || !user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const rawToken = crypto.randomBytes(32).toString("hex");
+
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(rawToken)
+      .digest("hex");
+
+    const expires = new Date(Date.now() + 1000 * 60 * 30).toISOString();
+
+    const { error: updateError } = await supabase
+      .from("users")
+      .update({
+        reset_token_hash: hashedToken,
+        reset_token_expires: expires
+      })
+      .eq("id", user.id);
+
+    if (updateError) {
+      return res.status(500).json({ error: "Failed to create reset link" });
+    }
+
+    const resetLink = `${FRONTEND_URL}/reset-password.html?token=${rawToken}`;
+
+    const emailResult = await resend.emails.send({
+      from: process.env.RESET_EMAIL_FROM,
+      to: user.email,
+      subject: "Reset your 𝒜lignn password",
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+          <h2>Reset your 𝒜lignn password</h2>
+          <p>Click below to reset your password. This link expires in 30 minutes.</p>
+          <p>
+            <a href="${resetLink}" style="background:#7c5cff;color:white;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:bold;">
+              Reset Password
+            </a>
+          </p>
+        </div>
+      `
+    });
+
+    if (emailResult.error) {
+      console.error("Resend failed:", emailResult.error);
+      return res.status(500).json({
+        error: emailResult.error.message || "Failed to send reset email"
+      });
+    }
+
+    return res.json({
+      message: `Reset link sent to ${user.email}`
+    });
+  } catch (error) {
+    console.error("Logged-in reset link error:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
 // CHANGE PASSWORD WHILE LOGGED IN
 router.put("/me/password", authenticate, async (req, res) => {
   try {
@@ -328,10 +399,7 @@ router.put("/me/password", authenticate, async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const validCurrentPassword = await bcrypt.compare(
-      currentPassword,
-      user.password
-    );
+    const validCurrentPassword = await bcrypt.compare(currentPassword, user.password);
 
     if (!validCurrentPassword) {
       return res.status(401).json({ error: "Current password is incorrect" });
