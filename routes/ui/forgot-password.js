@@ -6,18 +6,16 @@ const forgotPasswordStatus = document.getElementById("forgotPasswordStatus");
 const resetLinkBox = document.getElementById("resetLinkBox");
 const sendResetBtn = document.getElementById("sendResetBtn");
 const forgotBackBtn = document.getElementById("forgotBackBtn");
-
 const forgotLoginSwitch = document.getElementById("forgotLoginSwitch");
 
-const isLoggedIn = localStorage.getItem("token");
+const token = localStorage.getItem("token");
 
-if (isLoggedIn) {
-  if (forgotBackBtn) forgotBackBtn.classList.remove("hidden");
-  if (forgotLoginSwitch) forgotLoginSwitch.classList.add("hidden");
-}
-
-if (forgotBackBtn && localStorage.getItem("token")) {
-  forgotBackBtn.classList.remove("hidden");
+if (token) {
+  forgotBackBtn?.classList.remove("hidden");
+  forgotLoginSwitch?.classList.add("hidden");
+} else {
+  forgotBackBtn?.classList.add("hidden");
+  forgotLoginSwitch?.classList.remove("hidden");
 }
 
 function setStatus(msg) {
@@ -56,8 +54,7 @@ forgotPasswordForm.addEventListener("submit", async (e) => {
     }
 
     setStatus(data.message || "If that email exists, a reset link has been sent.");
-resetLinkBox.textContent = "";
-
+    resetLinkBox.textContent = "";
   } catch (err) {
     sendResetBtn.disabled = false;
     setStatus("server error");
