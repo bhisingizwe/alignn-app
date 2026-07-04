@@ -6,11 +6,12 @@
   <title>𝒜lignn — Profile</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body>
-<div class="soul-bg">
-  <img class="soul-bg-image" src="./backgrounds/profile.jpg" alt="">
-  <div class="soul-bg-overlay"></div>
-</div>
+  <div class="soul-bg">
+    <img class="soul-bg-image" src="./backgrounds/profile.jpg" alt="">
+    <div class="soul-bg-overlay"></div>
+  </div>
 
   <header class="header dashboard-topbar">
     <div>
@@ -33,19 +34,6 @@
       </div>
 
       <section class="mood-form-card">
-
-        <div class="profile-option-card">
-          <div class="profile-option-icon">🔒</div>
-
-          <div>
-            <h2>Change Password</h2>
-            <p>Update your password through the reset page.</p>
-          </div>
-
-          <a href="./forgot-password.html" class="primary profile-action-btn">
-            Change
-          </a>
-        </div>
 
         <div class="profile-option-card profile-account-card" id="accountDetailsCard">
           <div class="profile-option-icon">👤</div>
@@ -73,6 +61,19 @@
               Click account details to add or change your display name.
             </p>
           </div>
+        </div>
+
+        <div class="profile-option-card">
+          <div class="profile-option-icon">🔒</div>
+
+          <div>
+            <h2>Change Password</h2>
+            <p>Update your password through the reset page.</p>
+          </div>
+
+          <a href="./forgot-password.html" class="primary profile-action-btn">
+            Change
+          </a>
         </div>
 
         <div class="profile-option-card danger-zone-card">
@@ -156,7 +157,7 @@
     </div>
   </footer>
 
-<script src="./auth.js"></script>
-<script src="./profile.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./profile.js"></script>
 </body>
 </html>

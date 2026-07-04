@@ -18,7 +18,9 @@ const suggestionButtons = document.querySelectorAll(".ai-suggestion-btn");
 const workoutPlanCards = document.querySelectorAll(".workout-plan-card");
 
 function setStatus(msg) {
-  dashboardStatus.textContent = `Status: ${msg}`;
+  if (dashboardStatus) {
+    dashboardStatus.textContent = `Status: ${msg}`;
+  }
 }
 
 function logout() {
@@ -39,6 +41,27 @@ function setupWorkoutCardNavigation() {
     card.addEventListener("click", () => {
       const plan = card.dataset.plan;
       if (!plan) return;
+
+      window.location.href = `./workout-plan.html?plan=${plan}`;
+    });
+  });
+}
+
+function setupMobileWorkoutMenu() {
+  const mobileWorkoutMenuBtn = document.getElementById("mobileWorkoutMenuBtn");
+  const mobileWorkoutMenu = document.getElementById("mobileWorkoutMenu");
+
+  if (!mobileWorkoutMenuBtn || !mobileWorkoutMenu) return;
+
+  mobileWorkoutMenuBtn.addEventListener("click", () => {
+    mobileWorkoutMenu.classList.toggle("hidden");
+  });
+
+  mobileWorkoutMenu.querySelectorAll(".mobile-workout-link").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const plan = btn.dataset.plan;
+      if (!plan) return;
+
       window.location.href = `./workout-plan.html?plan=${plan}`;
     });
   });
@@ -72,6 +95,8 @@ async function loadAIUsage() {
 }
 
 function addMessage(text, type) {
+  if (!aiChatMessages) return;
+
   const messageDiv = document.createElement("div");
   messageDiv.classList.add("message");
 
@@ -290,7 +315,12 @@ if (logoutBtnSide) {
 }
 
 setupWorkoutCardNavigation();
-timeGreeting.textContent = setTimeGreeting();
+setupMobileWorkoutMenu();
+
+if (timeGreeting) {
+  timeGreeting.textContent = setTimeGreeting();
+}
+
 loadProfile();
 loadDashboard();
 loadAIUsage();

@@ -2779,3 +2779,282 @@ body:not(.home-page) .brand {
     margin-top: -70px;
   }
 }
+
+
+
+/* =========================
+   ALIGNN MOBILE REDESIGN
+========================= */
+
+.mobile-menu-btn,
+.mobile-workout-menu,
+.workout-mobile-topbar {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .header,
+  .dashboard-topbar {
+    padding: 18px 22px !important;
+    align-items: flex-start;
+  }
+
+  body:not(.home-page) .brand {
+    font-size: 2rem !important;
+  }
+
+  .tagline {
+    font-size: 1rem !important;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-main);
+    font-size: 1.8rem;
+    border-radius: 14px;
+    padding: 8px 14px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .mobile-workout-menu {
+    position: relative;
+    z-index: 5;
+    width: calc(100% - 32px);
+    margin: 12px auto;
+    padding: 14px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-card);
+  }
+
+  .mobile-workout-menu:not(.hidden) {
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobile-workout-link {
+    border: 1px solid var(--border-soft);
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--text-main);
+    padding: 14px;
+    border-radius: 18px;
+    font-weight: 800;
+    text-align: left;
+  }
+
+  .dashboard-shell {
+    width: calc(100% - 28px) !important;
+    margin: 18px auto 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+  }
+
+  .dashboard-left-panel {
+    display: none !important;
+  }
+
+  .dashboard-center-panel {
+    gap: 18px !important;
+  }
+
+  .dashboard-center-header,
+  .dashboard-greeting-block {
+    width: 100% !important;
+    padding: 22px !important;
+    border-radius: 28px !important;
+  }
+
+  .dashboard-title-main {
+    font-size: 3rem !important;
+    line-height: 1.05 !important;
+  }
+
+  .dashboard-title-sub {
+    font-size: 1.1rem !important;
+  }
+
+  .dashboard-greeting-heading {
+    font-size: 1.8rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .dashboard-ai-card,
+  .ai-chat-card {
+    padding: 20px !important;
+    border-radius: 28px !important;
+  }
+
+  .ai-chat-messages {
+    height: 230px !important;
+  }
+
+  .message {
+    max-width: 92% !important;
+    font-size: 0.95rem !important;
+  }
+
+  .ai-chat-form {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+  }
+
+  .ai-chat-form input {
+    min-width: 0;
+  }
+
+  .dashboard-stats-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .dashboard-stat-card {
+    min-height: 150px !important;
+    padding: 22px !important;
+    border-radius: 28px !important;
+  }
+
+  .dashboard-right-panel,
+  .app-right-panel {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px 10px !important;
+    width: 100% !important;
+    justify-items: center !important;
+  }
+
+  .dashboard-icon-circle {
+    width: 70px !important;
+    height: 70px !important;
+    font-size: 1.4rem !important;
+  }
+
+  .dashboard-icon-link span:last-child {
+    font-size: 0.82rem !important;
+  }
+
+  .dashboard-side-logout {
+    grid-column: span 2;
+    align-self: center;
+    margin-top: 20px !important;
+  }
+
+  .app-footer {
+    margin-top: 30px !important;
+    padding: 22px 12px !important;
+  }
+
+  .footer-links {
+    gap: 22px !important;
+  }
+
+  .footer-link {
+    font-size: 1rem !important;
+  }
+
+  /* Workout mobile */
+  .workout-page-shell {
+    width: calc(100% - 28px) !important;
+    margin: 18px auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  .workout-mobile-topbar {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .workout-left-sidebar {
+    display: none !important;
+  }
+
+  .workout-plan-heading {
+    text-align: center !important;
+    margin-top: 8px !important;
+  }
+
+  .workout-plan-heading h1 {
+    font-size: 2.6rem !important;
+  }
+
+  .workout-plan-heading p {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .workout-video-card,
+  .workout-video-card.active-video {
+    height: 220px !important;
+    border-radius: 28px !important;
+  }
+
+  .workout-level-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .workout-level-choice {
+    min-height: 135px !important;
+    border-radius: 28px !important;
+  }
+
+  .selected-program-container {
+    padding: 24px !important;
+    border-radius: 28px !important;
+  }
+
+  /* Mood/Profile shared pages */
+  .mood-shell {
+    width: calc(100% - 28px) !important;
+    margin: 18px auto 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .mood-left-panel {
+    order: 1;
+  }
+
+  .mood-center-panel {
+    order: 2;
+  }
+
+  .app-right-panel {
+    order: 3;
+  }
+
+  .mood-page-header h1 {
+    font-size: 2.7rem !important;
+  }
+
+  .mood-form-card {
+    padding: 22px !important;
+    border-radius: 28px !important;
+  }
+
+  .profile-option-card {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    padding: 22px !important;
+    border-radius: 26px !important;
+  }
+
+  .profile-action-btn,
+  .danger-btn {
+    width: fit-content;
+  }
+}

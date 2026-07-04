@@ -8,11 +8,65 @@ const videosContainer = document.getElementById("videosContainer");
 const selectedProgramContainer = document.getElementById("selectedProgramContainer");
 const levelSectionTitle = document.getElementById("levelSectionTitle");
 const videoSectionTitle = document.getElementById("videoSectionTitle");
-const backBtn = document.getElementById("backBtn");
-const categoryButtons = document.querySelectorAll(".workout-category-btn");
 
+const backBtn = document.getElementById("backBtn");
+const mobileBackBtn = document.getElementById("mobileBackBtn");
+const mobileWorkoutMenuBtn = document.getElementById("mobileWorkoutMenuBtn");
+const mobileWorkoutMenu = document.getElementById("mobileWorkoutMenu");
+
+const categoryButtons = document.querySelectorAll(".workout-category-btn");
 const workoutBgImage = document.getElementById("workoutBgImage");
 const workoutBgVideo = document.getElementById("workoutBgVideo");
+
+let currentPlan = null;
+let workoutVideoInterval = null;
+
+const specialLevelTitles = {
+  nutrition: "Choose Your Goal and Learn More",
+  recovery: "Choose Your Recovery Support"
+};
+
+function getCurrentSlug() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("plan") || "build-muscle";
+}
+
+function goToDashboard() {
+  window.location.href = "./dashboard.html";
+}
+
+function goToWorkoutPlan(plan) {
+  if (!plan) return;
+  window.location.href = `./workout-plan.html?plan=${plan}`;
+}
+
+function setupNavigation() {
+  if (backBtn) {
+    backBtn.addEventListener("click", goToDashboard);
+  }
+
+  if (mobileBackBtn) {
+    mobileBackBtn.addEventListener("click", goToDashboard);
+  }
+
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      goToWorkoutPlan(button.dataset.plan);
+    });
+  });
+
+  if (mobileWorkoutMenuBtn && mobileWorkoutMenu) {
+    mobileWorkoutMenuBtn.addEventListener("click", () => {
+      mobileWorkoutMenu.classList.toggle("hidden");
+    });
+
+    mobileWorkoutMenu.querySelectorAll(".mobile-workout-link").forEach((button) => {
+      button.addEventListener("click", () => {
+        goToWorkoutPlan(button.dataset.plan);
+      });
+    });
+  }
+}
 
 function updateWorkoutBackground(planKey) {
   if (!workoutBgImage || !workoutBgVideo) return;
@@ -34,38 +88,30 @@ function updateWorkoutBackground(planKey) {
     workoutBgImage.src = "./backgrounds/fitness.jpg";
   }
 }
-let currentPlan = null;
-let workoutVideoInterval = null;
-
-const specialLevelTitles = {
-  nutrition: "Choose Your Goal and Learn More",
-  recovery: "Choose Your Recovery Support"
-};
-
-if (backBtn) {
-  backBtn.addEventListener("click", () => {
-    window.location.href = "./dashboard.html";
-  });
-}
-
-categoryButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const plan = button.dataset.plan;
-    if (!plan) return;
-
-    window.location.href = `./workout-plan.html?plan=${plan}`;
-  });
-});
-
-function getCurrentSlug() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("plan") || "build-muscle";
-}
 
 function highlightActiveCategory(slug) {
   categoryButtons.forEach((button) => {
     button.classList.toggle("active", button.dataset.plan === slug);
   });
+
+  if (mobileWorkoutMenu) {
+    mobileWorkoutMenu.querySelectorAll(".mobile-workout-link").forEach((button) => {
+      button.classList.toggle("active", button.dataset.plan === slug);
+    });
+  }
+}
+
+function normalizeText(value) {
+  return (value || "").toLowerCase().trim();
+}
+
+function showPageError(title, message) {
+  if (planTitle) planTitle.textContent = title;
+  if (planDescription) planDescription.textContent = message;
+  if (planCategory) planCategory.textContent = "";
+  if (levelsContainer) levelsContainer.innerHTML = "";
+  if (videosContainer) videosContainer.innerHTML = "";
+  if (selectedProgramContainer) selectedProgramContainer.innerHTML = "";
 }
 
 async function loadWorkoutPlan() {
@@ -73,6 +119,7 @@ async function loadWorkoutPlan() {
   if (!token) return;
 
   const slug = getCurrentSlug();
+
   highlightActiveCategory(slug);
   updateWorkoutBackground(slug);
 
@@ -81,10 +128,15 @@ async function loadWorkoutPlan() {
       method: "GET"
     });
 
+    if (!res) return;
+
     const data = await res.json();
 
     if (!res.ok) {
-      showPageError("Unable to load workout plan", data.message || data.error || "Server error.");
+      showPageError(
+        "Unable to load workout plan",
+        data.message || data.error || "Server error."
+      );
       return;
     }
 
@@ -92,22 +144,23 @@ async function loadWorkoutPlan() {
     renderWorkoutPlan(data);
   } catch (error) {
     console.error("Workout page error:", error);
-    showPageError("Unable to load workout plan", error.message || "Something went wrong.");
+    showPageError(
+      "Unable to load workout plan",
+      error.message || "Something went wrong."
+    );
   }
 }
 
-function showPageError(title, message) {
-  planTitle.textContent = title;
-  planDescription.textContent = message;
-  planCategory.textContent = "";
-  levelsContainer.innerHTML = "";
-  videosContainer.innerHTML = "";
-  selectedProgramContainer.innerHTML = "";
-}
-
 function renderWorkoutPlan(plan) {
+  if (!planTitle || !planDescription || !levelsContainer || !videosContainer) return;
+
   planTitle.textContent = plan.title || "Workout Plan";
-  planCategory.style.display = "none";
+
+  if (planCategory) {
+    planCategory.style.display = "none";
+    planCategory.textContent = "";
+  }
+
   planDescription.textContent = plan.description || "";
 
   const slug = plan.slug;
@@ -117,14 +170,15 @@ function renderWorkoutPlan(plan) {
     videoSectionTitle.textContent = "";
   }
 
-  levelSectionTitle.textContent = specialLevelTitles[slug] || "Choose Your Level";
+  if (levelSectionTitle) {
+    levelSectionTitle.textContent = specialLevelTitles[slug] || "Choose Your Level";
+  }
 
   const topVideos = (plan.videos || []).filter((video) => {
     return normalizeText(video.category) === normalizeText("Educational Video");
   });
 
   renderVideos(topVideos);
-
   renderLevelCards(plan.levels || [], slug);
 }
 
@@ -146,6 +200,8 @@ function getYouTubeThumbnail(url) {
 }
 
 function renderVideos(videos) {
+  if (!videosContainer) return;
+
   videosContainer.innerHTML = "";
   videosContainer.classList.remove("video-carousel");
   clearWorkoutCarousel();
@@ -186,7 +242,7 @@ function renderVideos(videos) {
       </a>
     `;
 
-    document.querySelectorAll(".video-dot").forEach((dot, dotIndex) => {
+    videosContainer.querySelectorAll(".video-dot").forEach((dot, dotIndex) => {
       dot.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -206,6 +262,8 @@ function renderVideos(videos) {
 }
 
 function renderLevelCards(levels, slug) {
+  if (!levelsContainer || !selectedProgramContainer) return;
+
   levelsContainer.innerHTML = "";
   selectedProgramContainer.innerHTML = "";
 
@@ -218,7 +276,9 @@ function renderLevelCards(levels, slug) {
     return;
   }
 
-  const sortedLevels = [...levels].sort((a, b) => (a.sort_order || 1) - (b.sort_order || 1));
+  const sortedLevels = [...levels].sort(
+    (a, b) => (a.sort_order || 1) - (b.sort_order || 1)
+  );
 
   sortedLevels.forEach((level) => {
     const card = document.createElement("button");
@@ -244,6 +304,8 @@ function renderLevelCards(levels, slug) {
 }
 
 function renderSelectedProgram(level, slug) {
+  if (!selectedProgramContainer) return;
+
   if (slug === "nutrition") {
     selectedProgramContainer.innerHTML = `
       <article class="selected-program-card workout-program-outline nutrition-selected-card">
@@ -278,7 +340,9 @@ function renderSelectedProgram(level, slug) {
   }
 
   const exercises = level.workout_exercises || [];
-  const sortedExercises = [...exercises].sort((a, b) => (a.sort_order || 1) - (b.sort_order || 1));
+  const sortedExercises = [...exercises].sort(
+    (a, b) => (a.sort_order || 1) - (b.sort_order || 1)
+  );
 
   const isRecoveryWorkout = slug === "recovery" && level.level === "Recovery Workouts";
 
@@ -289,7 +353,6 @@ function renderSelectedProgram(level, slug) {
         isRecoveryWorkout
           ? ""
           : `
-          
             <div class="outline-section">
               <h4>Frequency</h4>
               <ul>
@@ -328,10 +391,6 @@ function renderSelectedProgram(level, slug) {
   `;
 
   selectedProgramContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-function normalizeText(value) {
-  return (value || "").toLowerCase().trim();
 }
 
 function renderNutritionVideos(level) {
@@ -516,4 +575,5 @@ function renderRecoveryNutrition() {
   `;
 }
 
+setupNavigation();
 loadWorkoutPlan();
