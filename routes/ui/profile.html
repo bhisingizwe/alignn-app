@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
-<body>
+<body class="profile-page">
   <div class="soul-bg">
     <img class="soul-bg-image" src="./backgrounds/profile.jpg" alt="">
     <div class="soul-bg-overlay"></div>
@@ -22,10 +22,8 @@
     </div>
   </header>
 
-  <main class="mood-shell">
-    <aside class="mood-left-panel">
-      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
-    </aside>
+  <main class="mobile-page-shell">
+    <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
 
     <section class="mood-center-panel">
       <div class="mood-page-header">
@@ -34,7 +32,6 @@
       </div>
 
       <section class="mood-form-card">
-
         <div class="profile-option-card profile-account-card" id="accountDetailsCard">
           <div class="profile-option-icon">👤</div>
 
@@ -108,45 +105,6 @@
         <div id="profileStatus" class="status muted">Status: idle</div>
       </section>
     </section>
-
-    <aside class="app-right-panel">
-      <a class="dashboard-icon-link" href="./dashboard.html">
-        <span class="dashboard-icon-circle">⌂</span>
-        <span>Home</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./mood.html">
-        <span class="dashboard-icon-circle">✦</span>
-        <span>Mood</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./checkin.html">
-        <span class="dashboard-icon-circle">☾</span>
-        <span>Check-In</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./journal.html">
-        <span class="dashboard-icon-circle">✎</span>
-        <span>Journal</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./reflection.html">
-        <span class="dashboard-icon-circle">◎</span>
-        <span>Reflection</span>
-      </a>
-
-      <a class="dashboard-icon-link active" href="./profile.html">
-        <span class="dashboard-icon-circle">◯</span>
-        <span>Profile</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./history.html">
-        <span class="dashboard-icon-circle">⌛</span>
-        <span>History</span>
-      </a>
-
-      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
-    </aside>
   </main>
 
   <footer class="app-footer">
