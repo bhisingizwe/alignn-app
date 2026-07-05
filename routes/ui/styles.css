@@ -3462,3 +3462,46 @@ body:not(.home-page) .brand {
     display: none !important;
   }
 }
+
+
+/* FORCE CHECKIN / JOURNAL / REFLECTION MOBILE ORDER */
+@media (max-width: 700px) {
+  .checkin-page .mood-center-panel,
+  .journal-page .mood-center-panel,
+  .reflection-page .mood-center-panel {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .checkin-page .back-dashboard-link,
+  .journal-page .back-dashboard-link,
+  .reflection-page .back-dashboard-link {
+    order: 1 !important;
+    margin: 0 0 14px !important;
+  }
+
+  .checkin-page .mood-page-header,
+  .journal-page .mood-page-header,
+  .reflection-page .mood-page-header {
+    order: 2 !important;
+  }
+
+  .checkin-page .mood-form-card,
+  .journal-page .mood-form-card,
+  .reflection-page .mood-form-card {
+    order: 3 !important;
+  }
+
+  .checkin-page .mobile-resources-section,
+  .journal-page .mobile-resources-section,
+  .reflection-page .mobile-resources-section {
+    order: 4 !important;
+    margin-top: 26px !important;
+  }
+
+  .checkin-page .mood-history-section,
+  .journal-page .mood-history-section,
+  .reflection-page .mood-history-section {
+    display: none !important;
+  }
+}
