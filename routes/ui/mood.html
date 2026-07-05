@@ -6,13 +6,10 @@
   <title>𝒜lignn — Mood Tracker</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
-<div class="soul-bg">
-    <img
-      class="soul-bg-image"
-      src="./backgrounds/mood.jpg"
-      alt=""
-    >
+
+<body class="mood-page">
+  <div class="soul-bg">
+    <img class="soul-bg-image" src="./backgrounds/mood.jpg" alt="">
     <div class="soul-bg-overlay"></div>
   </div>
 
@@ -25,83 +22,8 @@
     </div>
   </header>
 
-  <main class="mood-shell">
-    <aside class="mood-left-panel">
-      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
-
-      <h2 class="mood-left-title">Mood Resources</h2>
-
-      <details class="mood-resource-card">
-  <summary>🌱Grounding exercises</summary>
-
-  <div class="mood-resource-content">
-
-    <h4>👀 5-4-3-2-1 Technique</h4>
-    <ul>
-      <li>5 things you can see</li>
-      <li>4 things you can touch</li>
-      <li>3 things you can hear</li>
-      <li>2 things you can smell</li>
-      <li>1 thing you can taste</li>
-    </ul>
-
-    <h4>💪Progressive Muscle Relaxation</h4>
-    <ul>
-      <li>Tense a muscle group for 5 seconds</li>
-      <li>Relax for 10 seconds</li>
-      <li>Move through the entire body</li>
-    </ul>
-  </div>
-</details>
-
-<details class="mood-resource-card">
-  <summary>😮‍💨Breathing support</summary>
-
-  <div class="mood-resource-content">
-    <h4>🌬️Box Breathing</h4>
-    <ul>
-      <li>Inhale for 4 seconds</li>
-      <li>Hold for 4 seconds</li>
-      <li>Exhale for 4 seconds</li>
-      <li>Hold for 4 seconds</li>
-    </ul>
-
-    <h4>😌4-7-8 Breathing</h4>
-    <ul>
-      <li>Inhale for 4 seconds</li>
-      <li>Hold for 7 seconds</li>
-      <li>Exhale for 8 seconds</li>
-    </ul>
-  </div>
-</details>
-
-<details class="mood-resource-card">
-  <summary>💭Mood reflection prompts</summary>
-
-  <div class="mood-resource-content">
-    <p><strong>😊 Happy:</strong> What contributed to this feeling today, and how can I create more moments like this?</p>
-    <p><strong>😔 Sad:</strong> What do I need most from myself right now?</p>
-    <p><strong>😰 Stressed:</strong> What is one thing I can let go of today?</p>
-    <p><strong>😤 Frustrated:</strong> What is this situation trying to teach me?</p>
-    <p><strong>😟 Anxious:</strong> What is within my control right now?</p>
-    <p><strong>😕 Overwhelmed:</strong> What is the next smallest step I can take?</p>
-    <p><strong>😴 Tired:</strong> What would help me recharge today—physically, mentally, or emotionally?</p>
-    <p><strong>🤔 Uncertain:</strong> What do I know for sure in this moment?</p>
-    <p><strong>💪 Motivated:</strong> What action can I take today that moves me closer to my goal?</p>
-    <p><strong>🙏 Grateful:</strong> What is something I appreciate today that I might normally overlook?</p>
-    <p><strong>🌱 Neutral:</strong> How am I really feeling beneath the surface?</p>
-    <p><strong>❤️ Loved:</strong> What made me feel supported, connected, or cared for today?</p>
-    <p><strong>😞 Lonely:</strong> What kind of connection am I needing right now?</p>
-    <p><strong>😠 Angry:</strong> What boundary feels crossed or unmet right now?</p>
-    <p><strong>😌 Calm:</strong> What is helping me feel grounded in this moment?</p>
-    <p><strong>🎉 Excited:</strong> What am I looking forward to most, and why?</p>
-    <p><strong>😨 Fearful:</strong> What am I afraid might happen, and how likely is it?</p>
-    <p><strong>🌤 Hopeful:</strong> What is giving me hope right now?</p>
-    <p><strong>😔 Disappointed:</strong> What expectation wasn't met, and what can I learn from it?</p>
-    <p><strong>🏆 Proud:</strong> What accomplishment or effort am I most proud of today?</p>
-  </div>
-</details>
-    </aside>
+  <main class="mobile-page-shell">
+    <a href="./dashboard.html" class="back-dashboard-link">← Back</a>
 
     <section class="mood-center-panel">
       <div class="mood-page-header">
@@ -124,12 +46,24 @@
 
         <div class="moodSection">
           <label class="label" for="intensityInput">Intensity (1–10)</label>
-          <input id="intensityInput" class="input" type="number" min="1" max="10" placeholder="e.g. 7" />
+          <input
+            id="intensityInput"
+            class="input"
+            type="number"
+            min="1"
+            max="10"
+            placeholder="e.g. 7"
+          />
         </div>
 
         <div class="moodSection">
-          <label class="label" for="notesInput">Notes (optional)</label>
-          <textarea id="notesInput" class="textarea mood-notes-box" rows="6" placeholder="Anything you want to note?"></textarea>
+          <label class="label" for="notesInput">Notes optional</label>
+          <textarea
+            id="notesInput"
+            class="textarea mood-notes-box"
+            rows="6"
+            placeholder="Anything you want to note?"
+          ></textarea>
         </div>
 
         <div class="row end">
@@ -142,67 +76,81 @@
       <section class="mood-insights-section">
         <div class="mood-section-row">
           <h2>Mood Insights</h2>
-          <button id="loadMoodStatsBtn" class="primary secondaryBtn">Load Mood Insights</button>
+          <button id="loadMoodStatsBtn" class="primary secondaryBtn">
+            Load Mood Insights
+          </button>
         </div>
 
         <div id="moodStatsStatus" class="status muted">Status: idle</div>
 
         <div class="moodChartCard">
           <canvas id="moodChart"></canvas>
-          <div id="moodChartEmpty" class="muted small">Your mood chart will appear here.</div>
+          <div id="moodChartEmpty" class="muted small">
+            Your mood chart will appear here.
+          </div>
         </div>
       </section>
 
-      <section class="mood-history-section">
-        <div class="mood-section-row">
-          <h2>Mood History</h2>
-          <button id="loadMoodHistoryBtn" class="primary secondaryBtn">Load Mood History</button>
-        </div>
+      <section class="mobile-resources-section">
+        <h2 class="mood-left-title">Mood Resources</h2>
 
-        <div id="moodHistoryList" class="historyList">
-          <div class="muted small">Your mood entries will appear here.</div>
-        </div>
+        <details class="mood-resource-card">
+          <summary>🌱 Grounding exercises</summary>
+          <div class="mood-resource-content">
+            <h4>👀 5-4-3-2-1 Technique</h4>
+            <ul>
+              <li>5 things you can see</li>
+              <li>4 things you can touch</li>
+              <li>3 things you can hear</li>
+              <li>2 things you can smell</li>
+              <li>1 thing you can taste</li>
+            </ul>
+
+            <h4>💪 Progressive Muscle Relaxation</h4>
+            <ul>
+              <li>Tense a muscle group for 5 seconds</li>
+              <li>Relax for 10 seconds</li>
+              <li>Move through the entire body</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mood-resource-card">
+          <summary>😮‍💨 Breathing support</summary>
+          <div class="mood-resource-content">
+            <h4>🌬️ Box Breathing</h4>
+            <ul>
+              <li>Inhale for 4 seconds</li>
+              <li>Hold for 4 seconds</li>
+              <li>Exhale for 4 seconds</li>
+              <li>Hold for 4 seconds</li>
+            </ul>
+
+            <h4>😌 4-7-8 Breathing</h4>
+            <ul>
+              <li>Inhale for 4 seconds</li>
+              <li>Hold for 7 seconds</li>
+              <li>Exhale for 8 seconds</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mood-resource-card">
+          <summary>💭 Mood reflection prompts</summary>
+          <div class="mood-resource-content">
+            <p><strong>😊 Happy:</strong> What contributed to this feeling today?</p>
+            <p><strong>😔 Sad:</strong> What do I need most from myself right now?</p>
+            <p><strong>😰 Stressed:</strong> What is one thing I can let go of today?</p>
+            <p><strong>😟 Anxious:</strong> What is within my control right now?</p>
+            <p><strong>😕 Overwhelmed:</strong> What is the next smallest step I can take?</p>
+            <p><strong>😴 Tired:</strong> What would help me recharge today?</p>
+            <p><strong>🙏 Grateful:</strong> What is something I appreciate today?</p>
+            <p><strong>😌 Calm:</strong> What is helping me feel grounded?</p>
+            <p><strong>🏆 Proud:</strong> What effort am I proud of today?</p>
+          </div>
+        </details>
       </section>
     </section>
-
-    <aside class="app-right-panel">
-      <a class="dashboard-icon-link" href="./dashboard.html">
-        <span class="dashboard-icon-circle">⌂</span>
-        <span>Home</span>
-      </a>
-
-      <a class="dashboard-icon-link active" href="./mood.html">
-        <span class="dashboard-icon-circle">✦</span>
-        <span>Mood</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./checkin.html">
-        <span class="dashboard-icon-circle">☾</span>
-        <span>Check-In</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./journal.html">
-        <span class="dashboard-icon-circle">✎</span>
-        <span>Journal</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./reflection.html">
-        <span class="dashboard-icon-circle">◎</span>
-        <span>Reflection</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./profile.html">
-        <span class="dashboard-icon-circle">◯</span>
-        <span>Profile</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./history.html">
-        <span class="dashboard-icon-circle">⌛</span>
-        <span>History</span>
-      </a>
-
-      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
-    </aside>
   </main>
 
   <footer class="app-footer">

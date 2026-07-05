@@ -6,14 +6,15 @@
   <title>𝒜lignn — Reflection</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
 
+<body class="reflection-page">
   <div class="soul-bg">
     <video class="soul-bg-video" autoplay muted loop playsinline>
       <source src="./backgrounds/reflection.mp4" type="video/mp4">
     </video>
     <div class="soul-bg-overlay"></div>
   </div>
+
   <header class="header dashboard-topbar">
     <div>
       <a class="brandLink" href="./dashboard.html">
@@ -23,46 +24,8 @@
     </div>
   </header>
 
-  <main class="mood-shell">
-    <aside class="mood-left-panel">
-      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
-
-
-      <h2 class="mood-left-title">Reflection Resources</h2>
-
-<details class="mood-resource-card">
-  <summary>💭 Guided Reflection Prompts</summary>
-
-  <ul class="resource-list">
-    <li>What am I feeling right now?</li>
-    <li>What may be contributing to this feeling?</li>
-    <li>What do I need today?</li>
-    <li>What is one small next step I can take?</li>
-  </ul>
-</details>
-
-<details class="mood-resource-card">
-  <summary>❤️ Emotional Processing Support</summary>
-
-  <ul class="resource-list">
-    <li>Name the emotion without judging it.</li>
-    <li>Notice where you feel it in your body.</li>
-    <li>Remind yourself emotions are temporary.</li>
-    <li>Ask yourself what this emotion may be trying to tell you.</li>
-  </ul>
-</details>
-
-<details class="mood-resource-card">
-  <summary>🌱 Grounding Questions</summary>
-
-  <ul class="resource-list">
-    <li>What are 3 things I can see right now?</li>
-    <li>What is one thing I can hear?</li>
-    <li>What is one thing I can touch?</li>
-    <li>What is within my control today?</li>
-  </ul>
-</details>
-    </aside>
+  <main class="mobile-page-shell">
+    <a href="./dashboard.html" class="back-dashboard-link">← Back</a>
 
     <section class="mood-center-panel">
       <div class="mood-page-header">
@@ -119,46 +82,41 @@
 
         <div id="status" class="status muted">Status: idle</div>
       </section>
+
+      <section class="mobile-resources-section">
+        <h2 class="mood-left-title">Reflection Resources</h2>
+
+        <details class="mood-resource-card">
+          <summary>💭 Guided Reflection Prompts</summary>
+          <ul class="resource-list">
+            <li>What am I feeling right now?</li>
+            <li>What may be contributing to this feeling?</li>
+            <li>What do I need today?</li>
+            <li>What is one small next step I can take?</li>
+          </ul>
+        </details>
+
+        <details class="mood-resource-card">
+          <summary>❤️ Emotional Processing Support</summary>
+          <ul class="resource-list">
+            <li>Name the emotion without judging it.</li>
+            <li>Notice where you feel it in your body.</li>
+            <li>Remind yourself emotions are temporary.</li>
+            <li>Ask yourself what this emotion may be trying to tell you.</li>
+          </ul>
+        </details>
+
+        <details class="mood-resource-card">
+          <summary>🌱 Grounding Questions</summary>
+          <ul class="resource-list">
+            <li>What are 3 things I can see right now?</li>
+            <li>What is one thing I can hear?</li>
+            <li>What is one thing I can touch?</li>
+            <li>What is within my control today?</li>
+          </ul>
+        </details>
+      </section>
     </section>
-
-    <aside class="app-right-panel">
-      <a class="dashboard-icon-link" href="./dashboard.html">
-        <span class="dashboard-icon-circle">⌂</span>
-        <span>Home</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./mood.html">
-        <span class="dashboard-icon-circle">✦</span>
-        <span>Mood</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./checkin.html">
-        <span class="dashboard-icon-circle">☾</span>
-        <span>Check-In</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./journal.html">
-        <span class="dashboard-icon-circle">✎</span>
-        <span>Journal</span>
-      </a>
-
-      <a class="dashboard-icon-link active" href="./reflection.html">
-        <span class="dashboard-icon-circle">◎</span>
-        <span>Reflection</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./profile.html">
-        <span class="dashboard-icon-circle">◯</span>
-        <span>Profile</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./history.html">
-        <span class="dashboard-icon-circle">⌛</span>
-        <span>History</span>
-      </a>
-
-      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
-    </aside>
   </main>
 
   <footer class="app-footer">
