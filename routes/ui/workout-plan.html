@@ -7,29 +7,47 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
-<body>
-<div class="soul-bg">
-  <img id="workoutBgImage" class="soul-bg-image active-bg" src="./backgrounds/fitness.jpg" alt="">
+<body class="workout-page">
+  <div class="soul-bg">
+    <img id="workoutBgImage" class="soul-bg-image active-bg" src="./backgrounds/fitness.jpg" alt="">
 
-  <video id="workoutBgVideo" class="soul-bg-video" src="./backgrounds/recovery.mp4" autoplay muted loop playsinline></video>
+    <video
+      id="workoutBgVideo"
+      class="soul-bg-video"
+      src="./backgrounds/recovery.mp4"
+      autoplay
+      muted
+      loop
+      playsinline>
+    </video>
 
-  <div class="soul-bg-overlay"></div>
-</div>
+    <div class="soul-bg-overlay"></div>
+  </div>
+
+  <button
+    id="mobileWorkoutMenuBtn"
+    class="mobile-workout-menu-btn"
+    type="button">
+    ☰
+  </button>
+
+  <div class="mobile-workout-menu hidden" id="mobileWorkoutMenu">
+    <button class="mobile-menu-close" id="mobileWorkoutMenuClose" type="button">×</button>
+
+    <button class="mobile-workout-link" data-plan="build-muscle">Build Muscle</button>
+    <button class="mobile-workout-link" data-plan="fat-loss">Fat Loss</button>
+    <button class="mobile-workout-link" data-plan="maintenance">Maintain</button>
+    <button class="mobile-workout-link" data-plan="progressive-overload">Progressive Overload</button>
+    <button class="mobile-workout-link" data-plan="nutrition">Nutrition</button>
+    <button class="mobile-workout-link" data-plan="recovery">Recovery</button>
+  </div>
 
   <main class="workout-page-shell">
-    <div class="workout-mobile-topbar">
-  <button id="mobileBackBtn" class="workout-back-btn">← Back</button>
-  <button class="mobile-menu-btn" id="mobileWorkoutMenuBtn" type="button">☰</button>
-</div>
-
-<div class="mobile-workout-menu hidden" id="mobileWorkoutMenu">
-  <button class="mobile-workout-link" data-plan="build-muscle">Build Muscle</button>
-  <button class="mobile-workout-link" data-plan="fat-loss">Fat Loss</button>
-  <button class="mobile-workout-link" data-plan="maintenance">Maintain</button>
-  <button class="mobile-workout-link" data-plan="progressive-overload">Progressive Overload</button>
-  <button class="mobile-workout-link" data-plan="nutrition">Nutrition</button>
-  <button class="mobile-workout-link" data-plan="recovery">Recovery</button>
-</div>
+    <div class="mobile-workout-back-row">
+      <button id="mobileBackBtn" class="mobile-back-btn" type="button">
+        ← Back
+      </button>
+    </div>
 
     <aside class="workout-left-sidebar">
       <button id="backBtn" class="workout-back-btn">← Back to Dashboard</button>

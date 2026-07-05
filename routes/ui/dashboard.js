@@ -18,9 +18,7 @@ const suggestionButtons = document.querySelectorAll(".ai-suggestion-btn");
 const workoutPlanCards = document.querySelectorAll(".workout-plan-card");
 
 function setStatus(msg) {
-  if (dashboardStatus) {
-    dashboardStatus.textContent = `Status: ${msg}`;
-  }
+  if (dashboardStatus) dashboardStatus.textContent = `Status: ${msg}`;
 }
 
 function logout() {
@@ -36,13 +34,15 @@ function setTimeGreeting() {
   return "Late night";
 }
 
+function goToWorkoutPlan(plan) {
+  if (!plan) return;
+  window.location.href = `./workout-plan.html?plan=${plan}`;
+}
+
 function setupWorkoutCardNavigation() {
   workoutPlanCards.forEach((card) => {
     card.addEventListener("click", () => {
-      const plan = card.dataset.plan;
-      if (!plan) return;
-
-      window.location.href = `./workout-plan.html?plan=${plan}`;
+      goToWorkoutPlan(card.dataset.plan);
     });
   });
 }
@@ -50,19 +50,23 @@ function setupWorkoutCardNavigation() {
 function setupMobileWorkoutMenu() {
   const mobileWorkoutMenuBtn = document.getElementById("mobileWorkoutMenuBtn");
   const mobileWorkoutMenu = document.getElementById("mobileWorkoutMenu");
+  const mobileWorkoutMenuClose = document.getElementById("mobileWorkoutMenuClose");
 
   if (!mobileWorkoutMenuBtn || !mobileWorkoutMenu) return;
 
   mobileWorkoutMenuBtn.addEventListener("click", () => {
-    mobileWorkoutMenu.classList.toggle("hidden");
+    mobileWorkoutMenu.classList.remove("hidden");
   });
+
+  if (mobileWorkoutMenuClose) {
+    mobileWorkoutMenuClose.addEventListener("click", () => {
+      mobileWorkoutMenu.classList.add("hidden");
+    });
+  }
 
   mobileWorkoutMenu.querySelectorAll(".mobile-workout-link").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const plan = btn.dataset.plan;
-      if (!plan) return;
-
-      window.location.href = `./workout-plan.html?plan=${plan}`;
+      goToWorkoutPlan(btn.dataset.plan);
     });
   });
 }

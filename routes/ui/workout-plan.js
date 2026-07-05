@@ -13,6 +13,7 @@ const backBtn = document.getElementById("backBtn");
 const mobileBackBtn = document.getElementById("mobileBackBtn");
 const mobileWorkoutMenuBtn = document.getElementById("mobileWorkoutMenuBtn");
 const mobileWorkoutMenu = document.getElementById("mobileWorkoutMenu");
+const mobileWorkoutMenuClose = document.getElementById("mobileWorkoutMenuClose");
 
 const categoryButtons = document.querySelectorAll(".workout-category-btn");
 const workoutBgImage = document.getElementById("workoutBgImage");
@@ -41,13 +42,8 @@ function goToWorkoutPlan(plan) {
 }
 
 function setupNavigation() {
-  if (backBtn) {
-    backBtn.addEventListener("click", goToDashboard);
-  }
-
-  if (mobileBackBtn) {
-    mobileBackBtn.addEventListener("click", goToDashboard);
-  }
+  if (backBtn) backBtn.addEventListener("click", goToDashboard);
+  if (mobileBackBtn) mobileBackBtn.addEventListener("click", goToDashboard);
 
   categoryButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -57,9 +53,17 @@ function setupNavigation() {
 
   if (mobileWorkoutMenuBtn && mobileWorkoutMenu) {
     mobileWorkoutMenuBtn.addEventListener("click", () => {
-      mobileWorkoutMenu.classList.toggle("hidden");
+      mobileWorkoutMenu.classList.remove("hidden");
     });
+  }
 
+  if (mobileWorkoutMenuClose && mobileWorkoutMenu) {
+    mobileWorkoutMenuClose.addEventListener("click", () => {
+      mobileWorkoutMenu.classList.add("hidden");
+    });
+  }
+
+  if (mobileWorkoutMenu) {
     mobileWorkoutMenu.querySelectorAll(".mobile-workout-link").forEach((button) => {
       button.addEventListener("click", () => {
         goToWorkoutPlan(button.dataset.plan);
@@ -81,12 +85,8 @@ function updateWorkoutBackground(planKey) {
   }
 
   workoutBgImage.classList.add("active-bg");
-
-  if (planKey === "nutrition") {
-    workoutBgImage.src = "./backgrounds/nutrition.jpg";
-  } else {
-    workoutBgImage.src = "./backgrounds/fitness.jpg";
-  }
+  workoutBgImage.src =
+    planKey === "nutrition" ? "./backgrounds/nutrition.jpg" : "./backgrounds/fitness.jpg";
 }
 
 function highlightActiveCategory(slug) {
@@ -133,10 +133,7 @@ async function loadWorkoutPlan() {
     const data = await res.json();
 
     if (!res.ok) {
-      showPageError(
-        "Unable to load workout plan",
-        data.message || data.error || "Server error."
-      );
+      showPageError("Unable to load workout plan", data.message || data.error || "Server error.");
       return;
     }
 
@@ -144,10 +141,7 @@ async function loadWorkoutPlan() {
     renderWorkoutPlan(data);
   } catch (error) {
     console.error("Workout page error:", error);
-    showPageError(
-      "Unable to load workout plan",
-      error.message || "Something went wrong."
-    );
+    showPageError("Unable to load workout plan", error.message || "Something went wrong.");
   }
 }
 
@@ -231,10 +225,7 @@ function renderVideos(videos) {
           ${videos
             .map(
               (_, dotIndex) => `
-                <button 
-                  class="video-dot ${dotIndex === index ? "active" : ""}" 
-                  type="button">
-                </button>
+                <button class="video-dot ${dotIndex === index ? "active" : ""}" type="button"></button>
               `
             )
             .join("")}
@@ -348,7 +339,6 @@ function renderSelectedProgram(level, slug) {
 
   selectedProgramContainer.innerHTML = `
     <article class="selected-program-card workout-program-outline">
-
       ${
         isRecoveryWorkout
           ? ""
@@ -485,7 +475,6 @@ function renderRecoveryResourcesVideos() {
 function renderRecoveryNutrition() {
   return `
     <div class="recovery-resource-layout">
-
       <section class="recovery-resource-box">
         <h3>🥩 Protein & Muscle Repair</h3>
         <ul>
@@ -537,40 +526,29 @@ function renderRecoveryNutrition() {
 
       <section class="recovery-resource-box">
         <h3>💊 Supplements & Recovery Support</h3>
-
         <ul class="supplement-video-list">
           <li>
-            <a href="https://www.youtube.com/watch?v=NclX6EW0pr0&t=98s"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="recovery-resource-link">
+            <a href="https://www.youtube.com/watch?v=NclX6EW0pr0&t=98s" target="_blank" rel="noopener noreferrer" class="recovery-resource-link">
               <img src="${getYouTubeThumbnail("https://www.youtube.com/watch?v=NclX6EW0pr0&t=98s")}" alt="Creatine">
               <span>What Does Creatine Do?</span>
             </a>
           </li>
 
           <li>
-            <a href="https://www.youtube.com/watch?v=97y5gQQ3gTA"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="recovery-resource-link">
+            <a href="https://www.youtube.com/watch?v=97y5gQQ3gTA" target="_blank" rel="noopener noreferrer" class="recovery-resource-link">
               <img src="${getYouTubeThumbnail("https://www.youtube.com/watch?v=97y5gQQ3gTA")}" alt="Magnesium">
               <span>Why You Should Take Magnesium</span>
             </a>
           </li>
 
           <li>
-            <a href="https://www.youtube.com/watch?v=iLDYbSX5MLA"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="recovery-resource-link">
+            <a href="https://www.youtube.com/watch?v=iLDYbSX5MLA" target="_blank" rel="noopener noreferrer" class="recovery-resource-link">
               <img src="${getYouTubeThumbnail("https://www.youtube.com/watch?v=iLDYbSX5MLA")}" alt="Vitamin D">
               <span>Why You Need Vitamin D</span>
             </a>
           </li>
         </ul>
       </section>
-
     </div>
   `;
 }

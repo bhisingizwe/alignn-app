@@ -3058,3 +3058,347 @@ body:not(.home-page) .brand {
     width: fit-content;
   }
 }
+
+
+/* FULLSCREEN MOBILE WORKOUT MENU */
+@media (max-width: 700px) {
+  .mobile-workout-menu {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 90px 32px 32px !important;
+    border-radius: 0 !important;
+    background: rgba(32, 25, 61, 0.96) !important;
+    z-index: 9999 !important;
+    overflow-y: auto;
+  }
+
+  .mobile-workout-menu:not(.hidden) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .mobile-workout-menu::before {
+    content: "Workout Plans";
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .mobile-workout-link {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.25) !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-size: 1.65rem !important;
+    padding: 18px 0 !important;
+  }
+
+  .mobile-menu-close {
+    display: block !important;
+    position: fixed;
+    top: 28px;
+    right: 28px;
+    z-index: 10000;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    font-size: 2rem;
+    width: 64px;
+    height: 64px;
+    border-radius: 0;
+  }
+
+  /* hide circle nav everywhere except dashboard */
+  body:not(.dashboard-page) .app-right-panel,
+  body:not(.dashboard-page) .dashboard-right-panel {
+    display: none !important;
+  }
+
+  /* dashboard keeps circle nav */
+  .dashboard-page .dashboard-right-panel {
+    display: grid !important;
+  }
+
+  /* form/card should come before resources on mood/checkin/journal/reflection */
+  .mood-left-panel {
+    order: 3 !important;
+  }
+
+  .mood-center-panel {
+    order: 1 !important;
+  }
+
+  .mood-left-panel .back-dashboard-link {
+    display: inline-flex !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+.mobile-workout-header {
+  display: block;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.mobile-back-btn {
+  display: inline-flex;
+}
+
+.mobile-workout-menu-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 64px;
+  height: 64px;
+
+  border: none;
+  border-radius: 22px;
+
+  background: rgba(255,255,255,.85);
+  font-size: 2rem;
+}
+
+@media (max-width: 700px) {
+  .mobile-workout-menu-btn {
+    display: inline-flex !important;
+    position: fixed !important;
+    top: 130px !important;
+    right: 24px !important;
+    z-index: 1000 !important;
+
+    width: 68px !important;
+    height: 68px !important;
+    align-items: center;
+    justify-content: center;
+
+    border: none !important;
+    border-radius: 22px !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: var(--text-main) !important;
+    font-size: 2rem !important;
+    box-shadow: var(--shadow-soft) !important;
+  }
+
+  .mobile-workout-back-row {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  .mobile-back-btn {
+    display: inline-flex !important;
+    border: none !important;
+    border-radius: 16px !important;
+    background: var(--accent) !important;
+    color: white !important;
+    padding: 14px 18px !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+  }
+}
+
+@media (min-width: 701px) {
+  .mobile-workout-menu-btn,
+  .mobile-workout-back-row {
+    display: none !important;
+  }
+}
+
+
+/* =====================================================
+   ALIGNN MOBILE FINAL OVERRIDE
+   Paste this at the VERY bottom of styles.css
+===================================================== */
+
+@media (max-width: 700px) {
+  body {
+    overflow-x: hidden !important;
+  }
+
+  /* Hide dashboard circle nav on every page except dashboard */
+  body:not(.dashboard-page) .app-right-panel,
+  body:not(.dashboard-page) .dashboard-right-panel {
+    display: none !important;
+  }
+
+  /* Shared mobile page layout */
+  .mood-shell {
+    width: calc(100% - 28px) !important;
+    margin: 18px auto 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+  }
+
+  .mood-center-panel {
+    order: 1 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+  }
+
+  .mood-left-panel {
+    order: 2 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  /* Hide all history sections on these mobile pages */
+  .mood-history-section {
+    display: none !important;
+  }
+
+  /* Hide mood insights for now unless we specifically fix mood later */
+  body:not(.mood-page) .mood-insights-section {
+    display: none !important;
+  }
+
+  /* Header */
+  .header,
+  .dashboard-topbar {
+    padding: 18px 22px !important;
+  }
+
+  body:not(.home-page) .brand {
+    font-size: 2rem !important;
+  }
+
+  .tagline {
+    font-size: 1rem !important;
+  }
+
+  /* Page title */
+  .mood-page-header {
+    order: 1 !important;
+    text-align: center !important;
+    margin: 10px 0 4px !important;
+  }
+
+  .mood-page-header h1 {
+    font-size: 2.7rem !important;
+    line-height: 1.05 !important;
+    margin: 0 !important;
+  }
+
+  .mood-page-header p {
+    font-size: 1rem !important;
+    line-height: 1.45 !important;
+    margin-top: 10px !important;
+  }
+
+  /* Main card */
+  .mood-form-card {
+    order: 2 !important;
+    width: 100% !important;
+    padding: 22px !important;
+    border-radius: 28px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+  }
+
+  .moodSection {
+    margin-bottom: 18px !important;
+  }
+
+  .input,
+  .textarea {
+    font-size: 1rem !important;
+    border-radius: 18px !important;
+    padding: 14px !important;
+  }
+
+  .mood-notes-box {
+    min-height: 170px !important;
+  }
+
+  .row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .row.end {
+    align-items: flex-end !important;
+  }
+
+  .primary,
+  .secondaryBtn {
+    border-radius: 18px !important;
+    padding: 14px 18px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Resources BELOW the card */
+  .mood-left-title {
+    text-align: center !important;
+    margin: 8px 0 4px !important;
+    font-size: 1.5rem !important;
+    color: var(--text-main) !important;
+  }
+
+  .mood-resource-card {
+    width: 100% !important;
+    margin: 0 0 14px !important;
+    padding: 18px 20px !important;
+    border-radius: 24px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+  }
+
+  .mood-resource-card summary {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    color: var(--text-main) !important;
+  }
+
+  .resource-list,
+  .mood-resource-content ul {
+    padding-left: 20px !important;
+  }
+
+  .resource-list li,
+  .mood-resource-content li,
+  .mood-resource-content p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Back link stays above resources */
+  .back-dashboard-link {
+    order: -1 !important;
+    margin: 0 0 10px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Reflection pills fix */
+  .feelings {
+    gap: 8px !important;
+  }
+
+  .pill,
+  .moodBtn {
+    font-size: 0.9rem !important;
+    padding: 10px 12px !important;
+  }
+
+  .dice {
+    width: fit-content !important;
+    align-self: flex-end !important;
+  }
+
+  /* Footer */
+  .app-footer {
+    margin-top: 28px !important;
+  }
+}
