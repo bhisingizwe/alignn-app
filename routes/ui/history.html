@@ -6,13 +6,14 @@
   <title>𝒜lignn — History</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
+
 <body class="history-page">
   <div class="soul-bg">
-  <video class="soul-bg-video" autoplay muted loop playsinline>
+    <video class="soul-bg-video" autoplay muted loop playsinline>
       <source src="./backgrounds/history.mp4" type="video/mp4">
     </video>
-  <div class="soul-bg-overlay"></div>
-</div>
+    <div class="soul-bg-overlay"></div>
+  </div>
 
   <header class="header dashboard-topbar">
     <div>
@@ -23,10 +24,8 @@
     </div>
   </header>
 
-  <main class="mood-shell">
-    <aside class="mood-left-panel">
-      <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
-    </aside>
+  <main class="mobile-page-shell">
+    <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
 
     <section class="mood-center-panel">
       <div class="mood-page-header">
@@ -34,7 +33,7 @@
         <p>A look back at what you’ve been carrying, processing, and growing through.</p>
       </div>
 
-      <div class="mood-section-row">
+      <div class="mood-section-row history-top-row">
         <h2>Your Activity</h2>
         <button id="loadHistoryBtn" class="primary">Load History</button>
       </div>
@@ -67,7 +66,7 @@
         </button>
       </section>
 
-      <section class="mood-history-section">
+      <section class="history-detail-section">
         <div class="mood-section-row">
           <h2 id="detailTitle">Select a card</h2>
         </div>
@@ -77,45 +76,6 @@
         </div>
       </section>
     </section>
-
-    <aside class="app-right-panel">
-      <a class="dashboard-icon-link" href="./dashboard.html">
-        <span class="dashboard-icon-circle">⌂</span>
-        <span>Home</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./mood.html">
-        <span class="dashboard-icon-circle">✦</span>
-        <span>Mood</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./checkin.html">
-        <span class="dashboard-icon-circle">☾</span>
-        <span>Check-In</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./journal.html">
-        <span class="dashboard-icon-circle">✎</span>
-        <span>Journal</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./reflection.html">
-        <span class="dashboard-icon-circle">◎</span>
-        <span>Reflection</span>
-      </a>
-
-      <a class="dashboard-icon-link" href="./profile.html">
-        <span class="dashboard-icon-circle">◯</span>
-        <span>Profile</span>
-      </a>
-
-      <a class="dashboard-icon-link active" href="./history.html">
-        <span class="dashboard-icon-circle">⌛</span>
-        <span>History</span>
-      </a>
-
-      <button id="logoutBtnSide" class="dashboard-side-logout">Log out</button>
-    </aside>
   </main>
 
   <footer class="app-footer">

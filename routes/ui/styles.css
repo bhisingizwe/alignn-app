@@ -3505,3 +3505,49 @@ body:not(.home-page) .brand {
     display: none !important;
   }
 }
+
+@media (max-width: 700px) {
+  .history-page .mood-center-panel {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .history-page .back-dashboard-link {
+    margin-bottom: 14px !important;
+  }
+
+  .history-page .mood-page-header {
+    order: 1 !important;
+  }
+
+  .history-page .history-top-row {
+    order: 2 !important;
+  }
+
+  .history-page #historyStatus {
+    order: 3 !important;
+  }
+
+  .history-page .history-summary-grid {
+    order: 4 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .history-page .history-summary-card {
+    width: 100% !important;
+    text-align: left !important;
+    padding: 28px !important;
+    border-radius: 28px !important;
+  }
+
+  .history-page .history-detail-section {
+    order: 5 !important;
+  }
+
+  .history-page .app-right-panel,
+  .history-page .mood-left-panel {
+    display: none !important;
+  }
+}
