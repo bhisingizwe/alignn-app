@@ -3634,3 +3634,23 @@ body:not(.home-page) .brand {
     padding: 14px 22px !important;
   }
 }
+
+.footer-copyright {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6F6A87;
+  opacity: 0.8;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-copyright {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6F6A87;
+  opacity: 0.8;
+}
