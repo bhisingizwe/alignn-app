@@ -3727,3 +3727,43 @@ body:not(.home-page) {
   background: rgba(255, 255, 255, 0.82) !important;
   border: 1px solid rgba(196, 181, 253, 0.28) !important;
 }
+
+
+/* FIX BACKGROUND RESET WITHOUT BREAKING DESKTOP */
+
+body:not(.home-page) .soul-bg {
+  display: block !important;
+  background:
+    radial-gradient(circle at top left, rgba(196, 181, 253, 0.35), transparent 32%),
+    radial-gradient(circle at top right, rgba(184, 215, 255, 0.35), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #fffdf9 100%) !important;
+}
+
+body:not(.home-page) .soul-bg-image,
+body:not(.home-page) .soul-bg-video {
+  display: none !important;
+}
+
+.home-page .soul-bg-image,
+.home-page .soul-bg-video {
+  display: block !important;
+}
+
+/* Desktop should not use skinny mobile layout */
+@media (min-width: 701px) {
+  .mobile-page-shell {
+    width: min(1180px, calc(100% - 64px)) !important;
+    max-width: 1180px !important;
+    margin: 32px auto 0 !important;
+  }
+
+  .mobile-page-shell .mood-center-panel {
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+  }
+
+  .mobile-resources-section {
+    width: 100% !important;
+  }
+}
