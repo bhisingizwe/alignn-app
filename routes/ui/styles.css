@@ -3654,3 +3654,76 @@ body:not(.home-page) .brand {
   color: #6F6A87;
   opacity: 0.8;
 }
+
+
+/* =========================
+   ALIGNN BACKGROUND RESET
+   Keep home video only
+========================= */
+
+/* Hide all old image/video backgrounds except home page */
+body:not(.home-page) .soul-bg,
+.login-page .auth-background,
+.signup-page .auth-background {
+  display: none !important;
+}
+
+/* Keep homepage video */
+.home-page .soul-bg {
+  display: block !important;
+}
+
+/* Shared soft background base */
+body:not(.home-page) {
+  background:
+    radial-gradient(circle at top left, rgba(196, 181, 253, 0.35), transparent 32%),
+    radial-gradient(circle at top right, rgba(184, 215, 255, 0.35), transparent 30%),
+    linear-gradient(180deg, #f8fbff 0%, #fffdf9 100%) !important;
+}
+
+/* Page-specific subtle backgrounds */
+.dashboard-page {
+  background: linear-gradient(180deg, #eaf5ff 0%, #dcecf7 100%) !important;
+}
+
+.mood-page {
+  background: linear-gradient(180deg, #f5faff 0%, #fffdfb 100%) !important;
+}
+
+.reflection-page {
+  background: linear-gradient(180deg, #fffdf9 0%, #f5f0ff 100%) !important;
+}
+
+.journal-page {
+  background: linear-gradient(180deg, #fff9f2 0%, #f6f0e9 100%) !important;
+}
+
+.checkin-page {
+  background: linear-gradient(180deg, #fff5f6 0%, #ffeff1 100%) !important;
+}
+
+.profile-page {
+  background: linear-gradient(180deg, #f7f5ff 0%, #f0ecff 100%) !important;
+}
+
+.history-page {
+  background: linear-gradient(180deg, #f0f4ff 0%, #e8eefa 100%) !important;
+}
+
+.workout-page {
+  background: linear-gradient(180deg, #f5faff 0%, #fffdf9 100%) !important;
+}
+
+/* Make cards still feel dreamy */
+.mood-form-card,
+.dashboard-ai-card,
+.ai-chat-card,
+.profile-option-card,
+.history-summary-card,
+.mood-resource-card,
+.mood-insights-section,
+.moodChartCard,
+.selected-program-container {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(196, 181, 253, 0.28) !important;
+}
