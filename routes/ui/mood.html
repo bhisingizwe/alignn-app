@@ -22,136 +22,97 @@
     </div>
   </header>
 
-  <main class="mobile-page-shell">
-    <a href="./dashboard.html" class="back-dashboard-link">← Back</a>
+  <main class="mood-shell">
+  <aside class="mood-left-panel">
+    <h2 class="mood-left-title">Mood Resources</h2>
 
-    <section class="mood-center-panel">
-      <div class="mood-page-header">
-        <h1>Mood Tracker</h1>
-        <p>Track how you feel and notice patterns over time.</p>
+    <details class="mood-resource-card">
+      <summary>🌱 Grounding exercises</summary>
+      <div class="mood-resource-content">
+        <h4>5-4-3-2-1 Technique</h4>
+        <ul>
+          <li>5 things you can see</li>
+          <li>4 things you can touch</li>
+          <li>3 things you can hear</li>
+          <li>2 things you can smell</li>
+          <li>1 thing you can taste</li>
+        </ul>
       </div>
+    </details>
 
-      <section class="mood-form-card">
-        <div class="moodSection">
-          <div class="label">How are you feeling?</div>
-          <div class="moodOptions">
-            <button class="moodBtn" data-mood="happy">Happy</button>
-            <button class="moodBtn" data-mood="sad">Sad</button>
-            <button class="moodBtn" data-mood="anxious">Anxious</button>
-            <button class="moodBtn" data-mood="overwhelmed">Overwhelmed</button>
-            <button class="moodBtn" data-mood="numb">Numb</button>
-            <button class="moodBtn" data-mood="hopeful">Hopeful</button>
-          </div>
-        </div>
+    <details class="mood-resource-card">
+      <summary>😮‍💨 Breathing support</summary>
+      <div class="mood-resource-content">
+        <h4>Box Breathing</h4>
+        <ul>
+          <li>Inhale for 4 seconds</li>
+          <li>Hold for 4 seconds</li>
+          <li>Exhale for 4 seconds</li>
+          <li>Hold for 4 seconds</li>
+        </ul>
+      </div>
+    </details>
 
-        <div class="moodSection">
-          <label class="label" for="intensityInput">Intensity (1–10)</label>
-          <input
-            id="intensityInput"
-            class="input"
-            type="number"
-            min="1"
-            max="10"
-            placeholder="e.g. 7"
-          />
-        </div>
+    <details class="mood-resource-card">
+      <summary>💭 Mood reflection prompts</summary>
+      <div class="mood-resource-content">
+        <p><strong>Happy:</strong> What contributed to this feeling today?</p>
+        <p><strong>Sad:</strong> What do I need most from myself right now?</p>
+        <p><strong>Anxious:</strong> What is within my control right now?</p>
+      </div>
+    </details>
+  </aside>
 
-        <div class="moodSection">
-          <label class="label" for="notesInput">Notes optional</label>
-          <textarea
-            id="notesInput"
-            class="textarea mood-notes-box"
-            rows="6"
-            placeholder="Anything you want to note?"
-          ></textarea>
-        </div>
+  <section class="mood-center-panel">
+    <div class="mood-page-header">
+      <h1>Mood Tracker</h1>
+      <p>Track how you feel and notice patterns over time.</p>
+    </div>
 
-        <div class="row end">
-          <button id="saveMoodBtn" class="primary">Save Mood</button>
-        </div>
+    <!-- keep your mood-form-card here exactly as it already is -->
 
-        <div id="moodStatus" class="status muted">Status: idle</div>
-      </section>
+    <!-- keep your mood-insights-section here exactly as it already is -->
+  </section>
 
-      <section class="mood-insights-section">
-        <div class="mood-section-row">
-          <h2>Mood Insights</h2>
-          <button id="loadMoodStatsBtn" class="primary secondaryBtn">
-            Load Mood Insights
-          </button>
-        </div>
+  <aside class="app-right-panel">
+    <a class="dashboard-icon-link active" href="./dashboard.html">
+      <span class="dashboard-icon-circle">⌂</span>
+      <span>Home</span>
+    </a>
 
-        <div id="moodStatsStatus" class="status muted">Status: idle</div>
+    <a class="dashboard-icon-link" href="./mood.html">
+      <span class="dashboard-icon-circle">✦</span>
+      <span>Mood</span>
+    </a>
 
-        <div class="moodChartCard">
-          <canvas id="moodChart"></canvas>
-          <div id="moodChartEmpty" class="muted small">
-            Your mood chart will appear here.
-          </div>
-        </div>
-      </section>
+    <a class="dashboard-icon-link" href="./checkin.html">
+      <span class="dashboard-icon-circle">☾</span>
+      <span>Check-In</span>
+    </a>
 
-      <section class="mobile-resources-section">
-        <h2 class="mood-left-title">Mood Resources</h2>
+    <a class="dashboard-icon-link" href="./journal.html">
+      <span class="dashboard-icon-circle">✎</span>
+      <span>Journal</span>
+    </a>
 
-        <details class="mood-resource-card">
-          <summary>🌱 Grounding exercises</summary>
-          <div class="mood-resource-content">
-            <h4>👀 5-4-3-2-1 Technique</h4>
-            <ul>
-              <li>5 things you can see</li>
-              <li>4 things you can touch</li>
-              <li>3 things you can hear</li>
-              <li>2 things you can smell</li>
-              <li>1 thing you can taste</li>
-            </ul>
+    <a class="dashboard-icon-link" href="./reflection.html">
+      <span class="dashboard-icon-circle">◎</span>
+      <span>Reflection</span>
+    </a>
 
-            <h4>💪 Progressive Muscle Relaxation</h4>
-            <ul>
-              <li>Tense a muscle group for 5 seconds</li>
-              <li>Relax for 10 seconds</li>
-              <li>Move through the entire body</li>
-            </ul>
-          </div>
-        </details>
+    <a class="dashboard-icon-link" href="./profile.html">
+      <span class="dashboard-icon-circle">♙</span>
+      <span>Profile</span>
+    </a>
 
-        <details class="mood-resource-card">
-          <summary>😮‍💨 Breathing support</summary>
-          <div class="mood-resource-content">
-            <h4>🌬️ Box Breathing</h4>
-            <ul>
-              <li>Inhale for 4 seconds</li>
-              <li>Hold for 4 seconds</li>
-              <li>Exhale for 4 seconds</li>
-              <li>Hold for 4 seconds</li>
-            </ul>
+    <a class="dashboard-icon-link" href="./history.html">
+      <span class="dashboard-icon-circle">⌛</span>
+      <span>History</span>
+    </a>
 
-            <h4>😌 4-7-8 Breathing</h4>
-            <ul>
-              <li>Inhale for 4 seconds</li>
-              <li>Hold for 7 seconds</li>
-              <li>Exhale for 8 seconds</li>
-            </ul>
-          </div>
-        </details>
-
-        <details class="mood-resource-card">
-          <summary>💭 Mood reflection prompts</summary>
-          <div class="mood-resource-content">
-            <p><strong>😊 Happy:</strong> What contributed to this feeling today?</p>
-            <p><strong>😔 Sad:</strong> What do I need most from myself right now?</p>
-            <p><strong>😰 Stressed:</strong> What is one thing I can let go of today?</p>
-            <p><strong>😟 Anxious:</strong> What is within my control right now?</p>
-            <p><strong>😕 Overwhelmed:</strong> What is the next smallest step I can take?</p>
-            <p><strong>😴 Tired:</strong> What would help me recharge today?</p>
-            <p><strong>🙏 Grateful:</strong> What is something I appreciate today?</p>
-            <p><strong>😌 Calm:</strong> What is helping me feel grounded?</p>
-            <p><strong>🏆 Proud:</strong> What effort am I proud of today?</p>
-          </div>
-        </details>
-      </section>
-    </section>
-  </main>
+    <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
+  </aside>
+</main>
 
   <footer class="app-footer">
     <div class="footer-links">
