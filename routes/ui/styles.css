@@ -1586,96 +1586,97 @@ body:not(.home-page) .soul-bg-video,
 /* =====================================================
    17. TABLET
 ===================================================== */
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 701px) {
   .dashboard-shell,
   .dashboard-shell-v2,
-  .app-layout,
-  .mood-shell {
+  .app-layout {
     width: min(1100px, calc(100% - 40px));
     grid-template-columns: 230px minmax(0, 1fr);
   }
 
-  .dashboard-right-panel,
-  .app-right-panel,
-  .right-nav {
+  .dashboard-right-panel {
     grid-column: 1 / -1;
     position: static;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
   }
-
-  .workout-page-shell {
-    width: min(1100px, calc(100% - 40px));
-    grid-template-columns: 230px minmax(0, 1fr);
-  }
 }
 
-@media (max-width: 900px) {
-  .dashboard-shell,
-  .dashboard-shell-v2,
-  .app-layout,
-  .mood-shell,
-  .workout-page-shell {
-    grid-template-columns: 1fr;
+/* =====================================================
+   18. DESKTOP WELLNESS PAGES
+===================================================== */
+@media (min-width: 901px) {
+  .mood-page .mood-shell,
+  .journal-page .mood-shell,
+  .reflection-page .mood-shell,
+  .checkin-page .mood-shell {
+    width: min(1500px, calc(100% - 64px));
+    margin: 38px auto 0;
+    display: grid;
+    grid-template-columns: 280px minmax(680px, 1fr) 138px;
+    gap: 34px;
+    align-items: stretch;
   }
 
-  .dashboard-left-panel,
-  .left-panel,
-  .mood-left-panel,
-  .workout-left-sidebar {
-    position: static;
-    padding-top: 0;
+  .mood-left-panel {
+    grid-column: 1;
+    padding: 42px 26px;
+    min-height: 700px;
+    gap: 18px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.64);
+    border: 1px solid rgba(77,146,217,.16);
+    box-shadow: 0 24px 60px rgba(35,100,165,.10);
   }
 
-  .workout-level-grid,
-  .history-summary-grid,
-  .dashboardGrid,
-  .dashboard-stats-grid,
-  .dashboard-sketch-grid,
-  .dashboard-quick-links,
-  .recovery-resource-layout {
-    grid-template-columns: 1fr;
+  .mood-center-panel {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
   }
 
-  .nutrition-video-item {
-    grid-template-columns: 1fr;
+  .app-right-panel {
+    grid-column: 3;
+    position: sticky;
+    top: 28px;
+    min-height: 700px;
+    padding: 26px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.54);
+    border: 1px solid rgba(77,146,217,.16);
+    box-shadow: 0 24px 60px rgba(35,100,165,.10);
   }
 
-  .nutrition-video-item img {
-    width: 100%;
-    height: 190px;
+  .mood-page-header {
+    text-align: left;
+  }
+
+  .mood-page-header h1 {
+    font-size: clamp(3.5rem, 5vw, 5.4rem);
+  }
+
+  .mood-form-card,
+  .mood-insights-section {
+    padding: 34px;
+    border-radius: 28px;
+  }
+
+  .mood-insights-section {
+    min-height: 280px;
   }
 }
 
 /* =====================================================
-   18. MOBILE ONLY
-   Mobile rules stay here so they cannot leak into desktop.
+   19. MOBILE WELLNESS PAGES
 ===================================================== */
-.mobile-menu-btn,
-.mobile-workout-menu,
-.workout-mobile-topbar,
-.mobile-workout-menu-btn,
-.mobile-workout-back-row,
-.mobile-menu-close {
-  display: none;
-}
-
 @media (max-width: 700px) {
-  .header,
-  .dashboard-topbar {
-    padding: 18px 22px;
-  }
-
-  .brand { font-size: 1.95rem; }
-  .tagline { font-size: 0.94rem; }
-
-  .dashboard-shell,
-  .dashboard-shell-v2,
-  .app-layout,
-  .mood-shell,
-  .workout-page-shell,
-  .mobile-page-shell {
+  .mood-shell {
     width: calc(100% - 28px);
     margin: 18px auto 0;
     display: flex;
@@ -1683,546 +1684,62 @@ body:not(.home-page) .soul-bg-video,
     gap: 18px;
   }
 
-  .dashboard-left-panel,
-  .left-panel,
-  .workout-left-sidebar {
-    display: none;
+  .back-dashboard-link {
+    display: inline-flex !important;
+    order: 0;
+    width: fit-content;
+    color: var(--sky-700);
+    font-weight: 900;
+    text-decoration: none;
+    margin-bottom:10px;
+    align-self:flex-start;
   }
 
-  .dashboard-center-panel,
-  .center-panel,
   .mood-center-panel {
-    width: 100%;
+    order: 1;
+    display: flex;
+    flex-direction: column;
     gap: 18px;
   }
 
-  .dashboard-title-main,
-  .dashboard-main-title,
-  .dashboard-sketch-title,
-  .mood-page-header h1,
-  .page-header h1,
-  .workout-plan-heading h1 {
-    font-size: clamp(2.5rem, 12vw, 3.35rem);
-  }
-
-  .dashboard-greeting-heading { font-size: 1.85rem; }
-
-  .dashboard-title-sub,
-  .dashboard-main-text,
-  .dashboard-sketch-subtitle,
-  .mood-page-header p,
-  .page-header p,
-  .workout-plan-heading p {
-    font-size: 1rem;
-  }
-
-  .dashboard-right-panel,
-  .app-right-panel,
-  .right-nav {
-    position: static;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px 10px;
-    width: 100%;
-  }
-
-  body:not(.dashboard-page) .app-right-panel,
-  body:not(.dashboard-page) .dashboard-right-panel {
-    display: none;
-  }
-
-  .dashboard-icon-circle,
-  .nav-circle {
-    width: 62px;
-    height: 62px;
-    font-size: 1.25rem;
-  }
-
-  .dashboard-icon-link span:last-child,
-  .right-nav span {
-    font-size: 0.78rem;
-  }
-
-  .dashboard-side-logout {
-    grid-column: span 2;
-    justify-self: center;
-  }
-
-  .dashboardGrid,
-  .dashboard-stats-grid,
-  .dashboard-sketch-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ai-chat-form {
-    grid-template-columns: 1fr;
-  }
-
-  .ai-chat-form button { min-height: 48px; }
-
-  .message { max-width: 94%; }
-
-  .mood-shell .mood-center-panel { order: 1; }
-
-  .mood-shell .mood-left-panel {
+  .mood-left-panel {
     order: 2;
     display: flex;
-  }
-
-  .mood-history-section { display: none; }
-
-  .mood-form-card,
-  .dashboard-ai-card,
-  .ai-chat-card,
-  .dashboard-stat-card,
-  .profile-option-card,
-  .history-summary-card,
-  .selected-program-container {
-    padding: 22px;
-    border-radius: var(--radius-lg);
-  }
-
-  .row {
     flex-direction: column;
-    align-items: stretch;
-  }
-
-  .row.end,
-  .save-row {
-    align-items: flex-end;
-  }
-
-  .workout-mobile-topbar,
-  .mobile-workout-menu-btn,
-  .mobile-workout-back-row {
-    display: flex;
-  }
-
-  .workout-video-card,
-  .workout-video-card.active-video {
-    height: 220px;
-  }
-
-  .workout-level-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .workout-level-choice {
-    min-height: 135px;
-    padding: 24px;
-  }
-
-  .mobile-workout-menu {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    width: 100vw;
-    height: 100vh;
-    padding: 90px 32px 32px;
-    overflow-y: auto;
-    background: rgba(16, 35, 77, 0.96);
-  }
-
-  .mobile-workout-menu:not(.hidden) {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-  }
-
-  .mobile-workout-menu::before {
-    content: "Workout Plans";
-    color: #ffffff;
-    font-size: 2.3rem;
-    font-weight: 950;
-  }
-
-  .mobile-workout-link {
+    gap: 14px;
+    padding: 0;
+    min-height: auto;
+    background: transparent;
     border: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-    padding: 18px 0;
-    color: #ffffff;
-    background: transparent;
-    font-size: 1.45rem;
-    font-weight: 900;
-    text-align: left;
+    box-shadow: none;
   }
 
-  .mobile-menu-close {
-    display: block;
-    position: fixed;
-    top: 26px;
-    right: 26px;
-    z-index: 10000;
-    width: 58px;
-    height: 58px;
-    border: 2px solid #ffffff;
-    border-radius: var(--radius-sm);
-    color: #ffffff;
-    background: transparent;
-    font-size: 1.7rem;
-  }
-
-  .profile-option-card {
-    grid-template-columns: 1fr;
-  }
-
-  .terms-document,
-  .crisis-card {
-    width: calc(100% - 28px);
-    padding: 26px;
-  }
-
-  .home-content { margin-top: -40px; }
-
-  .home-content h1 {
-    font-size: clamp(3rem, 15vw, 4.6rem);
-  }
-
-  .home-actions,
-  .loginActions {
-    flex-direction: column;
-  }
-
-  .app-footer {
-    margin-top: 28px;
-    padding: 22px 12px;
-  }
-}
-
-
-/* =====================================================
-   DESKTOP LAYOUT REPAIR — RIGHT NAV + LEFT RESOURCES
-   Desktop only. Mobile stays separate.
-===================================================== */
-
-@media (min-width: 901px) {
-  /* Mood / Check-in / Journal / Reflection / Profile / History desktop */
-  .mood-page .mood-shell,
-  .checkin-page .mood-shell,
-  .journal-page .mood-shell,
-  .reflection-page .mood-shell,
-  .profile-page .mood-shell,
-  .history-page .mood-shell {
-    width: min(1450px, calc(100% - 72px)) !important;
-    margin: 34px auto 0 !important;
-    display: grid !important;
-    grid-template-columns: 280px minmax(0, 760px) 120px !important;
-    gap: 42px !important;
-    align-items: start !important;
-    justify-content: center !important;
-  }
-
-  .mood-left-panel {
-    display: flex !important;
-    grid-column: 1 !important;
-    order: unset !important;
-    padding-top: 120px !important;
-  }
-
-  .mood-center-panel {
-    grid-column: 2 !important;
-    order: unset !important;
-    width: 100% !important;
-  }
-
-  .app-right-panel,
-  .dashboard-right-panel {
-    display: flex !important;
-    grid-column: 3 !important;
-    order: unset !important;
-    position: sticky !important;
-    top: 95px !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 18px !important;
-  }
-
-  .mobile-page-shell {
-    width: auto !important;
-    max-width: none !important;
-    margin: 0 !important;
-    display: contents !important;
-  }
-
-  .mobile-resources-section {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 14px !important;
-  }
-
-  .back-dashboard-link,
-  .dashboard-back {
+  .app-right-panel {
     display: none !important;
   }
 
-  /* Recovery / workout selected content */
-  .selected-program-container {
-    width: min(980px, 100%) !important;
-    margin: 34px auto 0 !important;
-    padding: 34px 42px !important;
+  .mood-page-header {
+    text-align: center;
   }
 
-  .recovery-resource-layout {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 24px !important;
-  }
-
-  .recovery-resource-box {
-    padding: 28px !important;
-    border-radius: 28px !important;
-  }
-
-  .recovery-resource-box a {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-
-  .recovery-resource-box img {
-    width: 100% !important;
-    height: 120px !important;
-    object-fit: cover !important;
-    border-radius: 16px !important;
-  }
-
-  /* Replace emoji feel with clean blue symbol badges */
-  .workout-category-btn::before {
-    width: 34px !important;
-    height: 34px !important;
-    margin-right: 12px !important;
-    border-radius: 999px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background: rgba(77, 146, 217, 0.12) !important;
-    color: #2f75bd !important;
-    font-size: 1rem !important;
-  }
-
-  .workout-category-btn:nth-child(1)::before { content: "⌁" !important; }
-  .workout-category-btn:nth-child(2)::before { content: "△" !important; }
-  .workout-category-btn:nth-child(3)::before { content: "◎" !important; }
-  .workout-category-btn:nth-child(4)::before { content: "↗" !important; }
-  .workout-category-btn:nth-child(5)::before { content: "◌" !important; }
-  .workout-category-btn:nth-child(6)::before { content: "♡" !important; }
-}
-
-/* =====================================================
-   ALIGNN DESKTOP APP LAYOUT — LEFT RESOURCES / CENTER / RIGHT NAV
-   Paste at VERY bottom of routes/ui/styles.css
-===================================================== */
-
-@media (min-width: 901px) {
-  .mood-page .mood-shell,
-  .checkin-page .mood-shell,
-  .journal-page .mood-shell,
-  .reflection-page .mood-shell,
-  .profile-page .mood-shell,
-  .history-page .mood-shell {
-    width: min(1560px, calc(100% - 56px)) !important;
-    margin: 34px auto 0 !important;
-    display: grid !important;
-    grid-template-columns: 290px minmax(720px, 1fr) 150px !important;
-    gap: 28px !important;
-    align-items: stretch !important;
-  }
-
-  .mood-left-panel {
-    grid-column: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 18px !important;
-    padding: 44px 28px !important;
-    min-height: 720px !important;
-    border-radius: 28px !important;
-    background: rgba(255, 255, 255, 0.72) !important;
-    border: 1px solid rgba(77, 146, 217, 0.18) !important;
-    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.12) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    order: unset !important;
-  }
-
-  .mood-center-panel {
-    grid-column: 2 !important;
-    width: 100% !important;
-    max-width: none !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 22px !important;
-    order: unset !important;
-  }
-
-  .app-right-panel,
-  .dashboard-right-panel {
-    grid-column: 3 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    gap: 22px !important;
-    padding: 28px 14px !important;
-    min-height: 720px !important;
-    border-radius: 28px !important;
-    position: sticky !important;
-    top: 26px !important;
-    background: rgba(255, 255, 255, 0.52) !important;
-    border: 1px solid rgba(77, 146, 217, 0.16) !important;
-    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.10) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    order: unset !important;
-  }
-
-  .mobile-page-shell {
-    display: contents !important;
-  }
-
-  .mobile-resources-section {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    width: 100% !important;
-  }
-
-  .mood-left-title,
-  .resource-title {
-    text-align: left !important;
-    margin: 0 0 10px !important;
-    font-size: 1.25rem !important;
-    color: #10234d !important;
-    font-weight: 900 !important;
-  }
-
-  .mood-resource-card,
-  .resource-card {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 18px 20px !important;
-    border-radius: 16px !important;
-    background: rgba(255, 255, 255, 0.78) !important;
-    border: 1px solid rgba(77, 146, 217, 0.18) !important;
-    box-shadow: 0 10px 26px rgba(35, 100, 165, 0.08) !important;
-  }
-
-  .mood-resource-card summary,
-  .resource-card summary {
-    font-weight: 850 !important;
-    color: #10234d !important;
-  }
-
-  .mood-page-header,
-  .page-header {
-    text-align: left !important;
-    margin: 0 0 4px !important;
-  }
-
-  .mood-page-header h1,
-  .page-header h1 {
-    font-size: clamp(2.8rem, 4.2vw, 4.5rem) !important;
-    line-height: 1 !important;
-    color: #10234d !important;
-    letter-spacing: -0.045em !important;
+  .mood-page-header h1 {
+    font-size: clamp(2.5rem, 12vw, 3.35rem);
   }
 
   .mood-form-card,
   .mood-insights-section,
-  .mood-history-section,
-  .profile-option-card,
-  .history-summary-card,
-  .historyCard {
-    width: 100% !important;
-    border-radius: 24px !important;
-    padding: 34px !important;
-    background: rgba(255, 255, 255, 0.78) !important;
-    border: 1px solid rgba(77, 146, 217, 0.18) !important;
-    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.12) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
+  .mood-resource-card {
+    padding: 22px;
+    border-radius: 28px;
   }
 
   .mood-insights-section {
-    min-height: 280px !important;
+    min-height: 280px;
   }
 
-  .moodChartCard {
-    min-height: 240px !important;
-  }
-
-  #moodChart,
-  #moodChartEmpty {
-    height: 240px !important;
-    min-height: 240px !important;
-  }
-
-  .dashboard-icon-link {
-    width: 100% !important;
-    align-items: center !important;
-    text-align: center !important;
-    gap: 8px !important;
-  }
-
-  .dashboard-icon-circle,
-  .nav-circle {
-    width: 64px !important;
-    height: 64px !important;
-    border-radius: 999px !important;
-    background: rgba(255, 255, 255, 0.88) !important;
-    border: 1px solid rgba(77, 146, 217, 0.2) !important;
-    color: #2f75bd !important;
-    box-shadow: 0 14px 30px rgba(35, 100, 165, 0.12) !important;
-  }
-
-  .dashboard-icon-link.active .dashboard-icon-circle,
-  .dashboard-icon-link:hover .dashboard-icon-circle,
-  .active-circle {
-    background: linear-gradient(135deg, #4d92d9, #2f75bd) !important;
-    color: white !important;
-    border-color: transparent !important;
-  }
-
-  .dashboard-icon-link span:last-child {
-    font-size: 0.9rem !important;
-    font-weight: 850 !important;
-    color: #10234d !important;
-  }
-
-  .dashboard-side-logout,
-  .logoutBtn {
-    margin-top: 8px !important;
-    background: rgba(255, 255, 255, 0.82) !important;
-    color: #d94b4b !important;
-    border: 1px solid rgba(217, 75, 75, 0.28) !important;
-    border-radius: 999px !important;
-    padding: 12px 18px !important;
-    font-weight: 900 !important;
-  }
-
-  .back-dashboard-link,
-  .dashboard-back {
-    display: none !important;
-  }
-
-  .app-footer {
-    margin-top: 34px !important;
-    background: rgba(220, 239, 255, 0.64) !important;
-    border-top: 1px solid rgba(77, 146, 217, 0.14) !important;
-    color: #48658f !important;
-  }
-
-  .footer-link {
-    color: #10234d !important;
-  }
-}
-
-@media (min-width: 901px) {
-  .mood-shell {
-    width: min(1560px, calc(100% - 56px)) !important;
-    margin: 34px auto 0 !important;
-    display: grid !important;
-    grid-template-columns: 290px minmax(720px, 1fr) 150px !important;
-    gap: 28px !important;
-    align-items: stretch !important;
+  .checkin-page .mood-insights-section,
+  .journal-page .mood-insights-section,
+  .reflection-page .mood-insights-section {
+    display: none;
   }
 }

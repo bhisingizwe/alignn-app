@@ -23,6 +23,7 @@
   </header>
 
   <main class="mood-shell">
+  <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
   <aside class="mood-left-panel">
     <h2 class="mood-left-title">Mood Resources</h2>
 
@@ -37,6 +38,13 @@
           <li>2 things you can smell</li>
           <li>1 thing you can taste</li>
         </ul>
+
+        <h4>Progressive Muscle Relaxation</h4>
+        <ul>
+          <li>Tense a muscle group for 5 seconds</li>
+          <li>Relax for 10 seconds</li>
+          <li>Move through the body slowly</li>
+        </ul>
       </div>
     </details>
 
@@ -50,6 +58,13 @@
           <li>Exhale for 4 seconds</li>
           <li>Hold for 4 seconds</li>
         </ul>
+
+        <h4>4-7-8 Breathing</h4>
+        <ul>
+          <li>Inhale for 4 seconds</li>
+          <li>Hold for 7 seconds</li>
+          <li>Exhale for 8 seconds</li>
+        </ul>
       </div>
     </details>
 
@@ -59,6 +74,8 @@
         <p><strong>Happy:</strong> What contributed to this feeling today?</p>
         <p><strong>Sad:</strong> What do I need most from myself right now?</p>
         <p><strong>Anxious:</strong> What is within my control right now?</p>
+        <p><strong>Overwhelmed:</strong> What is the next smallest step I can take?</p>
+        <p><strong>Tired:</strong> What would help me recharge today?</p>
       </div>
     </details>
   </aside>
@@ -69,47 +86,61 @@
       <p>Track how you feel and notice patterns over time.</p>
     </div>
 
-    <!-- keep your mood-form-card here exactly as it already is -->
+    <section class="mood-form-card">
+      <div class="moodSection">
+        <div class="label">How are you feeling?</div>
+        <div class="moodOptions">
+          <button class="moodBtn" data-mood="happy">Happy</button>
+          <button class="moodBtn" data-mood="sad">Sad</button>
+          <button class="moodBtn" data-mood="anxious">Anxious</button>
+          <button class="moodBtn" data-mood="overwhelmed">Overwhelmed</button>
+          <button class="moodBtn" data-mood="numb">Numb</button>
+          <button class="moodBtn" data-mood="hopeful">Hopeful</button>
+        </div>
+      </div>
 
-    <!-- keep your mood-insights-section here exactly as it already is -->
+      <div class="moodSection">
+        <label class="label" for="intensityInput">Intensity (1–10)</label>
+        <input id="intensityInput" class="input" type="number" min="1" max="10" placeholder="e.g. 7" />
+      </div>
+
+      <div class="moodSection">
+        <label class="label" for="notesInput">Notes optional</label>
+        <textarea id="notesInput" class="textarea mood-notes-box" rows="6" placeholder="Anything you want to note?"></textarea>
+      </div>
+
+      <div class="row end">
+        <button id="saveMoodBtn" class="primary">Save Mood</button>
+      </div>
+
+      <div id="moodStatus" class="status muted">Status: idle</div>
+    </section>
+
+    <section class="mood-insights-section">
+      <div class="mood-section-row">
+        <h2>Mood Insights</h2>
+        <button id="loadMoodStatsBtn" class="primary secondaryBtn">Load Mood Insights</button>
+      </div>
+
+      <div id="moodStatsStatus" class="status muted">Status: idle</div>
+
+      <div class="moodChartCard">
+        <canvas id="moodChart"></canvas>
+        <div id="moodChartEmpty" class="muted small">
+          Your mood chart will appear here.
+        </div>
+      </div>
+    </section>
   </section>
 
   <aside class="app-right-panel">
-    <a class="dashboard-icon-link active" href="./dashboard.html">
-      <span class="dashboard-icon-circle">⌂</span>
-      <span>Home</span>
-    </a>
-
-    <a class="dashboard-icon-link" href="./mood.html">
-      <span class="dashboard-icon-circle">✦</span>
-      <span>Mood</span>
-    </a>
-
-    <a class="dashboard-icon-link" href="./checkin.html">
-      <span class="dashboard-icon-circle">☾</span>
-      <span>Check-In</span>
-    </a>
-
-    <a class="dashboard-icon-link" href="./journal.html">
-      <span class="dashboard-icon-circle">✎</span>
-      <span>Journal</span>
-    </a>
-
-    <a class="dashboard-icon-link" href="./reflection.html">
-      <span class="dashboard-icon-circle">◎</span>
-      <span>Reflection</span>
-    </a>
-
-    <a class="dashboard-icon-link" href="./profile.html">
-      <span class="dashboard-icon-circle">♙</span>
-      <span>Profile</span>
-    </a>
-
-    <a class="dashboard-icon-link" href="./history.html">
-      <span class="dashboard-icon-circle">⌛</span>
-      <span>History</span>
-    </a>
-
+    <a class="dashboard-icon-link" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
+    <a class="dashboard-icon-link active" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
+    <a class="dashboard-icon-link" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
+    <a class="dashboard-icon-link" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
+    <a class="dashboard-icon-link" href="./reflection.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
+    <a class="dashboard-icon-link" href="./profile.html"><span class="dashboard-icon-circle">♙</span><span>Profile</span></a>
+    <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
     <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
   </aside>
 </main>

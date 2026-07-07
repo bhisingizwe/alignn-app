@@ -24,100 +24,104 @@
     </div>
   </header>
 
-  <main class="mobile-page-shell">
-    <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+<main class="mood-shell">
+<a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
 
-    <section class="mood-center-panel">
-      <div class="mood-page-header">
-        <h1>Reflection</h1>
-        <p>Pick how you feel or roll the dice. Then write what’s real.</p>
+  <aside class="mood-left-panel">
+    <h2 class="mood-left-title">Reflection Resources</h2>
+
+    <details class="mood-resource-card">
+      <summary>💭 Guided Reflection Prompts</summary>
+      <ul class="resource-list">
+        <li>What am I feeling right now?</li>
+        <li>What may be contributing to this feeling?</li>
+        <li>What do I need today?</li>
+        <li>What is one small next step I can take?</li>
+      </ul>
+    </details>
+
+    <details class="mood-resource-card">
+      <summary>❤️ Emotional Processing Support</summary>
+      <ul class="resource-list">
+        <li>Name the emotion without judging it.</li>
+        <li>Notice where you feel it in your body.</li>
+        <li>Remind yourself emotions are temporary.</li>
+        <li>Ask yourself what this emotion may be trying to tell you.</li>
+      </ul>
+    </details>
+
+    <details class="mood-resource-card">
+      <summary>🌱 Grounding Questions</summary>
+      <ul class="resource-list">
+        <li>What are 3 things I can see right now?</li>
+        <li>What is one thing I can hear?</li>
+        <li>What is one thing I can touch?</li>
+        <li>What is within my control today?</li>
+      </ul>
+    </details>
+  </aside>
+
+  <section class="mood-center-panel">
+    <div class="mood-page-header">
+      <h1>Reflection</h1>
+      <p>Pick how you feel or roll the dice. Then write what’s real.</p>
+    </div>
+
+    <section class="mood-form-card">
+      <div class="row">
+        <div class="feelings">
+          <button class="pill" data-feeling="anxious">Anxious</button>
+          <button class="pill" data-feeling="lonely">Lonely</button>
+          <button class="pill" data-feeling="overwhelmed">Overwhelmed</button>
+          <button class="pill" data-feeling="sad">Sad</button>
+          <button class="pill" data-feeling="numb">Numb</button>
+          <button class="pill" data-feeling="angry">Angry</button>
+          <button class="pill" data-feeling="stuck">Stuck</button>
+          <button class="pill" data-feeling="hopeful">Hopeful</button>
+          <button class="pill" data-feeling="happy">Happy</button>
+        </div>
+
+        <button id="diceBtn" class="dice">🎲</button>
       </div>
 
-      <section class="mood-form-card">
-        <div class="row">
-          <div class="feelings">
-            <button class="pill" data-feeling="anxious">Anxious</button>
-            <button class="pill" data-feeling="lonely">Lonely</button>
-            <button class="pill" data-feeling="overwhelmed">Overwhelmed</button>
-            <button class="pill" data-feeling="sad">Sad</button>
-            <button class="pill" data-feeling="numb">Numb</button>
-            <button class="pill" data-feeling="angry">Angry</button>
-            <button class="pill" data-feeling="stuck">Stuck</button>
-            <button class="pill" data-feeling="hopeful">Hopeful</button>
-            <button class="pill" data-feeling="happy">Happy</button>
-          </div>
+      <div class="divider"></div>
 
-          <button id="diceBtn" class="dice">🎲</button>
+      <div id="promptArea" class="promptArea">
+        <div class="promptLabel">Current prompt</div>
+        <div id="promptText" class="promptText muted">Choose a feeling or roll the dice.</div>
+      </div>
+
+      <div class="suggestions">
+        <div class="promptLabel">Suggested prompts</div>
+        <div id="suggestionList" class="suggestionList">
+          <div class="muted small">Suggestions will appear here.</div>
         </div>
+      </div>
 
-        <div class="divider"></div>
+      <div class="moodSection">
+        <label class="label" for="answerInput">Your answer</label>
+        <textarea id="answerInput" class="textarea mood-notes-box" rows="7" placeholder="Write what you can. No pressure."></textarea>
+      </div>
 
-        <div id="promptArea" class="promptArea">
-          <div class="promptLabel">Current prompt</div>
-          <div id="promptText" class="promptText muted">
-            Choose a feeling or roll the dice.
-          </div>
-        </div>
+      <div class="row end">
+        <button id="saveBtn" class="primary">Save Reflection</button>
+      </div>
 
-        <div class="suggestions">
-          <div class="promptLabel">Suggested prompts</div>
-          <div id="suggestionList" class="suggestionList">
-            <div class="muted small">Suggestions will appear here.</div>
-          </div>
-        </div>
-
-        <div class="moodSection">
-          <label class="label" for="answerInput">Your answer</label>
-          <textarea
-            id="answerInput"
-            class="textarea mood-notes-box"
-            rows="7"
-            placeholder="Write what you can. No pressure."
-          ></textarea>
-        </div>
-
-        <div class="row end">
-          <button id="saveBtn" class="primary">Save Reflection</button>
-        </div>
-
-        <div id="status" class="status muted">Status: idle</div>
-      </section>
-
-      <section class="mobile-resources-section">
-        <h2 class="mood-left-title">Reflection Resources</h2>
-
-        <details class="mood-resource-card">
-          <summary>💭 Guided Reflection Prompts</summary>
-          <ul class="resource-list">
-            <li>What am I feeling right now?</li>
-            <li>What may be contributing to this feeling?</li>
-            <li>What do I need today?</li>
-            <li>What is one small next step I can take?</li>
-          </ul>
-        </details>
-
-        <details class="mood-resource-card">
-          <summary>❤️ Emotional Processing Support</summary>
-          <ul class="resource-list">
-            <li>Name the emotion without judging it.</li>
-            <li>Notice where you feel it in your body.</li>
-            <li>Remind yourself emotions are temporary.</li>
-            <li>Ask yourself what this emotion may be trying to tell you.</li>
-          </ul>
-        </details>
-
-        <details class="mood-resource-card">
-          <summary>🌱 Grounding Questions</summary>
-          <ul class="resource-list">
-            <li>What are 3 things I can see right now?</li>
-            <li>What is one thing I can hear?</li>
-            <li>What is one thing I can touch?</li>
-            <li>What is within my control today?</li>
-          </ul>
-        </details>
-      </section>
+      <div id="status" class="status muted">Status: idle</div>
     </section>
-  </main>
+  </section>
+
+  <aside class="app-right-panel">
+    <a class="dashboard-icon-link" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
+    <a class="dashboard-icon-link" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
+    <a class="dashboard-icon-link" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
+    <a class="dashboard-icon-link" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
+    <a class="dashboard-icon-link active" href="./reflection.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
+    <a class="dashboard-icon-link" href="./profile.html"><span class="dashboard-icon-circle">♙</span><span>Profile</span></a>
+    <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
+    <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
+  </aside>
+</main>
 
   <footer class="app-footer">
     <div class="footer-links">
