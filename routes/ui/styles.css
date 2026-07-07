@@ -2008,3 +2008,210 @@ body:not(.home-page) .soul-bg-video,
   .workout-category-btn:nth-child(5)::before { content: "◌" !important; }
   .workout-category-btn:nth-child(6)::before { content: "♡" !important; }
 }
+
+/* =====================================================
+   ALIGNN DESKTOP APP LAYOUT — LEFT RESOURCES / CENTER / RIGHT NAV
+   Paste at VERY bottom of routes/ui/styles.css
+===================================================== */
+
+@media (min-width: 901px) {
+  .mood-page .mood-shell,
+  .checkin-page .mood-shell,
+  .journal-page .mood-shell,
+  .reflection-page .mood-shell,
+  .profile-page .mood-shell,
+  .history-page .mood-shell {
+    width: min(1560px, calc(100% - 56px)) !important;
+    margin: 34px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 290px minmax(720px, 1fr) 150px !important;
+    gap: 28px !important;
+    align-items: stretch !important;
+  }
+
+  .mood-left-panel {
+    grid-column: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    padding: 44px 28px !important;
+    min-height: 720px !important;
+    border-radius: 28px !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border: 1px solid rgba(77, 146, 217, 0.18) !important;
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    order: unset !important;
+  }
+
+  .mood-center-panel {
+    grid-column: 2 !important;
+    width: 100% !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px !important;
+    order: unset !important;
+  }
+
+  .app-right-panel,
+  .dashboard-right-panel {
+    grid-column: 3 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 22px !important;
+    padding: 28px 14px !important;
+    min-height: 720px !important;
+    border-radius: 28px !important;
+    position: sticky !important;
+    top: 26px !important;
+    background: rgba(255, 255, 255, 0.52) !important;
+    border: 1px solid rgba(77, 146, 217, 0.16) !important;
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.10) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    order: unset !important;
+  }
+
+  .mobile-page-shell {
+    display: contents !important;
+  }
+
+  .mobile-resources-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .mood-left-title,
+  .resource-title {
+    text-align: left !important;
+    margin: 0 0 10px !important;
+    font-size: 1.25rem !important;
+    color: #10234d !important;
+    font-weight: 900 !important;
+  }
+
+  .mood-resource-card,
+  .resource-card {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 18px 20px !important;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    border: 1px solid rgba(77, 146, 217, 0.18) !important;
+    box-shadow: 0 10px 26px rgba(35, 100, 165, 0.08) !important;
+  }
+
+  .mood-resource-card summary,
+  .resource-card summary {
+    font-weight: 850 !important;
+    color: #10234d !important;
+  }
+
+  .mood-page-header,
+  .page-header {
+    text-align: left !important;
+    margin: 0 0 4px !important;
+  }
+
+  .mood-page-header h1,
+  .page-header h1 {
+    font-size: clamp(2.8rem, 4.2vw, 4.5rem) !important;
+    line-height: 1 !important;
+    color: #10234d !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .mood-form-card,
+  .mood-insights-section,
+  .mood-history-section,
+  .profile-option-card,
+  .history-summary-card,
+  .historyCard {
+    width: 100% !important;
+    border-radius: 24px !important;
+    padding: 34px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    border: 1px solid rgba(77, 146, 217, 0.18) !important;
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+
+  .mood-insights-section {
+    min-height: 280px !important;
+  }
+
+  .moodChartCard {
+    min-height: 240px !important;
+  }
+
+  #moodChart,
+  #moodChartEmpty {
+    height: 240px !important;
+    min-height: 240px !important;
+  }
+
+  .dashboard-icon-link {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+  }
+
+  .dashboard-icon-circle,
+  .nav-circle {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid rgba(77, 146, 217, 0.2) !important;
+    color: #2f75bd !important;
+    box-shadow: 0 14px 30px rgba(35, 100, 165, 0.12) !important;
+  }
+
+  .dashboard-icon-link.active .dashboard-icon-circle,
+  .dashboard-icon-link:hover .dashboard-icon-circle,
+  .active-circle {
+    background: linear-gradient(135deg, #4d92d9, #2f75bd) !important;
+    color: white !important;
+    border-color: transparent !important;
+  }
+
+  .dashboard-icon-link span:last-child {
+    font-size: 0.9rem !important;
+    font-weight: 850 !important;
+    color: #10234d !important;
+  }
+
+  .dashboard-side-logout,
+  .logoutBtn {
+    margin-top: 8px !important;
+    background: rgba(255, 255, 255, 0.82) !important;
+    color: #d94b4b !important;
+    border: 1px solid rgba(217, 75, 75, 0.28) !important;
+    border-radius: 999px !important;
+    padding: 12px 18px !important;
+    font-weight: 900 !important;
+  }
+
+  .back-dashboard-link,
+  .dashboard-back {
+    display: none !important;
+  }
+
+  .app-footer {
+    margin-top: 34px !important;
+    background: rgba(220, 239, 255, 0.64) !important;
+    border-top: 1px solid rgba(77, 146, 217, 0.14) !important;
+    color: #48658f !important;
+  }
+
+  .footer-link {
+    color: #10234d !important;
+  }
+}
