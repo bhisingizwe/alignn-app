@@ -1889,3 +1889,122 @@ body:not(.home-page) .soul-bg-video,
     padding: 22px 12px;
   }
 }
+
+
+/* =====================================================
+   DESKTOP LAYOUT REPAIR — RIGHT NAV + LEFT RESOURCES
+   Desktop only. Mobile stays separate.
+===================================================== */
+
+@media (min-width: 901px) {
+  /* Mood / Check-in / Journal / Reflection / Profile / History desktop */
+  .mood-page .mood-shell,
+  .checkin-page .mood-shell,
+  .journal-page .mood-shell,
+  .reflection-page .mood-shell,
+  .profile-page .mood-shell,
+  .history-page .mood-shell {
+    width: min(1450px, calc(100% - 72px)) !important;
+    margin: 34px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 280px minmax(0, 760px) 120px !important;
+    gap: 42px !important;
+    align-items: start !important;
+    justify-content: center !important;
+  }
+
+  .mood-left-panel {
+    display: flex !important;
+    grid-column: 1 !important;
+    order: unset !important;
+    padding-top: 120px !important;
+  }
+
+  .mood-center-panel {
+    grid-column: 2 !important;
+    order: unset !important;
+    width: 100% !important;
+  }
+
+  .app-right-panel,
+  .dashboard-right-panel {
+    display: flex !important;
+    grid-column: 3 !important;
+    order: unset !important;
+    position: sticky !important;
+    top: 95px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 18px !important;
+  }
+
+  .mobile-page-shell {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    display: contents !important;
+  }
+
+  .mobile-resources-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .back-dashboard-link,
+  .dashboard-back {
+    display: none !important;
+  }
+
+  /* Recovery / workout selected content */
+  .selected-program-container {
+    width: min(980px, 100%) !important;
+    margin: 34px auto 0 !important;
+    padding: 34px 42px !important;
+  }
+
+  .recovery-resource-layout {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+  }
+
+  .recovery-resource-box {
+    padding: 28px !important;
+    border-radius: 28px !important;
+  }
+
+  .recovery-resource-box a {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .recovery-resource-box img {
+    width: 100% !important;
+    height: 120px !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+
+  /* Replace emoji feel with clean blue symbol badges */
+  .workout-category-btn::before {
+    width: 34px !important;
+    height: 34px !important;
+    margin-right: 12px !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(77, 146, 217, 0.12) !important;
+    color: #2f75bd !important;
+    font-size: 1rem !important;
+  }
+
+  .workout-category-btn:nth-child(1)::before { content: "⌁" !important; }
+  .workout-category-btn:nth-child(2)::before { content: "△" !important; }
+  .workout-category-btn:nth-child(3)::before { content: "◎" !important; }
+  .workout-category-btn:nth-child(4)::before { content: "↗" !important; }
+  .workout-category-btn:nth-child(5)::before { content: "◌" !important; }
+  .workout-category-btn:nth-child(6)::before { content: "♡" !important; }
+}
