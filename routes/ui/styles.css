@@ -1,45 +1,44 @@
 /* =====================================================
-   ALIGNN CSS
-   Soft Sky Blue Palette + Floating Glass Layout
+   ALIGNN  
+   Desktop and mobile are separated.
 ===================================================== */
 
 /* =====================================================
    01. DESIGN TOKENS
 ===================================================== */
 :root {
-  --bg-page: #f6fbff;
-  --bg-page-2: #eaf6ff;
-  --bg-page-3: #dcefff;
+  --bg-main: #f6fbff;
+  --bg-soft: #eaf6ff;
   --bg-card: rgba(255, 255, 255, 0.78);
-  --bg-card-strong: rgba(255, 255, 255, 0.9);
+  --bg-card-strong: rgba(255, 255, 255, 0.92);
   --bg-glass: rgba(255, 255, 255, 0.62);
 
-  --sky-50: #f6fbff;
+  --sky-50: #f8fcff;
   --sky-100: #eaf6ff;
-  --sky-150: #dcefff;
-  --sky-200: #c8e6ff;
+  --sky-150: #dff1ff;
+  --sky-200: #cce8ff;
   --sky-300: #a9d7ff;
   --sky-400: #82bdf7;
   --sky-500: #4d92d9;
   --sky-600: #2f75bd;
-  --sky-700: #1f5f9f;
+  --sky-700: #174f89;
 
   --text-main: #10234d;
   --text-soft: #48658f;
-  --text-muted: #6f82a3;
+  --text-muted: #7186a8;
   --text-inverse: #ffffff;
 
   --accent: var(--sky-500);
   --accent-light: var(--sky-300);
   --accent-deep: var(--sky-700);
-  --accent-glow: rgba(130, 189, 247, 0.36);
+  --accent2: var(--sky-300);
 
   --border-soft: rgba(77, 146, 217, 0.18);
   --border-strong: rgba(77, 146, 217, 0.34);
 
   --shadow-soft: 0 18px 45px rgba(35, 100, 165, 0.10);
   --shadow-card: 0 24px 60px rgba(35, 100, 165, 0.14);
-  --shadow-float: 0 30px 80px rgba(35, 100, 165, 0.16);
+  --shadow-float: 0 30px 80px rgba(35, 100, 165, 0.18);
 
   --radius-xl: 34px;
   --radius-lg: 28px;
@@ -47,21 +46,17 @@
   --radius-sm: 16px;
   --radius-pill: 999px;
 
-  --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 
-  /* aliases for older code */
   --border: var(--border-soft);
   --muted: var(--text-soft);
   --text: var(--text-main);
-  --accent2: var(--accent-light);
 }
 
 /* =====================================================
    02. RESET + BASE
 ===================================================== */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html,
 body {
@@ -81,30 +76,39 @@ body {
     linear-gradient(180deg, var(--sky-50) 0%, #ffffff 100%);
 }
 
-body:not(.home-page) .soul-bg-image,
-body:not(.home-page) .soul-bg-video,
-.login-page .auth-background,
-.signup-page .auth-background {
-  display: none;
-}
+img,
+video { max-width: 100%; }
 
-body:not(.home-page) .soul-bg {
+a { color: inherit; }
+
+button,
+input,
+textarea,
+select { font: inherit; }
+
+.hidden { display: none !important; }
+
+/* Backgrounds: keep homepage media only, hide JPG/MP4 elsewhere */
+.soul-bg {
   position: fixed;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
+}
+
+body:not(.home-page) .soul-bg {
   background:
     radial-gradient(circle at 7% 18%, rgba(200, 230, 255, 0.82), transparent 30%),
     radial-gradient(circle at 92% 8%, rgba(169, 215, 255, 0.68), transparent 34%),
     linear-gradient(180deg, var(--sky-50) 0%, #ffffff 100%);
 }
 
-.home-page .soul-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
+body:not(.home-page) .soul-bg-image,
+body:not(.home-page) .soul-bg-video,
+.login-page .auth-background,
+.signup-page .auth-background {
+  display: none !important;
 }
 
 .home-page .soul-bg-image,
@@ -115,30 +119,14 @@ body:not(.home-page) .soul-bg {
   object-fit: cover;
 }
 
-.home-page .soul-bg-overlay {
+.soul-bg-overlay {
   position: absolute;
   inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.home-page .soul-bg-overlay {
   background: rgba(10, 28, 55, 0.14);
-}
-
-img,
-video {
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-}
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-.hidden {
-  display: none !important;
 }
 
 /* =====================================================
@@ -146,29 +134,26 @@ select {
 ===================================================== */
 .title {
   margin: 0;
+  color: var(--text-main);
   font-size: clamp(2rem, 4vw, 4.2rem);
   line-height: 1.02;
-  color: var(--text-main);
-}
-
-.subtitle,
-.muted {
-  color: var(--text-soft);
+  letter-spacing: -0.045em;
 }
 
 .subtitle {
   margin: 10px 0 0;
+  color: var(--text-soft);
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   line-height: 1.55;
 }
 
-.small {
-  font-size: 0.9rem;
-}
-
+.muted { color: var(--text-soft); }
+.small { font-size: 0.9rem; }
 .tiny,
 .status,
 .authStatus {
+  min-height: 18px;
+  margin-top: 10px;
   color: var(--text-muted);
   font-size: 0.82rem;
 }
@@ -179,19 +164,19 @@ select {
   background: var(--border-soft);
 }
 
-.row {
+.row,
+.save-row,
+.history-header,
+.history-top-row,
+.mood-section-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 14px;
 }
 
 .row.end,
-.save-row {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
+.save-row { justify-content: flex-end; }
 
 /* =====================================================
    04. HEADER + BRAND
@@ -212,15 +197,11 @@ select {
 
 .brand,
 .dashboard-side-logo {
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
   color: var(--accent);
+  font-size: 2rem;
+  font-weight: 950;
+  letter-spacing: -0.055em;
   text-shadow: 0 6px 24px rgba(130, 189, 247, 0.32);
-}
-
-.brand::first-letter {
-  color: var(--sky-600);
 }
 
 .brandLink,
@@ -235,10 +216,11 @@ select {
 .dashboard-side-tag {
   margin-top: 5px;
   color: var(--text-soft);
-  font-style: italic;
   font-size: 0.98rem;
+  font-style: italic;
 }
 
+.home-page .brand,
 .home-page .tagline {
   color: #ffffff;
   text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
@@ -262,7 +244,7 @@ select {
   color: var(--text-inverse);
   background: linear-gradient(135deg, var(--sky-500), #2f8df4);
   box-shadow: 0 14px 30px rgba(77, 146, 217, 0.26);
-  font-weight: 800;
+  font-weight: 850;
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
@@ -287,7 +269,8 @@ select {
 .secondaryBtn,
 .secondaryAuthBtn,
 .dashboard-outline-btn,
-.actionLink {
+.actionLink,
+.dashboard-secondary-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -297,10 +280,10 @@ select {
   padding: 13px 18px;
   color: var(--accent-deep);
   background: rgba(255, 255, 255, 0.72);
-  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(35, 100, 165, 0.08);
+  font-weight: 850;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 12px 24px rgba(35, 100, 165, 0.08);
 }
 
 .menuBtn,
@@ -322,7 +305,7 @@ select {
   margin-bottom: 7px;
   color: var(--text-soft);
   font-size: 0.86rem;
-  font-weight: 700;
+  font-weight: 750;
 }
 
 .input,
@@ -354,12 +337,10 @@ select {
   resize: vertical;
 }
 
-.large-textarea {
-  min-height: 220px;
-}
+.large-textarea { min-height: 220px; }
 
 /* =====================================================
-   06. SHARED FLOATING CARDS
+   06. SHARED FLOATING GLASS CARDS
 ===================================================== */
 .container,
 .app-layout,
@@ -403,8 +384,11 @@ select {
 .recovery-resource-box,
 .nutrition-video-item,
 .workout-level-choice,
-.workout-category-btn {
-  border: 1px solid rgba(77, 146, 217, 0.18);
+.workout-category-btn,
+.quick-link-card,
+.suggestionCard,
+.promptArea {
+  border: 1px solid var(--border-soft);
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -413,36 +397,34 @@ select {
 }
 
 .card,
-.glass-card {
-  padding: 24px;
-}
+.glass-card { padding: 24px; }
 
-.float-card-hover,
 .quick-link-card,
 .workout-level-choice,
 .workout-category-btn,
 .profile-option-card,
 .history-summary-card,
 .nutrition-video-item,
-.recovery-resource-box {
+.recovery-resource-box,
+.suggestionCard {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
-.float-card-hover:hover,
 .quick-link-card:hover,
 .workout-level-choice:hover,
 .workout-category-btn:hover,
 .profile-option-card:hover,
 .history-summary-card:hover,
 .nutrition-video-item:hover,
-.recovery-resource-box:hover {
+.recovery-resource-box:hover,
+.suggestionCard:hover {
   transform: translateY(-5px);
   border-color: var(--border-strong);
   box-shadow: var(--shadow-float);
 }
 
 /* =====================================================
-   07. DESKTOP APP SHELLS
+   07. DESKTOP SHELLS
 ===================================================== */
 .dashboard-shell,
 .dashboard-shell-v2,
@@ -451,7 +433,7 @@ select {
   width: min(1500px, calc(100% - 64px));
   margin: 34px auto 0;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr) 128px;
+  grid-template-columns: 270px minmax(0, 1fr) 130px;
   gap: 42px;
   align-items: start;
 }
@@ -485,13 +467,14 @@ select {
   gap: 18px;
 }
 
+/* Desktop uses right nav, so dashboard links are hidden */
 .back-dashboard-link,
 .dashboard-back {
   display: none !important;
 }
 
 /* =====================================================
-   08. RIGHT NAVIGATION BUTTONS
+   08. RIGHT NAVIGATION
 ===================================================== */
 .dashboard-icon-link,
 .right-nav a {
@@ -500,9 +483,9 @@ select {
   align-items: center;
   gap: 8px;
   color: var(--text-main);
-  font-weight: 800;
-  text-decoration: none;
+  font-weight: 850;
   text-align: center;
+  text-decoration: none;
 }
 
 .dashboard-icon-circle,
@@ -533,8 +516,8 @@ select {
 
 .dashboard-icon-link span:last-child,
 .right-nav span {
-  font-size: 0.88rem;
   color: var(--text-soft);
+  font-size: 0.88rem;
 }
 
 .dashboard-side-logout,
@@ -544,30 +527,33 @@ select {
   padding: 12px 18px;
   color: #d34b4b;
   background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow-soft);
   font-weight: 900;
   cursor: pointer;
-  box-shadow: var(--shadow-soft);
 }
 
-.logoutBtn {
-  width: 100%;
-}
+.logoutBtn { width: 100%; }
 
-/* optional emoji fallback if icons are missing */
-.dashboard-icon-link[href*="dashboard"] .dashboard-icon-circle::before { content: "🏠"; }
-.dashboard-icon-link[href*="mood"] .dashboard-icon-circle::before { content: "✦"; }
-.dashboard-icon-link[href*="check"] .dashboard-icon-circle::before { content: "🌙"; }
-.dashboard-icon-link[href*="journal"] .dashboard-icon-circle::before { content: "✎"; }
-.dashboard-icon-link[href*="reflection"] .dashboard-icon-circle::before { content: "◎"; }
-.dashboard-icon-link[href*="profile"] .dashboard-icon-circle::before { content: "☻"; }
-.dashboard-icon-link[href*="history"] .dashboard-icon-circle::before { content: "⌛"; }
-.dashboard-icon-circle:not(:empty)::before { content: none; }
+/* Emoji-style nav if icons are not already inside circles */
+.dashboard-icon-link[href*="dashboard"] .dashboard-icon-circle:empty::before { content: "🏠"; }
+.dashboard-icon-link[href*="mood"] .dashboard-icon-circle:empty::before { content: "✦"; }
+.dashboard-icon-link[href*="check"] .dashboard-icon-circle:empty::before { content: "🌙"; }
+.dashboard-icon-link[href*="journal"] .dashboard-icon-circle:empty::before { content: "✎"; }
+.dashboard-icon-link[href*="reflection"] .dashboard-icon-circle:empty::before { content: "◎"; }
+.dashboard-icon-link[href*="profile"] .dashboard-icon-circle:empty::before { content: "☻"; }
+.dashboard-icon-link[href*="history"] .dashboard-icon-circle:empty::before { content: "⌛"; }
 
 /* =====================================================
    09. DASHBOARD
 ===================================================== */
+.dashboard-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .dashboard-page .dashboard-shell {
-  grid-template-columns: 270px minmax(0, 1fr) 130px;
+  grid-template-columns: 280px minmax(0, 1fr) 130px;
 }
 
 .dashboard-left-heading,
@@ -609,11 +595,6 @@ select {
   line-height: 1.62;
 }
 
-.dashboard-center-header,
-.dashboard-greeting-block {
-  width: 100%;
-}
-
 .dashboard-title-main,
 .dashboard-main-title,
 .dashboard-sketch-title,
@@ -653,10 +634,7 @@ select {
   margin-bottom: 16px;
 }
 
-.ai-chat-header h2 {
-  margin: 0;
-  color: var(--text-main);
-}
+.ai-chat-header h2 { margin: 0; }
 
 .ai-status {
   border-radius: var(--radius-pill);
@@ -700,13 +678,11 @@ select {
 
 .user-message {
   align-self: flex-end;
-  background: linear-gradient(135deg, var(--sky-500), var(--sky-600));
   color: #ffffff;
+  background: linear-gradient(135deg, var(--sky-500), var(--sky-600));
 }
 
-.message p {
-  margin: 0;
-}
+.message p { margin: 0; }
 
 .ai-suggestion-row,
 .dashboard-hero-actions,
@@ -724,7 +700,7 @@ select {
   padding: 9px 13px;
   color: var(--sky-700);
   background: var(--sky-100);
-  font-weight: 800;
+  font-weight: 850;
   cursor: pointer;
 }
 
@@ -746,10 +722,15 @@ select {
 
 .dashboardGrid,
 .dashboard-stats-grid,
-.dashboard-sketch-grid {
+.dashboard-sketch-grid,
+.dashboard-quick-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+}
+
+.dashboard-quick-links {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .dashboard-stat-card,
@@ -772,10 +753,23 @@ select {
   font-weight: 950;
 }
 
-.dashboardText {
+.dashboardText,
+.quick-link-title {
   color: var(--text-main);
   line-height: 1.55;
-  font-weight: 800;
+  font-weight: 850;
+}
+
+.quick-link-card {
+  min-height: 150px;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.quick-link-text {
+  color: var(--text-soft);
+  line-height: 1.55;
 }
 
 /* =====================================================
@@ -785,7 +779,7 @@ select {
   width: min(1560px, calc(100% - 72px));
   margin: 34px auto 0;
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-columns: 270px minmax(0, 1fr);
   gap: 46px;
   align-items: start;
   position: relative;
@@ -868,7 +862,7 @@ select {
 }
 
 .workout-plan-heading p {
-  max-width: 720px;
+  max-width: 760px;
   margin: 14px auto 0;
   color: var(--text-soft);
   font-size: 1.28rem;
@@ -954,9 +948,7 @@ select {
   background: var(--sky-500);
 }
 
-.workout-level-section {
-  margin-top: 22px;
-}
+.workout-level-section { margin-top: 22px; }
 
 .workout-level-section h2 {
   display: flex;
@@ -1022,9 +1014,7 @@ select {
   display: none !important;
 }
 
-.selected-program-container:empty {
-  display: none;
-}
+.selected-program-container:empty { display: none; }
 
 .selected-program-container {
   width: min(980px, 100%);
@@ -1045,9 +1035,7 @@ select {
   color: var(--text-main);
 }
 
-.outline-section {
-  margin-top: 22px;
-}
+.outline-section { margin-top: 22px; }
 
 .outline-section h4 {
   display: inline-block;
@@ -1063,9 +1051,7 @@ select {
   padding-left: 22px;
 }
 
-.outline-section li {
-  margin-bottom: 10px;
-}
+.outline-section li { margin-bottom: 10px; }
 
 .nutrition-video-list,
 .recovery-resource-layout {
@@ -1074,9 +1060,7 @@ select {
   margin-top: 18px;
 }
 
-.nutrition-video-list {
-  grid-template-columns: 1fr;
-}
+.nutrition-video-list { grid-template-columns: 1fr; }
 
 .nutrition-video-item {
   display: grid;
@@ -1100,22 +1084,16 @@ select {
   font-weight: 950;
 }
 
-.recovery-resource-layout {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
+.recovery-resource-layout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .recovery-resource-box {
   min-height: 190px;
   padding: 24px;
 }
 
-.recovery-resource-box h3 {
-  margin: 0 0 14px;
-}
+.recovery-resource-box h3 { margin: 0 0 14px; }
 
-.recovery-resource-box li {
-  margin-bottom: 10px;
-}
+.recovery-resource-box li { margin-bottom: 10px; }
 
 .recovery-resource-box a {
   color: var(--sky-700);
@@ -1158,13 +1136,9 @@ select {
   font-size: 1.05rem;
 }
 
-.mood-form-card {
-  padding: 28px;
-}
+.mood-form-card { padding: 28px; }
 
-.moodSection {
-  margin-bottom: 20px;
-}
+.moodSection { margin-bottom: 20px; }
 
 .moodOptions,
 .feelings {
@@ -1180,7 +1154,7 @@ select {
   padding: 10px 14px;
   color: var(--sky-700);
   background: rgba(255, 255, 255, 0.76);
-  font-weight: 800;
+  font-weight: 850;
   cursor: pointer;
 }
 
@@ -1193,23 +1167,10 @@ select {
   background: linear-gradient(135deg, var(--sky-400), var(--sky-600));
 }
 
-.mood-notes-box {
-  min-height: 170px;
-}
+.mood-notes-box { min-height: 170px; }
 
 .mood-insights-section,
-.mood-history-section {
-  padding: 24px;
-}
-
-.mood-section-row,
-.history-header,
-.history-top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-}
+.mood-history-section { padding: 24px; }
 
 .mood-section-row h2 {
   margin: 0;
@@ -1236,13 +1197,11 @@ select {
   color: var(--text-muted);
 }
 
-.mood-left-panel {
-  padding-top: 112px;
-}
+.mood-left-panel { padding-top: 112px; }
 
 .mood-resource-card,
 .resource-card {
-  padding: 18px 18px;
+  padding: 18px;
   border-radius: var(--radius-md);
 }
 
@@ -1265,8 +1224,6 @@ select {
 }
 
 .promptArea {
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-md);
   padding: 16px;
   background: rgba(234, 246, 255, 0.66);
 }
@@ -1277,6 +1234,8 @@ select {
   font-weight: 900;
 }
 
+.suggestions { margin-top: 14px; }
+
 .suggestionList {
   display: grid;
   grid-template-columns: 1fr;
@@ -1285,14 +1244,10 @@ select {
 }
 
 .suggestionCard {
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-sm);
   padding: 14px;
-  background: rgba(255, 255, 255, 0.78);
   cursor: pointer;
 }
 
-.suggestionCard:hover,
 .suggestionCard.selected {
   border-color: var(--sky-500);
   background: var(--sky-100);
@@ -1301,6 +1256,8 @@ select {
 .mobile-page-shell {
   width: min(1180px, calc(100% - 64px));
   margin: 34px auto 0;
+  position: relative;
+  z-index: 2;
 }
 
 .mobile-resources-section {
@@ -1400,9 +1357,7 @@ select {
   gap: 14px;
 }
 
-.historyCard {
-  padding: 16px;
-}
+.historyCard { padding: 16px; }
 
 .historyDate {
   margin-bottom: 8px;
@@ -1452,7 +1407,8 @@ select {
 
 .authHeader p,
 .authSwitch,
-.auth-switch {
+.auth-switch,
+.terms-text {
   color: var(--text-soft);
 }
 
@@ -1512,6 +1468,11 @@ select {
   background: var(--sky-100);
 }
 
+.crisis-card h1,
+.crisis-section h2 {
+  color: var(--sky-700);
+}
+
 /* =====================================================
    15. HOME PAGE
 ===================================================== */
@@ -1527,10 +1488,7 @@ select {
   padding: 28px 36px;
 }
 
-.home-header .brand {
-  font-size: 2.4rem;
-  color: #ffffff;
-}
+.home-header .brand { font-size: 2.4rem; }
 
 .home-hero {
   position: relative;
@@ -1543,9 +1501,7 @@ select {
   text-align: center;
 }
 
-.home-content {
-  margin-top: -90px;
-}
+.home-content { margin-top: -90px; }
 
 .home-content h1 {
   margin: 0 0 14px;
@@ -1564,7 +1520,7 @@ select {
 
 .hero-text {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 850;
 }
 
 .hero-login-btn,
@@ -1677,6 +1633,7 @@ select {
   .dashboardGrid,
   .dashboard-stats-grid,
   .dashboard-sketch-grid,
+  .dashboard-quick-links,
   .recovery-resource-layout {
     grid-template-columns: 1fr;
   }
@@ -1693,7 +1650,7 @@ select {
 
 /* =====================================================
    18. MOBILE ONLY
-   Mobile rules stay here so they do not leak into desktop.
+   Mobile rules stay here so they cannot leak into desktop.
 ===================================================== */
 .mobile-menu-btn,
 .mobile-workout-menu,
@@ -1710,13 +1667,8 @@ select {
     padding: 18px 22px;
   }
 
-  .brand {
-    font-size: 1.95rem;
-  }
-
-  .tagline {
-    font-size: 0.94rem;
-  }
+  .brand { font-size: 1.95rem; }
+  .tagline { font-size: 0.94rem; }
 
   .dashboard-shell,
   .dashboard-shell-v2,
@@ -1737,10 +1689,6 @@ select {
     display: none;
   }
 
-  .dashboard-page .dashboard-left-panel {
-    display: none;
-  }
-
   .dashboard-center-panel,
   .center-panel,
   .mood-center-panel {
@@ -1757,9 +1705,7 @@ select {
     font-size: clamp(2.5rem, 12vw, 3.35rem);
   }
 
-  .dashboard-greeting-heading {
-    font-size: 1.85rem;
-  }
+  .dashboard-greeting-heading { font-size: 1.85rem; }
 
   .dashboard-title-sub,
   .dashboard-main-text,
@@ -1812,26 +1758,18 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .ai-chat-form button {
-    min-height: 48px;
-  }
+  .ai-chat-form button { min-height: 48px; }
 
-  .message {
-    max-width: 94%;
-  }
+  .message { max-width: 94%; }
 
-  .mood-shell .mood-center-panel {
-    order: 1;
-  }
+  .mood-shell .mood-center-panel { order: 1; }
 
   .mood-shell .mood-left-panel {
     order: 2;
     display: flex;
   }
 
-  .mood-history-section {
-    display: none;
-  }
+  .mood-history-section { display: none; }
 
   .mood-form-card,
   .dashboard-ai-card,
@@ -1935,9 +1873,7 @@ select {
     padding: 26px;
   }
 
-  .home-content {
-    margin-top: -40px;
-  }
+  .home-content { margin-top: -40px; }
 
   .home-content h1 {
     font-size: clamp(3rem, 15vw, 4.6rem);
@@ -1954,6 +1890,331 @@ select {
   }
 }
 
+
+/* =====================================================
+   DESKTOP LAYOUT REPAIR — RIGHT NAV + LEFT RESOURCES
+   Desktop only. Mobile stays separate.
+===================================================== */
+
+@media (min-width: 901px) {
+  /* Mood / Check-in / Journal / Reflection / Profile / History desktop */
+  .mood-page .mood-shell,
+  .checkin-page .mood-shell,
+  .journal-page .mood-shell,
+  .reflection-page .mood-shell,
+  .profile-page .mood-shell,
+  .history-page .mood-shell {
+    width: min(1450px, calc(100% - 72px)) !important;
+    margin: 34px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 280px minmax(0, 760px) 120px !important;
+    gap: 42px !important;
+    align-items: start !important;
+    justify-content: center !important;
+  }
+
+  .mood-left-panel {
+    display: flex !important;
+    grid-column: 1 !important;
+    order: unset !important;
+    padding-top: 120px !important;
+  }
+
+  .mood-center-panel {
+    grid-column: 2 !important;
+    order: unset !important;
+    width: 100% !important;
+  }
+
+  .app-right-panel,
+  .dashboard-right-panel {
+    display: flex !important;
+    grid-column: 3 !important;
+    order: unset !important;
+    position: sticky !important;
+    top: 95px !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 18px !important;
+  }
+
+  .mobile-page-shell {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    display: contents !important;
+  }
+
+  .mobile-resources-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .back-dashboard-link,
+  .dashboard-back {
+    display: none !important;
+  }
+
+  /* Recovery / workout selected content */
+  .selected-program-container {
+    width: min(980px, 100%) !important;
+    margin: 34px auto 0 !important;
+    padding: 34px 42px !important;
+  }
+
+  .recovery-resource-layout {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 24px !important;
+  }
+
+  .recovery-resource-box {
+    padding: 28px !important;
+    border-radius: 28px !important;
+  }
+
+  .recovery-resource-box a {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .recovery-resource-box img {
+    width: 100% !important;
+    height: 120px !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+  }
+
+  /* Replace emoji feel with clean blue symbol badges */
+  .workout-category-btn::before {
+    width: 34px !important;
+    height: 34px !important;
+    margin-right: 12px !important;
+    border-radius: 999px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(77, 146, 217, 0.12) !important;
+    color: #2f75bd !important;
+    font-size: 1rem !important;
+  }
+
+  .workout-category-btn:nth-child(1)::before { content: "⌁" !important; }
+  .workout-category-btn:nth-child(2)::before { content: "△" !important; }
+  .workout-category-btn:nth-child(3)::before { content: "◎" !important; }
+  .workout-category-btn:nth-child(4)::before { content: "↗" !important; }
+  .workout-category-btn:nth-child(5)::before { content: "◌" !important; }
+  .workout-category-btn:nth-child(6)::before { content: "♡" !important; }
+}
+
+/* =====================================================
+   ALIGNN DESKTOP APP LAYOUT — LEFT RESOURCES / CENTER / RIGHT NAV
+   Paste at VERY bottom of routes/ui/styles.css
+===================================================== */
+
+@media (min-width: 901px) {
+  .mood-page .mood-shell,
+  .checkin-page .mood-shell,
+  .journal-page .mood-shell,
+  .reflection-page .mood-shell,
+  .profile-page .mood-shell,
+  .history-page .mood-shell {
+    width: min(1560px, calc(100% - 56px)) !important;
+    margin: 34px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: 290px minmax(720px, 1fr) 150px !important;
+    gap: 28px !important;
+    align-items: stretch !important;
+  }
+
+  .mood-left-panel {
+    grid-column: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 18px !important;
+    padding: 44px 28px !important;
+    min-height: 720px !important;
+    border-radius: 28px !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border: 1px solid rgba(77, 146, 217, 0.18) !important;
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    order: unset !important;
+  }
+
+  .mood-center-panel {
+    grid-column: 2 !important;
+    width: 100% !important;
+    max-width: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 22px !important;
+    order: unset !important;
+  }
+
+  .app-right-panel,
+  .dashboard-right-panel {
+    grid-column: 3 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 22px !important;
+    padding: 28px 14px !important;
+    min-height: 720px !important;
+    border-radius: 28px !important;
+    position: sticky !important;
+    top: 26px !important;
+    background: rgba(255, 255, 255, 0.52) !important;
+    border: 1px solid rgba(77, 146, 217, 0.16) !important;
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.10) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    order: unset !important;
+  }
+
+  .mobile-page-shell {
+    display: contents !important;
+  }
+
+  .mobile-resources-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .mood-left-title,
+  .resource-title {
+    text-align: left !important;
+    margin: 0 0 10px !important;
+    font-size: 1.25rem !important;
+    color: #10234d !important;
+    font-weight: 900 !important;
+  }
+
+  .mood-resource-card,
+  .resource-card {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 18px 20px !important;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    border: 1px solid rgba(77, 146, 217, 0.18) !important;
+    box-shadow: 0 10px 26px rgba(35, 100, 165, 0.08) !important;
+  }
+
+  .mood-resource-card summary,
+  .resource-card summary {
+    font-weight: 850 !important;
+    color: #10234d !important;
+  }
+
+  .mood-page-header,
+  .page-header {
+    text-align: left !important;
+    margin: 0 0 4px !important;
+  }
+
+  .mood-page-header h1,
+  .page-header h1 {
+    font-size: clamp(2.8rem, 4.2vw, 4.5rem) !important;
+    line-height: 1 !important;
+    color: #10234d !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .mood-form-card,
+  .mood-insights-section,
+  .mood-history-section,
+  .profile-option-card,
+  .history-summary-card,
+  .historyCard {
+    width: 100% !important;
+    border-radius: 24px !important;
+    padding: 34px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    border: 1px solid rgba(77, 146, 217, 0.18) !important;
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+  }
+
+  .mood-insights-section {
+    min-height: 280px !important;
+  }
+
+  .moodChartCard {
+    min-height: 240px !important;
+  }
+
+  #moodChart,
+  #moodChartEmpty {
+    height: 240px !important;
+    min-height: 240px !important;
+  }
+
+  .dashboard-icon-link {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+  }
+
+  .dashboard-icon-circle,
+  .nav-circle {
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid rgba(77, 146, 217, 0.2) !important;
+    color: #2f75bd !important;
+    box-shadow: 0 14px 30px rgba(35, 100, 165, 0.12) !important;
+  }
+
+  .dashboard-icon-link.active .dashboard-icon-circle,
+  .dashboard-icon-link:hover .dashboard-icon-circle,
+  .active-circle {
+    background: linear-gradient(135deg, #4d92d9, #2f75bd) !important;
+    color: white !important;
+    border-color: transparent !important;
+  }
+
+  .dashboard-icon-link span:last-child {
+    font-size: 0.9rem !important;
+    font-weight: 850 !important;
+    color: #10234d !important;
+  }
+
+  .dashboard-side-logout,
+  .logoutBtn {
+    margin-top: 8px !important;
+    background: rgba(255, 255, 255, 0.82) !important;
+    color: #d94b4b !important;
+    border: 1px solid rgba(217, 75, 75, 0.28) !important;
+    border-radius: 999px !important;
+    padding: 12px 18px !important;
+    font-weight: 900 !important;
+  }
+
+  .back-dashboard-link,
+  .dashboard-back {
+    display: none !important;
+  }
+
+  .app-footer {
+    margin-top: 34px !important;
+    background: rgba(220, 239, 255, 0.64) !important;
+    border-top: 1px solid rgba(77, 146, 217, 0.14) !important;
+    color: #48658f !important;
+  }
+
+  .footer-link {
+    color: #10234d !important;
+  }
+}
 
 @media (min-width: 901px) {
   .mood-shell {
