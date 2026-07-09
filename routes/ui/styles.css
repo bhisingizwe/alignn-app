@@ -287,7 +287,10 @@ body:not(.home-page) .soul-bg-video,
 }
 
 .menuBtn,
-.closeBtn,
+.closeBtn {
+  display: none;
+}
+
 .dice {
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-sm);
@@ -490,8 +493,8 @@ body:not(.home-page) .soul-bg-video,
 
 .dashboard-icon-circle,
 .nav-circle {
-  width: 76px;
-  height: 76px;
+  width: 64px;
+  height: 64px;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-pill);
   display: flex;
@@ -500,7 +503,7 @@ body:not(.home-page) .soul-bg-video,
   color: var(--accent);
   background: rgba(255, 255, 255, 0.78);
   box-shadow: var(--shadow-soft);
-  font-size: 1.55rem;
+  font-size: 1.45rem;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -517,7 +520,7 @@ body:not(.home-page) .soul-bg-video,
 .dashboard-icon-link span:last-child,
 .right-nav span {
   color: var(--text-soft);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
 }
 
 .dashboard-side-logout,
@@ -978,7 +981,7 @@ body:not(.home-page) .soul-bg-video,
 .workout-level-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 26px;
+  gap: 20px;
 }
 
 .workout-level-choice {
@@ -1124,7 +1127,7 @@ body:not(.home-page) .soul-bg-video,
 .page-header h1 {
   margin: 0;
   color: var(--text-main);
-  font-size: clamp(3rem, 5vw, 4.6rem);
+  font-size: clamp(2.8rem,4vw,4rem);
   line-height: 0.98;
   letter-spacing: -0.052em;
 }
@@ -1421,9 +1424,21 @@ body:not(.home-page) .soul-bg-video,
 .loginActions,
 .region-buttons,
 .home-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.loginActions .primary {
+    padding: 12px 28px;
+    font-size: 1rem;
+    min-width: 190px;
+}
+
+.loginActions .secondaryAuthBtn {
+    padding: 12px 28px;
+    font-size: 1rem;
 }
 
 .forgot-container {
@@ -1607,22 +1622,25 @@ body:not(.home-page) .soul-bg-video,
    18. DESKTOP WELLNESS PAGES
 ===================================================== */
 @media (min-width: 901px) {
-  .mood-page .mood-shell,
-  .journal-page .mood-shell,
-  .reflection-page .mood-shell,
-  .checkin-page .mood-shell {
+  .mood-page .mood-shell {
     width: min(1500px, calc(100% - 64px));
     margin: 38px auto 0;
     display: grid;
     grid-template-columns: 280px minmax(680px, 1fr) 138px;
-    gap: 34px;
+    gap: 22px;
     align-items: stretch;
   }
 
-  .mood-left-panel {
+  .mood-page .back-dashboard-link {
+    display: none !important;
+  }
+
+  .mood-page .mood-left-panel {
     grid-column: 1;
-    padding: 42px 26px;
+     padding:26px 20px;
     min-height: 700px;
+    display: flex;
+    flex-direction: column;
     gap: 18px;
     border-radius: 30px;
     background: rgba(255,255,255,.64);
@@ -1630,53 +1648,53 @@ body:not(.home-page) .soul-bg-video,
     box-shadow: 0 24px 60px rgba(35,100,165,.10);
   }
 
-  .mood-center-panel {
+  .mood-page .mood-center-panel {
     grid-column: 2;
     display: flex;
     flex-direction: column;
     gap: 22px;
   }
 
-  .app-right-panel {
+  .mood-page .app-right-panel {
     grid-column: 3;
     position: sticky;
     top: 28px;
     min-height: 700px;
-    padding: 26px 12px;
-    display: flex;
+    padding:18px 10px;
+    display: flex !important;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     border-radius: 30px;
     background: rgba(255,255,255,.54);
     border: 1px solid rgba(77,146,217,.16);
     box-shadow: 0 24px 60px rgba(35,100,165,.10);
   }
 
-  .mood-page-header {
+  .mood-page .mood-page-header {
     text-align: left;
   }
 
-  .mood-page-header h1 {
+  .mood-page .mood-page-header h1 {
     font-size: clamp(3.5rem, 5vw, 5.4rem);
   }
 
-  .mood-form-card,
-  .mood-insights-section {
-    padding: 34px;
+  .mood-page .mood-form-card,
+  .mood-page .mood-insights-section {
+    padding: 26px;
     border-radius: 28px;
   }
 
-  .mood-insights-section {
+  .mood-page .mood-insights-section {
     min-height: 280px;
   }
 }
 
 /* =====================================================
-   19. MOBILE WELLNESS PAGES
+   19. MOBILE MOOD PAGE
 ===================================================== */
 @media (max-width: 700px) {
-  .mood-shell {
+  .mood-page .mood-shell {
     width: calc(100% - 28px);
     margin: 18px auto 0;
     display: flex;
@@ -1684,25 +1702,25 @@ body:not(.home-page) .soul-bg-video,
     gap: 18px;
   }
 
-  .back-dashboard-link {
+  .mood-page .back-dashboard-link {
     display: inline-flex !important;
     order: 0;
     width: fit-content;
     color: var(--sky-700);
     font-weight: 900;
     text-decoration: none;
-    margin-bottom:10px;
-    align-self:flex-start;
+    margin-bottom: 10px;
+    align-self: flex-start;
   }
 
-  .mood-center-panel {
+  .mood-page .mood-center-panel {
     order: 1;
     display: flex;
     flex-direction: column;
     gap: 18px;
   }
 
-  .mood-left-panel {
+  .mood-page .mood-left-panel {
     order: 2;
     display: flex;
     flex-direction: column;
@@ -1714,32 +1732,902 @@ body:not(.home-page) .soul-bg-video,
     box-shadow: none;
   }
 
-  .app-right-panel {
+  .mood-page .app-right-panel {
     display: none !important;
   }
 
-  .mood-page-header {
+  .mood-page .mood-page-header {
     text-align: center;
   }
 
-  .mood-page-header h1 {
+  .mood-page .mood-page-header h1 {
     font-size: clamp(2.5rem, 12vw, 3.35rem);
   }
 
-  .mood-form-card,
-  .mood-insights-section,
-  .mood-resource-card {
+  .mood-page .mood-form-card,
+  .mood-page .mood-insights-section,
+  .mood-page .mood-resource-card {
     padding: 22px;
     border-radius: 28px;
   }
 
-  .mood-insights-section {
+  .mood-page .mood-insights-section {
     min-height: 280px;
   }
+}
 
-  .checkin-page .mood-insights-section,
-  .journal-page .mood-insights-section,
-  .reflection-page .mood-insights-section {
+/* Dashboard hamburger: mobile only */
+.mobile-menu-btn {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  .dashboard-page .mobile-menu-btn {
+    display: inline-flex !important;
+  }
+}
+
+/* PROFILE + HISTORY DESKTOP FIX */
+@media (min-width: 901px) {
+  .profile-page .profile-shell,
+  .history-page .history-shell {
+    width: min(1400px, calc(100% - 64px)) !important;
+    margin: 38px auto 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(780px, 1fr) 138px !important;
+    gap: 34px !important;
+    align-items: start !important;
+  }
+
+  .profile-page .mood-center-panel,
+  .history-page .mood-center-panel {
+    grid-column: 1 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .profile-page .app-right-panel,
+  .history-page .app-right-panel {
+    grid-column: 2 !important;
+    display: flex !important;
+  }
+
+  .profile-page .mood-page-header,
+  .history-page .mood-page-header {
+    text-align: center !important;
+  }
+
+  .profile-page .mood-form-card {
+    width: 100% !important;
+  }
+
+  .history-page .history-summary-grid {
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* =====================================================
+   DESKTOP SCALE FIX — makes app feel like browser 80%
+===================================================== */
+@media (min-width: 901px) {
+  .mood-page .mood-shell,
+  .checkin-page .mood-shell,
+  .journal-page .mood-shell,
+  .reflection-page .mood-shell {
+    transform: scale(0.86);
+    transform-origin: top center;
+    width: min(1740px, calc(100% - 20px));
+    margin-top: 18px;
+  }
+
+  .profile-page .profile-shell,
+  .history-page .history-shell {
+    transform: scale(0.86);
+    transform-origin: top center;
+    width: min(1500px, calc(100% - 20px));
+    margin-top: 18px;
+  }
+
+  .dashboard-page .dashboard-shell {
+    transform: scale(0.9);
+    transform-origin: top center;
+    width: min(1680px, calc(100% - 20px));
+    margin-top: 18px;
+  }
+
+  .app-right-panel,
+  .dashboard-right-panel {
+    gap: 14px;
+    padding: 18px 10px;
+  }
+
+  .dashboard-icon-circle {
+    width: 66px;
+    height: 66px;
+    font-size: 1.35rem;
+  }
+
+  .dashboard-icon-link span:last-child {
+    font-size: 0.86rem;
+  }
+}
+
+/* =====================================================
+   FINAL DESKTOP WORKOUT PAGE FIX
+===================================================== */
+@media (min-width: 901px) {
+  .workout-page .mobile-workout-menu-btn,
+  .workout-page .mobile-workout-menu,
+  .workout-page .mobile-workout-back-row {
+    display: none !important;
+  }
+
+  .workout-page-shell {
+    width: min(1400px, calc(100% - 80px));
+    margin: 42px auto 0;
+    display: grid !important;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 54px;
+    align-items: start;
+    transform: none !important;
+  }
+
+  .workout-left-sidebar {
+    display: flex !important;
+    position: sticky;
+    top: 32px;
+    padding: 28px 24px;
+    min-height: 680px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.64);
+    border: 1px solid rgba(77, 146, 217, 0.16);
+    box-shadow: 0 24px 60px rgba(35, 100, 165, 0.1);
+  }
+
+  .workout-back-btn {
+    width: fit-content;
+    margin-bottom: 28px;
+    padding: 0;
+    color: var(--sky-700);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .workout-sidebar-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .workout-category-btn {
+    min-height: 70px;
+    padding: 18px 20px;
+    border-radius: 18px;
+    font-size: 1rem;
+  }
+
+  .workout-main-content {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .workout-plan-heading {
+    text-align: center;
+    margin: 0 auto 28px;
+  }
+
+  .workout-plan-heading h1 {
+    font-size: clamp(3.8rem, 5.5vw, 5.8rem);
+  }
+
+  .workout-plan-heading p {
+    max-width: 850px;
+    margin: 12px auto 0;
+    font-size: 1.25rem;
+  }
+
+  .workout-video-hero {
+    width: 100%;
+    min-height: 330px;
+    margin: 0 auto 40px;
+    border-radius: 34px;
+    overflow: hidden;
+  }
+
+  .workout-video-card,
+  .workout-video-card.active-video {
+    height: 340px;
+  }
+
+  .workout-level-section h2 {
     display: none;
+  }
+
+  .workout-level-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .workout-level-choice {
+    min-height: 180px;
+    padding: 28px;
+    text-align: left;
+  }
+}
+
+/* ==========================================
+   DESKTOP WORKOUT SCALE
+========================================== */
+
+@media (min-width: 901px){
+
+  .workout-page-shell{
+      width:min(1450px, calc(100% - 80px));
+      gap:42px;
+  }
+
+  /* Left sidebar */
+  .workout-left-sidebar{
+      width:260px;
+      padding:26px;
+  }
+
+  .workout-category-btn{
+      min-height:62px;
+      font-size:1rem;
+      padding:18px;
+      border-radius:20px;
+  }
+
+  /* Heading */
+  .workout-plan-heading h1{
+      font-size:clamp(3.4rem,4vw,4.8rem);
+      margin-bottom:10px;
+  }
+
+  .workout-plan-heading p{
+      font-size:1.15rem;
+      max-width:760px;
+      margin:auto;
+  }
+
+  /* Video */
+  .workout-video-hero{
+      max-width:1120px;
+      margin:28px auto;
+  }
+
+  .workout-video-card{
+      height:420px;
+  }
+
+  /* Level cards */
+  .workout-level-grid{
+      gap:20px;
+  }
+
+  .workout-level-choice{
+      min-height:170px;
+      padding:24px;
+  }
+
+  .workout-level-choice h3{
+      font-size:1.45rem;
+  }
+
+  .workout-level-choice p{
+      font-size:1rem;
+  }
+
+}
+
+.workout-level-choice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.workout-level-choice h3{
+    width: 100%;
+    text-align: center;
+    margin: 0 0 18px;
+}
+
+.workout-level-choice p{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    max-width: 280px;
+}
+
+
+/* ==========================================
+   AUTH PAGE CENTERING OVERRIDE
+========================================== */
+
+.login-page,
+.signup-page{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.login-page .container,
+.signup-page .container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+    padding:40px 24px 80px;
+}
+
+.login-page .auth-card,
+.signup-page .auth-card{
+    width:min(620px,100%);
+    margin:0 auto;
+}
+
+/* Center button */
+.login-page .loginActions,
+.signup-page .loginActions{
+    display:flex;
+    justify-content:center;
+    margin-top:28px;
+}
+
+.login-page .loginActions .primary,
+.signup-page .loginActions .primary{
+    width:100%;
+    max-width:280px;
+}
+
+/* Mobile */
+@media (max-width:700px){
+
+    .login-page .container,
+    .signup-page .container{
+        padding:24px 16px 60px;
+    }
+
+    .login-page .auth-card,
+    .signup-page .auth-card{
+        width:100%;
+    }
+
+    .login-page .loginActions .primary,
+    .signup-page .loginActions .primary{
+        max-width:100%;
+    }
+}
+
+/* ==========================================
+   AUTH PAGE TYPOGRAPHY
+========================================== */
+
+/* Center the intro section */
+.login-page .title,
+.signup-page .title,
+.login-page .subtitle,
+.signup-page .subtitle,
+.login-page .auth-switch,
+.signup-page .auth-switch{
+    text-align:center;
+}
+
+/* Center the title itself */
+.login-page .title,
+.signup-page .title{
+    margin:0 auto 18px;
+    max-width:100%;
+
+    font-size:clamp(2.8rem,4vw,4rem);
+    font-weight:700;
+    line-height:1.1;
+    letter-spacing:-0.03em;
+}
+
+/* Subtitle */
+.login-page .subtitle,
+.signup-page .subtitle{
+    max-width:520px;
+    margin:0 auto 24px;
+
+    font-size:1.25rem;
+    font-weight:400;
+    line-height:1.6;
+}
+
+/* Already have an account? */
+.login-page .auth-switch,
+.signup-page .auth-switch{
+    margin:0 auto 36px;
+    font-size:1.15rem;
+}
+
+/* Mobile */
+@media (max-width:700px){
+
+    .login-page .title,
+    .signup-page .title{
+        font-size:clamp(2.3rem,8vw,3rem);
+    }
+
+    .login-page .subtitle,
+    .signup-page .subtitle{
+        font-size:1.05rem;
+    }
+
+}
+
+/* ==========================================
+   AUTH PAGE DESKTOP REFINEMENT
+========================================== */
+
+.login-page .auth-card,
+.signup-page .auth-card{
+    max-width:650px;
+    width:min(90vw,650px);
+}
+
+/* Softer headline */
+.login-page .title,
+.signup-page .title{
+    font-size:3.25rem;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.03em;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+/* Subtitle */
+.login-page .subtitle,
+.signup-page .subtitle{
+    font-size:1.15rem;
+    font-weight:400;
+    line-height:1.65;
+    color:#4d6998;
+    max-width:480px;
+    margin:0 auto 26px;
+    text-align:center;
+}
+
+/* Already have an account */
+.login-page .auth-switch,
+.signup-page .auth-switch{
+    text-align:center;
+    font-size:1.05rem;
+    margin-bottom:32px;
+}
+
+/* ==========================================
+   CONTACT PAGE
+========================================== */
+/* Contact page back button */
+
+.contact-back{
+    margin-top:2.5rem;
+    display:flex;
+    justify-content:flex-start;
+}
+
+.contact-back .back-button{
+    min-width:180px;
+}
+
+/* ===========================
+   LIQUID GLASS
+=========================== */
+
+.card,
+.auth-card,
+.workout-category-btn,
+.dashboard-ai-card,
+.dashboard-stat-card,
+.dashboard-left-card,
+.workout-video-hero,
+.selected-program-container,
+.workout-level-choice,
+.mood-resource-card,
+.mood-form-card,
+.profile-option-card,
+.history-summary-card {
+
+    background:
+        linear-gradient(
+            140deg,
+            rgba(255,255,255,.30),
+            rgba(255,255,255,.08)
+        ) !important;
+
+    backdrop-filter:
+        blur(40px)
+        saturate(190%)
+        brightness(1.08);
+
+    -webkit-backdrop-filter:
+        blur(40px)
+        saturate(190%)
+        brightness(1.08);
+
+    border: 1px solid rgba(255,255,255,.35) !important;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,.55),
+        inset 0 -1px rgba(255,255,255,.08),
+        0 20px 50px rgba(0,70,150,.12);
+
+    border-radius:28px;
+}
+
+
+/* remove big sidebar background cards, keep floating items */
+@media (min-width: 901px) {
+  .mood-left-panel,
+  .app-right-panel,
+  .dashboard-right-panel {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .mood-left-panel {
+    padding: 34px 0 !important;
+  }
+
+  .app-right-panel,
+  .dashboard-right-panel {
+    padding: 0 !important;
+  }
+
+  .mood-resource-card,
+  .dashboard-icon-circle {
+    background: rgba(255, 255, 255, 0.42) !important;
+    backdrop-filter: blur(34px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.42) !important;
+    box-shadow:
+      inset 0 1px rgba(255,255,255,.65),
+      0 18px 45px rgba(35,100,165,.13) !important;
+  }
+}
+
+/* ===== Center page headings ===== */
+.workout-plan-heading,
+.mood-header,
+.page-header,
+.dashboard-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    width: 100%;
+
+    margin: 0 auto 2.5rem;
+}
+
+/* Title */
+.workout-plan-heading h1,
+.mood-header h1,
+.page-header h1,
+.dashboard-heading h1 {
+    margin: 0;
+}
+
+/* Subtitle */
+.workout-plan-heading p,
+.mood-header p,
+.page-header p,
+.dashboard-heading p {
+    max-width: 700px;
+    margin-top: .75rem;
+}
+
+/* =========================
+   Center Mood Page Heading
+========================= */
+
+.mood-page-header{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    margin:0 auto 2.5rem;
+}
+
+.mood-page-header h1{
+    margin:0;
+}
+
+.mood-page-header p{
+    margin-top:.75rem;
+    max-width:700px;
+}
+
+/* ======================================
+   Dashboard Header Centering
+====================================== */
+
+.dashboard-center-header{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+
+    margin:0 auto 2.5rem;
+}
+
+.dashboard-title-main{
+    margin:0;
+}
+
+.dashboard-title-sub{
+    margin-top:.8rem;
+    max-width:700px;
+}
+
+/* ======================================
+   Workout Page Desktop Layout
+====================================== */
+
+@media (min-width: 1200px) {
+
+    .workout-page-shell{
+        width: min(1800px, 94vw);
+        margin: 2.5rem auto;
+        gap: 3.5rem;
+    }
+
+    .workout-left-sidebar{
+        width: 330px;
+        flex-shrink: 0;
+    }
+
+    .workout-main-content{
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    .workout-plan-heading{
+        text-align: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .workout-plan-heading h1{
+        font-size: clamp(3rem, 3.8vw, 4.6rem);
+    }
+
+    .workout-plan-heading p{
+        max-width: 900px;
+        margin: 1rem auto 0;
+    }
+
+    .workout-video-hero{
+        margin-bottom: 3rem;
+    }
+
+    .workout-video-slider{
+        max-width: 1150px;
+        margin: auto;
+    }
+
+    .workout-level-grid{
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .selected-program-container{
+        max-width: 1200px;
+        margin: 3rem auto;
+    }
+}
+
+/* ==========================================
+   Workout Page - Premium Desktop Layout
+========================================== */
+
+@media (min-width:1200px){
+
+.workout-page-shell{
+    width:min(1800px,92vw);
+    gap:2.5rem;
+    margin:1.5rem auto;
+}
+
+.workout-main-content{
+    transform:scale(.92);
+    transform-origin:top center;
+}
+
+}
+
+/* Sidebar */
+
+.workout-left-sidebar{
+    width:300px;
+    padding:1.75rem;
+}
+
+.workout-back-btn{
+    font-size:1.55rem;
+    font-weight:600;
+}
+
+.workout-category-btn{
+    font-size:1.45rem;
+    font-weight:600;
+
+    padding:1.1rem 1.5rem;
+    min-height:78px;
+}
+
+
+.workout-plan-heading h1{
+    font-size:4rem;
+    font-weight:700;
+}
+
+.workout-plan-heading p{
+    font-size:1.45rem;
+    max-width:900px;
+}
+
+
+/* workout desktop: make 100% browser feel like 80% */
+@media (min-width: 901px) {
+  .workout-page-shell {
+    width: min(1900px, 96vw) !important;
+    margin: 18px auto 0 !important;
+    grid-template-columns: 300px minmax(0, 1fr) !important;
+    gap: 36px !important;
+  }
+
+  .workout-left-sidebar {
+    padding: 28px 24px !important;
+    border-radius: 34px !important;
+  }
+
+  .workout-sidebar-stack {
+    gap: 16px !important;
+  }
+
+  .workout-back-btn {
+    font-size: 1.15rem !important;
+    font-weight: 650 !important;
+    padding: 12px 18px !important;
+  }
+
+  .workout-category-btn {
+    min-height: 74px !important;
+    padding: 14px 18px !important;
+    font-size: 1.08rem !important;
+    font-weight: 650 !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+  }
+
+  .workout-category-btn::before {
+    width: 24px !important;
+    margin-right: 10px !important;
+    font-size: 1.15rem !important;
+  }
+
+  .workout-plan-heading {
+    margin-bottom: 22px !important;
+  }
+
+  .workout-plan-heading h1 {
+    font-size: clamp(3rem, 4vw, 4.4rem) !important;
+    font-weight: 750 !important;
+  }
+
+  .workout-plan-heading p {
+    max-width: 980px !important;
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .workout-video-hero {
+    max-width: 1180px !important;
+    margin: 0 auto 24px !important;
+  }
+
+  .workout-video-card,
+  .workout-video-card.active-video {
+    height: 290px !important;
+  }
+
+  .workout-level-grid {
+    max-width: 1180px !important;
+    margin: 0 auto !important;
+    gap: 22px !important;
+  }
+
+  .workout-level-choice {
+    min-height: 160px !important;
+    padding: 22px !important;
+  }
+
+  .workout-level-choice h3,
+  .workout-level-choice strong {
+    font-size: 1.45rem !important;
+  }
+
+  .workout-level-choice p {
+    font-size: 1rem !important;
+  }
+}
+
+/* ==========================================
+   FINAL WORKOUT PLAN CARD FIX
+   Makes all workout cards closer + cleaner
+========================================== */
+
+@media (min-width: 901px) {
+  .workout-level-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(260px, 340px)) !important;
+    justify-content: center !important;
+    gap: 18px !important;
+    max-width: 1080px !important;
+    margin: 0 auto !important;
+  }
+
+  .workout-level-choice {
+    min-height: 145px !important;
+    padding: 24px 22px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .workout-level-choice h3 {
+    margin: 0 0 12px !important;
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+  }
+
+  .workout-level-choice p {
+    margin: 0 !important;
+    max-width: 260px !important;
+    font-size: 0.98rem !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+  }
+}
+
+/* ==========================================
+   WORKOUT SIDEBAR BACKGROUND — GLASSIER
+========================================== */
+
+@media (min-width: 901px) {
+  .workout-left-sidebar {
+    background: rgba(255, 255, 255, 0.22) !important;
+    backdrop-filter: blur(42px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(42px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.38) !important;
+    box-shadow:
+      inset 0 1px rgba(255,255,255,.55),
+      0 22px 60px rgba(35,100,165,.10) !important;
   }
 }
