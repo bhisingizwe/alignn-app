@@ -81,7 +81,7 @@ router.post('/from-prompt', authenticate, async (req, res) => {
       return res.status(404).json({ error: 'Prompt not found' });
     }
 
-    // 2) Save to reflections table (same structure you already have)
+    // Save the reflection using the existing database schema
     const { data, error } = await supabase
       .from('reflections')
       .insert([{ user_id: userId, prompt: promptData.question, answer }])

@@ -48,26 +48,80 @@ function setupWorkoutCardNavigation() {
 }
 
 function setupMobileWorkoutMenu() {
-  const mobileWorkoutMenuBtn = document.getElementById("mobileWorkoutMenuBtn");
-  const mobileWorkoutMenu = document.getElementById("mobileWorkoutMenu");
-  const mobileWorkoutMenuClose = document.getElementById("mobileWorkoutMenuClose");
+  const menuButton = document.getElementById("mobileWorkoutMenuBtn");
+  const menu = document.getElementById("mobileWorkoutMenu");
+  const closeButton = document.getElementById("mobileWorkoutMenuClose");
+  const overlay = document.getElementById("mobileMenuOverlay");
+  const mobileLogoutBtn = document.getElementById("mobileLogoutBtn");
 
-  if (!mobileWorkoutMenuBtn || !mobileWorkoutMenu) return;
+  if (!menuButton || !menu) return;
 
-  mobileWorkoutMenuBtn.addEventListener("click", () => {
-    mobileWorkoutMenu.classList.remove("hidden");
-  });
+  function openMenu() {
+    menu.classList.remove("hidden");
 
-  if (mobileWorkoutMenuClose) {
-    mobileWorkoutMenuClose.addEventListener("click", () => {
-      mobileWorkoutMenu.classList.add("hidden");
-    });
+    if (overlay) {
+      overlay.classList.remove("hidden");
+      overlay.setAttribute("aria-hidden", "false");
+    }
+
+    document.body.classList.add("mobile-menu-open");
+    menuButton.setAttribute("aria-expanded", "true");
+
+    if (closeButton) {
+      closeButton.focus();
+    }
   }
 
-  mobileWorkoutMenu.querySelectorAll(".mobile-workout-link").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      goToWorkoutPlan(btn.dataset.plan);
+  function closeMenu() {
+    menu.classList.add("hidden");
+
+    if (overlay) {
+      overlay.classList.add("hidden");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    document.body.classList.remove("mobile-menu-open");
+    menuButton.setAttribute("aria-expanded", "false");
+  }
+
+  menuButton.addEventListener("click", () => {
+    const isOpen = !menu.classList.contains("hidden");
+
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  if (closeButton) {
+    closeButton.addEventListener("click", closeMenu);
+  }
+
+  if (overlay) {
+    overlay.addEventListener("click", closeMenu);
+  }
+
+  menu.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  menu.querySelectorAll(".mobile-workout-link").forEach((button) => {
+    button.addEventListener("click", () => {
+      closeMenu();
+      goToWorkoutPlan(button.dataset.plan);
     });
+  });
+
+  if (mobileLogoutBtn) {
+    mobileLogoutBtn.addEventListener("click", logout);
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.classList.contains("hidden")) {
+      closeMenu();
+      menuButton.focus();
+    }
   });
 }
 

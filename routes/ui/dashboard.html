@@ -23,21 +23,136 @@
       <div class="tagline">A place for you</div>
     </div>
 
-    <button class="mobile-menu-btn" id="mobileWorkoutMenuBtn" type="button">
-      ☰
-    </button>
+    <button
+  class="mobile-menu-btn"
+  id="mobileWorkoutMenuBtn"
+  type="button"
+  aria-label="Open navigation menu"
+  aria-expanded="false"
+  aria-controls="mobileWorkoutMenu"
+>
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
   </header>
 
-  <div class="mobile-workout-menu hidden" id="mobileWorkoutMenu">
-    <button class="mobile-menu-close" id="mobileWorkoutMenuClose" type="button">×</button>
+  <div
+  class="mobile-menu-overlay hidden"
+  id="mobileMenuOverlay"
+  aria-hidden="true"
+></div>
 
-    <button class="mobile-workout-link" data-plan="build-muscle">Build Muscle</button>
-    <button class="mobile-workout-link" data-plan="fat-loss">Fat Loss</button>
-    <button class="mobile-workout-link" data-plan="maintenance">Maintain</button>
-    <button class="mobile-workout-link" data-plan="progressive-overload">Progressive Overload</button>
-    <button class="mobile-workout-link" data-plan="nutrition">Nutrition</button>
-    <button class="mobile-workout-link" data-plan="recovery">Recovery</button>
+<nav
+  class="mobile-workout-menu hidden"
+  id="mobileWorkoutMenu"
+  aria-label="Mobile navigation"
+>
+  <div class="mobile-menu-header">
+    <div>
+      <div class="mobile-menu-brand">𝒜lignn</div>
+      <div class="mobile-menu-tagline">A place for you</div>
+    </div>
+
+    <button
+      class="mobile-menu-close"
+      id="mobileWorkoutMenuClose"
+      type="button"
+      aria-label="Close navigation menu"
+    >
+      ×
+    </button>
   </div>
+
+  <div class="mobile-menu-groups">
+    <section class="mobile-menu-group" aria-labelledby="mobile-main-label">
+      <p class="mobile-menu-label" id="mobile-main-label">Main</p>
+
+      <div class="mobile-menu-links">
+        <a class="mobile-nav-link" href="./dashboard.html">Home</a>
+        <a class="mobile-nav-link" href="./mood.html">Mood</a>
+        <a class="mobile-nav-link" href="./checkin.html">Check-In</a>
+        <a class="mobile-nav-link" href="./journal.html">Journal</a>
+        <a class="mobile-nav-link" href="./reflection.html">Reflection</a>
+      </div>
+    </section>
+
+    <section class="mobile-menu-group" aria-labelledby="mobile-workout-label">
+      <p class="mobile-menu-label" id="mobile-workout-label">
+        Workout Plans
+      </p>
+
+      <div class="mobile-menu-links">
+        <button
+          class="mobile-workout-link"
+          data-plan="build-muscle"
+          type="button"
+        >
+          Build Muscle
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="fat-loss"
+          type="button"
+        >
+          Fat Loss
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="maintenance"
+          type="button"
+        >
+          Maintain
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="progressive-overload"
+          type="button"
+        >
+          Progressive Overload
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="nutrition"
+          type="button"
+        >
+          Nutrition
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="recovery"
+          type="button"
+        >
+          Recovery
+        </button>
+      </div>
+    </section>
+
+    <section class="mobile-menu-group" aria-labelledby="mobile-settings-label">
+      <p class="mobile-menu-label" id="mobile-settings-label">Settings</p>
+
+      <div class="mobile-menu-links">
+        <a class="mobile-nav-link" href="./history.html">History</a>
+        <a class="mobile-nav-link" href="./profile.html">Profile</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="mobile-menu-logout-area">
+    <button
+      class="mobile-menu-logout"
+      id="mobileLogoutBtn"
+      type="button"
+    >
+      Log out
+    </button>
+  </div>
+</nav>
 
   <main class="dashboard-shell">
     <aside class="dashboard-left-panel">
