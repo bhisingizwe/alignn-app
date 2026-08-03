@@ -1,0 +1,1429 @@
+/* ALIGNN CSS — sequential part 5 of 7
+   Original lines 5645–7069.
+   Keep all files in this exact order. */
+
+/* =====================================================
+   RECOVERY RESOURCES CATEGORIES
+===================================================== */
+
+.recovery-resources-card {
+  width: 100%;
+  padding: 32px;
+  border-radius: 30px;
+}
+
+.recovery-resources-layout {
+  width: 100%;
+}
+
+.recovery-category-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.recovery-category-card {
+  min-width: 0;
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(77, 146, 217, 0.2);
+  border-radius: 22px;
+  padding: 20px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 12px 30px rgba(35, 100, 165, 0.08);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.recovery-category-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(77, 146, 217, 0.42);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.recovery-category-card.active {
+  border-color: var(--sky-500);
+  background:
+    linear-gradient(
+      140deg,
+      rgba(204, 232, 255, 0.82),
+      rgba(255, 255, 255, 0.52)
+    );
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.78),
+    0 18px 38px rgba(35, 100, 165, 0.16);
+}
+
+.recovery-category-title {
+  width: 100%;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+.recovery-category-count {
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.recovery-selected-resource {
+  width: 100%;
+  margin-top: 26px;
+}
+
+.recovery-resource-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.recovery-resource-heading h3 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.45rem;
+}
+
+.recovery-resource-heading span {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.recovery-resource-video-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.recovery-resource-video-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  border: 1px solid rgba(77, 146, 217, 0.18);
+  border-radius: 22px;
+  padding: 14px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.56);
+  box-shadow: 0 12px 30px rgba(35, 100, 165, 0.08);
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.recovery-resource-video-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(77, 146, 217, 0.4);
+  box-shadow: 0 18px 38px rgba(35, 100, 165, 0.14);
+}
+
+.recovery-video-thumbnail-wrapper {
+  position: relative;
+  width: 155px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--sky-100);
+}
+
+.recovery-video-thumbnail-wrapper img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.recovery-video-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.recovery-video-copy h4 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.recovery-video-watch {
+  color: var(--sky-600);
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+@media (max-width: 1100px) and (min-width: 701px) {
+  .recovery-category-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .recovery-resource-video-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   RECOVERY NUTRITION
+===================================================== */
+
+.recovery-nutrition-card {
+  width: 100%;
+  padding: 34px;
+  border-radius: 32px;
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(225, 248, 255, 0.28)
+    );
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.78),
+    0 24px 60px rgba(35, 100, 165, 0.12);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter:
+    blur(36px) saturate(180%);
+}
+
+.recovery-nutrition-layout {
+  width: 100%;
+}
+
+.recovery-nutrition-category-row {
+  display: grid;
+  grid-template-columns:
+    repeat(5, minmax(180px, 1fr));
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 34px;
+}
+
+.recovery-nutrition-category {
+  min-width: 0;
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(77, 146, 217, 0.18);
+  border-radius: 24px;
+  padding: 20px;
+  color: var(--text-main);
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0.3)
+    );
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.8),
+    0 14px 34px rgba(35, 100, 165, 0.08);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.recovery-nutrition-category:hover {
+  transform: translateY(-3px);
+  border-color: rgba(77, 146, 217, 0.4);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.86),
+    0 20px 42px rgba(35, 100, 165, 0.14);
+}
+
+.recovery-nutrition-category.active {
+  border-color: var(--sky-500);
+  background:
+    linear-gradient(
+      140deg,
+      rgba(169, 215, 255, 0.7),
+      rgba(234, 246, 255, 0.5)
+    );
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.86),
+    0 20px 44px rgba(47, 117, 189, 0.18);
+}
+
+.recovery-nutrition-category-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.recovery-nutrition-category-emoji {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+}
+
+.recovery-nutrition-category-name {
+  min-width: 0;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.recovery-nutrition-category-count {
+  color: var(--text-soft);
+  font-size: 0.83rem;
+  font-weight: 800;
+}
+
+.recovery-nutrition-content {
+  width: 100%;
+}
+
+.recovery-nutrition-content-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.recovery-nutrition-content-heading h3 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.75rem;
+}
+
+.recovery-nutrition-content-heading span {
+  flex-shrink: 0;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  font-weight: 850;
+}
+
+.recovery-nutrition-items-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.recovery-nutrition-item {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(77, 146, 217, 0.14);
+  border-radius: 18px;
+  padding: 16px 18px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.56);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.72),
+    0 10px 26px rgba(35, 100, 165, 0.07);
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.recovery-nutrition-item-marker {
+  color: var(--sky-600);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.recovery-nutrition-video-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.recovery-nutrition-video-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(77, 146, 217, 0.16);
+  border-radius: 22px;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.76),
+    0 14px 32px rgba(35, 100, 165, 0.09);
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.recovery-nutrition-video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(77, 146, 217, 0.38);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.82),
+    0 22px 46px rgba(35, 100, 165, 0.14);
+}
+
+.recovery-nutrition-video-card img {
+  width: 100%;
+  height: 170px;
+  display: block;
+  object-fit: cover;
+}
+
+.recovery-nutrition-video-card h4 {
+  margin: 0;
+  padding: 18px;
+  color: var(--text-main);
+  font-size: 1.03rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .recovery-nutrition-card {
+    width: 100%;
+    padding: 22px 18px 26px;
+    border-radius: 28px;
+  }
+
+  .recovery-nutrition-layout {
+    width: 100%;
+  }
+
+  .recovery-nutrition-category-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0 0 30px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .recovery-nutrition-category {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    min-height: 62px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+
+    border: 1px solid rgba(77, 146, 217, 0.2);
+    border-radius: 20px;
+    padding: 15px 48px 15px 16px;
+
+    color: var(--text-main);
+    background:
+      linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.74),
+        rgba(255, 255, 255, 0.34)
+      );
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.82),
+      0 10px 25px rgba(35, 100, 165, 0.08);
+
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .recovery-nutrition-category:hover {
+    transform: none;
+  }
+
+  .recovery-nutrition-category.active {
+    border-color: var(--sky-500);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(169, 215, 255, 0.82),
+        rgba(234, 246, 255, 0.68)
+      );
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.9),
+      0 14px 30px rgba(47, 117, 189, 0.16);
+  }
+
+  .recovery-nutrition-category-title {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .recovery-nutrition-category-emoji {
+    flex-shrink: 0;
+    font-size: 1.08rem;
+  }
+
+  .recovery-nutrition-category-name {
+    min-width: 0;
+    color: var(--text-main);
+    font-size: 0.91rem;
+    font-weight: 850;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .recovery-nutrition-category-count {
+    display: none;
+  }
+
+  .recovery-nutrition-category-chevron {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+
+    color: var(--sky-600);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+
+    transition:
+      transform 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .recovery-nutrition-category.active
+  .recovery-nutrition-category-chevron {
+    color: var(--sky-700);
+    transform:
+      translateY(-50%)
+      rotate(90deg);
+  }
+
+  .recovery-nutrition-content {
+    width: 100%;
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(77, 146, 217, 0.15);
+  }
+
+  .recovery-nutrition-content-heading {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 20px;
+  }
+
+  .recovery-nutrition-content-heading h3 {
+    max-width: 75%;
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.35rem;
+    line-height: 1.28;
+  }
+
+  .recovery-nutrition-content-heading span {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: var(--text-soft);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .recovery-nutrition-items-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .recovery-nutrition-item {
+    width: 100%;
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    border: 1px solid rgba(77, 146, 217, 0.15);
+    border-radius: 18px;
+    padding: 14px 15px;
+
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.62);
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.78),
+      0 9px 22px rgba(35, 100, 165, 0.06);
+
+    font-size: 0.92rem;
+    font-weight: 750;
+  }
+
+  .recovery-nutrition-item-marker {
+    flex-shrink: 0;
+    color: var(--sky-600);
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .recovery-nutrition-video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .recovery-nutrition-video-card {
+    width: 100%;
+    min-height: 112px;
+
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    align-items: center;
+
+    overflow: hidden;
+    border: 1px solid rgba(77, 146, 217, 0.16);
+    border-radius: 20px;
+
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.78),
+      0 11px 26px rgba(35, 100, 165, 0.08);
+
+    text-decoration: none;
+  }
+
+  .recovery-nutrition-video-card img {
+    width: 132px;
+    height: 112px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .recovery-nutrition-video-card h4 {
+    margin: 0;
+    padding: 15px;
+    color: var(--text-main);
+    font-size: 0.94rem;
+    line-height: 1.4;
+  }
+}
+
+/* =====================================================
+   MOBILE RECOVERY RESOURCES ACCORDION
+===================================================== */
+
+@media (max-width: 700px) {
+  .workout-page .recovery-resources-card {
+    width: 100%;
+    padding: 22px 18px 26px;
+    border-radius: 28px;
+  }
+
+  .workout-page .recovery-resources-layout {
+    width: 100%;
+  }
+
+  .workout-page .recovery-category-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .workout-page .recovery-category-card {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    min-height: 62px;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+
+    border: 1px solid rgba(77, 146, 217, 0.2);
+    border-radius: 20px;
+    padding: 14px 48px 14px 18px;
+
+    color: var(--text-main);
+    background:
+      linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.74),
+        rgba(255, 255, 255, 0.34)
+      );
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.82),
+      0 10px 25px rgba(35, 100, 165, 0.08);
+
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .workout-page .recovery-category-card:hover {
+    transform: none;
+  }
+
+  .workout-page .recovery-category-card.active {
+    margin-bottom: 0;
+    border-color: var(--sky-500);
+    border-radius: 20px 20px 0 0;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(169, 215, 255, 0.82),
+        rgba(234, 246, 255, 0.68)
+      );
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.9),
+      0 14px 30px rgba(47, 117, 189, 0.16);
+  }
+
+  .workout-page .recovery-category-title {
+    min-width: 0;
+    color: var(--text-main);
+    font-size: 0.92rem;
+    font-weight: 850;
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  .workout-page .recovery-category-count {
+    display: none;
+  }
+
+  .workout-page .recovery-category-chevron {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+
+    color: var(--sky-600);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+
+    transform: translateY(-50%);
+    transition:
+      transform 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .workout-page .recovery-category-card.active
+  .recovery-category-chevron {
+    color: var(--sky-700);
+    transform:
+      translateY(-50%)
+      rotate(90deg);
+  }
+
+  .workout-page .recovery-selected-resource {
+    width: 100%;
+    margin: -2px 0 2px;
+    padding: 20px 14px 22px;
+
+    border: 1px solid rgba(77, 146, 217, 0.16);
+    border-top: 0;
+    border-radius: 0 0 22px 22px;
+
+    background:
+      linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.62),
+        rgba(234, 246, 255, 0.34)
+      );
+
+    box-shadow:
+      0 14px 28px rgba(35, 100, 165, 0.08);
+  }
+
+  .workout-page .recovery-resource-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+
+  .workout-page .recovery-resource-heading h3 {
+    max-width: 75%;
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .workout-page .recovery-resource-count,
+  .workout-page .recovery-resource-heading span {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: var(--text-soft);
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  .workout-page .recovery-resource-video-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .workout-page .recovery-resource-video-card {
+    width: 100%;
+    min-height: 104px;
+
+    display: grid;
+    grid-template-columns: 124px minmax(0, 1fr);
+    align-items: center;
+    gap: 0;
+
+    overflow: hidden;
+    border: 1px solid rgba(77, 146, 217, 0.16);
+    border-radius: 18px;
+
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.66);
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.78),
+      0 10px 24px rgba(35, 100, 165, 0.07);
+
+    text-decoration: none;
+  }
+
+  .workout-page .recovery-video-thumbnail-wrapper {
+    width: 124px;
+    height: 104px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--sky-100);
+  }
+
+  .workout-page .recovery-video-thumbnail-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .workout-page .recovery-video-copy {
+    min-width: 0;
+    padding: 14px;
+  }
+
+  .workout-page .recovery-video-copy h4 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 0.94rem;
+    font-weight: 850;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  .workout-page .recovery-video-play-badge,
+  .workout-page .recovery-video-watch,
+  .workout-page .recovery-video-play {
+    display: none !important;
+  }
+}
+
+/* =====================================================
+   DESKTOP RECOVERY RESOURCES LIST
+===================================================== */
+
+@media (min-width: 901px) {
+  .workout-page .recovery-resources-card {
+    width: min(1080px, 100%);
+    margin: 0 auto;
+    padding: 24px 34px;
+    overflow: hidden;
+  }
+
+  .workout-page .recovery-resources-layout {
+    width: 100%;
+  }
+
+  .workout-page .recovery-category-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .workout-page .recovery-category-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 78px;
+
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      30px;
+    align-items: center;
+    gap: 18px;
+
+    border: 0;
+    border-bottom: 1px solid
+      rgba(77, 146, 217, 0.16);
+    border-radius: 0;
+    padding: 20px 8px;
+
+    color: var(--text-main);
+    background: transparent;
+    box-shadow: none;
+
+    text-align: left;
+    cursor: pointer;
+    transform: none;
+  }
+
+  .workout-page
+  .recovery-category-card:first-child {
+    border-top: 1px solid
+      rgba(77, 146, 217, 0.16);
+  }
+
+  .workout-page .recovery-category-card:hover {
+    padding-left: 18px;
+    color: var(--sky-700);
+    background: rgba(234, 246, 255, 0.38);
+    transform: none;
+  }
+
+  .workout-page .recovery-category-card.active {
+    border-color: rgba(77, 146, 217, 0.24);
+    color: var(--sky-700);
+    background:
+      linear-gradient(
+        90deg,
+        rgba(169, 215, 255, 0.34),
+        rgba(255, 255, 255, 0.12)
+      );
+    box-shadow: none;
+    transform: none;
+  }
+
+  .workout-page .recovery-category-title {
+    min-width: 0;
+    color: inherit;
+    font-size: 1.08rem;
+    font-weight: 900;
+    line-height: 1.3;
+  }
+
+  .workout-page .recovery-category-count {
+    color: var(--text-soft);
+    font-size: 0.86rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .workout-page .recovery-category-chevron {
+    color: var(--sky-600);
+    font-size: 1.9rem;
+    line-height: 1;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  .workout-page
+  .recovery-category-card.active
+  .recovery-category-chevron {
+    transform: rotate(90deg);
+  }
+
+  .workout-page .recovery-selected-resource {
+    width: 100%;
+    margin: 0;
+    padding: 24px 8px 30px;
+
+    border-bottom: 1px solid
+      rgba(77, 146, 217, 0.16);
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(234, 246, 255, 0.3),
+        rgba(255, 255, 255, 0.08)
+      );
+  }
+
+  .workout-page .recovery-resource-video-list {
+    display: grid;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .workout-page .recovery-resource-video-card {
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid
+      rgba(77, 146, 217, 0.16);
+    border-radius: 20px;
+
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.68);
+
+    box-shadow:
+      0 12px 28px rgba(35, 100, 165, 0.08);
+
+    text-decoration: none;
+  }
+
+  .workout-page
+  .recovery-video-thumbnail-wrapper {
+    width: 100%;
+    height: 145px;
+    overflow: hidden;
+    background: var(--sky-100);
+  }
+
+  .workout-page
+  .recovery-video-thumbnail-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .workout-page .recovery-video-copy {
+    padding: 16px;
+  }
+
+  .workout-page .recovery-video-copy h4 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 0.96rem;
+    font-weight: 850;
+    line-height: 1.4;
+  }
+}
+
+/* =====================================================
+   DESKTOP RECOVERY NUTRITION LIST
+===================================================== */
+
+@media (min-width: 901px) {
+  .workout-page .recovery-nutrition-card {
+    width: min(1080px, 100%);
+    margin: 0 auto;
+    padding: 24px 34px;
+    overflow: hidden;
+  }
+
+  .workout-page .recovery-nutrition-layout {
+    width: 100%;
+  }
+
+  .workout-page
+  .recovery-nutrition-category-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+  }
+
+  .workout-page
+  .recovery-nutrition-category {
+    width: 100%;
+    min-width: 0;
+    min-height: 82px;
+
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto
+      30px;
+    align-items: center;
+    gap: 18px;
+
+    border: 0;
+    border-bottom:
+      1px solid rgba(77, 146, 217, 0.16);
+    border-radius: 0;
+    padding: 20px 8px;
+
+    color: var(--text-main);
+    background: transparent;
+    box-shadow: none;
+
+    text-align: left;
+    cursor: pointer;
+    transform: none;
+  }
+
+  .workout-page
+  .recovery-nutrition-category:first-child {
+    border-top:
+      1px solid rgba(77, 146, 217, 0.16);
+  }
+
+  .workout-page
+  .recovery-nutrition-category:hover {
+    padding-left: 18px;
+    color: var(--sky-700);
+    background: rgba(234, 246, 255, 0.38);
+    transform: none;
+  }
+
+  .workout-page
+  .recovery-nutrition-category.active {
+    color: var(--sky-700);
+    border-color:
+      rgba(77, 146, 217, 0.24);
+
+    background:
+      linear-gradient(
+        90deg,
+        rgba(169, 215, 255, 0.34),
+        rgba(255, 255, 255, 0.12)
+      );
+
+    box-shadow: none;
+    transform: none;
+  }
+
+  .workout-page
+  .recovery-nutrition-category-title {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .workout-page
+  .recovery-nutrition-category-emoji {
+    flex: 0 0 auto;
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
+  .workout-page
+  .recovery-nutrition-category-name {
+    min-width: 0;
+    color: inherit;
+    font-size: 1.08rem;
+    font-weight: 900;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .workout-page
+  .recovery-nutrition-category-count {
+    color: var(--text-soft);
+    font-size: 0.86rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .workout-page
+  .recovery-nutrition-category-chevron {
+    color: var(--sky-600);
+    font-size: 1.9rem;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .workout-page
+  .recovery-nutrition-content {
+    width: 100%;
+    margin: 0;
+    padding: 26px 8px 32px;
+
+    border-bottom:
+      1px solid rgba(77, 146, 217, 0.16);
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(234, 246, 255, 0.3),
+        rgba(255, 255, 255, 0.08)
+      );
+  }
+
+  .workout-page
+  .recovery-nutrition-content-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .workout-page
+  .recovery-nutrition-content-heading h3 {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 1.3rem;
+  }
+
+  .workout-page
+  .recovery-nutrition-content-heading span {
+    color: var(--text-soft);
+    font-size: 0.86rem;
+    font-weight: 850;
+  }
+
+  .workout-page
+  .recovery-nutrition-items-grid {
+    display: grid;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .workout-page
+  .recovery-nutrition-item {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border:
+      1px solid rgba(77, 146, 217, 0.16);
+    border-radius: 17px;
+    padding: 14px 18px;
+
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.68);
+
+    box-shadow:
+      0 10px 24px rgba(35, 100, 165, 0.06);
+
+    font-weight: 750;
+  }
+
+  .workout-page
+  .recovery-nutrition-item-marker {
+    color: var(--sky-600);
+    font-size: 1.25rem;
+  }
+
+  .workout-page
+  .recovery-nutrition-video-grid {
+    display: grid;
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .workout-page
+  .recovery-nutrition-video-card {
+    overflow: hidden;
+    border:
+      1px solid rgba(77, 146, 217, 0.16);
+    border-radius: 20px;
+
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.68);
+
+    box-shadow:
+      0 12px 28px rgba(35, 100, 165, 0.08);
+
+    text-decoration: none;
+  }
+
+  .workout-page
+  .recovery-nutrition-video-card img {
+    width: 100%;
+    height: 150px;
+    display: block;
+    object-fit: cover;
+  }
+
+  .workout-page
+  .recovery-nutrition-video-card h4 {
+    margin: 0;
+    padding: 16px;
+    color: var(--text-main);
+    font-size: 0.96rem;
+    line-height: 1.4;
+  }
+}
+
+.recovery-nutrition-category-chevron {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.recovery-nutrition-category.active
+.recovery-nutrition-category-chevron {
+  transform: rotate(90deg);
+}
+
+/* =====================================================
+   TERMS OF SERVICE PAGE
+===================================================== */
+
+body.terms-page {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-main);
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(200, 230, 255, 0.82),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 8%,
+      rgba(169, 215, 255, 0.5),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      var(--sky-50) 0%,
+      #ffffff 100%
+    );
+}
+
+.terms-page-shell {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  padding: 54px 24px 80px;
+}
+
+.terms-card {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 42px;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 34px;
+
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(234, 246, 255, 0.42)
+    );
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.82),
+    0 28px 70px rgba(35, 100, 165, 0.13);
+
+  backdrop-filter:
+    blur(34px)
+    saturate(175%);
+
+  -webkit-backdrop-filter:
+    blur(34px)
+    saturate(175%);
+}
+
+/* =====================================================
+   BRAND + PAGE HEADER
+===================================================== */
+.terms-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 34px;
+}
+
+.terms-brand-link {
+  display: inline-block;
+  margin: 0;
+
+  color: var(--sky-500);
+  font-size: 1.8rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-decoration: none;
+
+  text-shadow:
+    0 6px 22px rgba(130, 189, 247, 0.28);
+}
+
+.terms-brand-tagline {
+  margin: 7px 0 0;
+
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.terms-page-header {
+  margin-bottom: 30px;
+}
+
+.terms-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.terms-title-row h1 {
+  margin: 0;
+
+  color: var(--text-main);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.terms-updated {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 34px;
+  padding: 7px 14px;
+
+  border: 1px solid rgba(77, 146, 217, 0.14);
+  border-radius: var(--radius-pill);
+
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.62);
+
+  font-size: 0.82rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.terms-page-header p {
+  max-width: 760px;
+  margin: 14px 0 0;
+
+  color: var(--text-soft);
+  font-size: 1.03rem;
+  line-height: 1.65;
+}
+

@@ -9,7 +9,11 @@
 
 <body class="checkin-page">
   <div class="soul-bg">
-    <img class="soul-bg-image" src="./backgrounds/checkin.jpg" alt="">
+    <img
+      class="soul-bg-image"
+      src="./backgrounds/checkin.jpg"
+      alt=""
+    />
     <div class="soul-bg-overlay"></div>
   </div>
 
@@ -20,97 +24,282 @@
       </a>
       <div class="tagline">A place for you</div>
     </div>
+
+    <button
+      class="mobile-menu-btn"
+      id="mobileCheckinMenuBtn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobileCheckinMenu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
-  <main class="mood-shell">
-<a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+  <div
+    class="mobile-menu-overlay hidden"
+    id="mobileCheckinMenuOverlay"
+    aria-hidden="true"
+  ></div>
 
-  <aside class="mood-left-panel">
-    <h2 class="mood-left-title">Check-In Resources</h2>
+  <nav
+    class="mobile-workout-menu hidden"
+    id="mobileCheckinMenu"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-menu-header">
+      <div>
+        <div class="mobile-menu-brand">𝒜lignn</div>
+        <div class="mobile-menu-tagline">A place for you</div>
+      </div>
 
-    <details class="mood-resource-card">
-      <summary>💧 Hydration</summary>
-      <ul class="resource-list">
-        <li>Drink a glass of water</li>
-        <li>Refill your water bottle</li>
-        <li>Choose water with your next meal</li>
-        <li>Add electrolytes after intense activity</li>
-        <li>Eat water-rich foods like watermelon, cucumber, and oranges</li>
-      </ul>
-    </details>
-
-    <details class="mood-resource-card">
-      <summary>🍽 Nutrition</summary>
-      <ul class="resource-list">
-        <li>Eat a source of protein today</li>
-        <li>Include a fruit or vegetable with a meal</li>
-        <li>Don’t skip meals if possible</li>
-        <li>Choose foods that give lasting energy</li>
-        <li>Fuel your body before and after exercise</li>
-      </ul>
-    </details>
-
-    <details class="mood-resource-card">
-      <summary>❤️ Self-Care</summary>
-      <ul class="resource-list">
-        <li>Take a 5-minute break</li>
-        <li>Go outside for fresh air</li>
-        <li>Practice deep breathing</li>
-        <li>Stretch or move your body</li>
-        <li>Reach out to someone you trust</li>
-        <li>Journal your thoughts</li>
-        <li>Do one thing that brings you joy</li>
-      </ul>
-    </details>
-  </aside>
-
-  <section class="mood-center-panel">
-    <div class="mood-page-header">
-      <h1>Daily Check-In</h1>
-      <p>Pause for a second. Where are you mentally right now?</p>
+      <button
+        class="mobile-menu-close"
+        id="mobileCheckinMenuClose"
+        type="button"
+        aria-label="Close navigation menu"
+      >
+        ×
+      </button>
     </div>
 
-    <section class="mood-form-card">
-      <div class="moodSection">
-        <label class="label" for="mentalStateInput">Mental state</label>
-        <input id="mentalStateInput" class="input" placeholder="e.g. overwhelmed, calm, tired, hopeful" />
+    <div class="mobile-menu-groups">
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Main</p>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./dashboard.html">Home</a>
+          <a class="mobile-nav-link" href="./mood.html">Mood</a>
+          <a class="mobile-nav-link active" href="./checkin.html">Check-In</a>
+          <a class="mobile-nav-link" href="./journal.html">Journal</a>
+          <a class="mobile-nav-link" href="./reflection.html">Reflection</a>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+  <p class="mobile-menu-label">Workout Plans</p>
+
+  <div class="mobile-menu-links">
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=build-muscle"
+    >
+      Build Muscle
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=fat-loss"
+    >
+      Fat Loss
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=maintenance"
+    >
+      Maintain
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=progressive-overload"
+    >
+      Progressive Overload
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=nutrition"
+    >
+      Nutrition
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=recovery"
+    >
+      Recovery
+    </a>
+  </div>
+</section>
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Settings</p>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./history.html">History</a>
+          <a class="mobile-nav-link" href="./profile.html">Profile</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-menu-logout-area">
+      <button
+        class="mobile-menu-logout"
+        id="mobileCheckinLogoutBtn"
+        type="button"
+      >
+        Log out
+      </button>
+    </div>
+  </nav>
+
+  <main class="mood-shell">
+
+    <aside class="mood-left-panel">
+      <h2 class="mood-left-title">Check-In Resources</h2>
+
+      <details class="mood-resource-card">
+        <summary>💧 Hydration</summary>
+
+        <ul class="resource-list">
+          <li>Drink a glass of water</li>
+          <li>Refill your water bottle</li>
+          <li>Choose water with your next meal</li>
+          <li>Add electrolytes after intense activity</li>
+          <li>
+            Eat water-rich foods like watermelon, cucumber, and oranges
+          </li>
+        </ul>
+      </details>
+
+      <details class="mood-resource-card">
+        <summary>🍽 Nutrition</summary>
+
+        <ul class="resource-list">
+          <li>Eat a source of protein today</li>
+          <li>Include a fruit or vegetable with a meal</li>
+          <li>Do not skip meals if possible</li>
+          <li>Choose foods that give lasting energy</li>
+          <li>Fuel your body before and after exercise</li>
+        </ul>
+      </details>
+
+      <details class="mood-resource-card">
+        <summary>❤️ Self-Care</summary>
+
+        <ul class="resource-list">
+          <li>Take a five-minute break</li>
+          <li>Go outside for fresh air</li>
+          <li>Practice deep breathing</li>
+          <li>Stretch or move your body</li>
+          <li>Reach out to someone you trust</li>
+          <li>Journal your thoughts</li>
+          <li>Do one thing that brings you joy</li>
+        </ul>
+      </details>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>Daily Check-In</h1>
+        <p>Pause for a second. Where are you mentally right now?</p>
       </div>
 
-      <div class="moodSection">
-        <label class="label" for="reflectionInput">Optional reflection</label>
-        <textarea id="reflectionInput" class="textarea mood-notes-box" rows="6" placeholder="What's been on your mind?"></textarea>
-      </div>
+      <section class="mood-form-card">
+        <div class="moodSection">
+          <label class="label" for="mentalStateInput">
+            Mental state
+          </label>
 
-      <div class="row end">
-        <button id="saveCheckinBtn" class="primary">Save Check-In</button>
-      </div>
+          <input
+            id="mentalStateInput"
+            class="input"
+            type="text"
+            placeholder="e.g. overwhelmed, calm, tired, hopeful"
+            autocomplete="off"
+          />
+        </div>
 
-      <div id="checkinStatus" class="status muted">Status: idle</div>
+        <div class="moodSection">
+          <label class="label" for="reflectionInput">
+            Optional reflection
+          </label>
+
+          <textarea
+            id="reflectionInput"
+            class="textarea mood-notes-box"
+            rows="6"
+            placeholder="What's been on your mind?"
+          ></textarea>
+        </div>
+
+        <div class="row end">
+          <button
+            id="saveCheckinBtn"
+            class="primary"
+            type="button"
+          >
+            Save Check-In
+          </button>
+        </div>
+
+        <div id="checkinStatus" class="status muted"></div>
+      </section>
     </section>
-  </section>
 
-  <aside class="app-right-panel">
-    <a class="dashboard-icon-link" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
-    <a class="dashboard-icon-link" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
-    <a class="dashboard-icon-link active" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
-    <a class="dashboard-icon-link" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
-    <a class="dashboard-icon-link" href="./reflection.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
-    <a class="dashboard-icon-link" href="./profile.html"><span class="dashboard-icon-circle">♙</span><span>Profile</span></a>
-    <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
-    <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
-  </aside>
-</main>
+    <aside class="app-right-panel">
+      <a class="dashboard-icon-link" href="./dashboard.html">
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./mood.html">
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a class="dashboard-icon-link active" href="./checkin.html">
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./journal.html">
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./reflection.html">
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./profile.html">
+        <span class="dashboard-icon-circle">♙</span>
+        <span>Profile</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./history.html">
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button
+        id="logoutBtn"
+        class="dashboard-side-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </aside>
+  </main>
 
   <footer class="app-footer">
     <div class="footer-links">
-      <a href="about.html" class="footer-link">About</a>
-      <a href="contact.html" class="footer-link">Contact</a>
-      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+      <a href="./about.html" class="footer-link">About</a>
+      <a href="./contact.html" class="footer-link">Contact</a>
+      <a href="./crisis-support.html" class="footer-link">
+        Crisis support
+      </a>
     </div>
 
-     <p class="footer-copyright">
-    © 2026 𝒜lignn. All rights reserved.
-  </p>
+    <p class="footer-copyright">
+      © 2026 𝒜lignn. All rights reserved.
+    </p>
   </footer>
 
   <script src="./translations.js"></script>

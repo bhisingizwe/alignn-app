@@ -20,90 +20,263 @@
       </a>
       <div class="tagline">A place for you</div>
     </div>
+
+    <button
+      class="mobile-menu-btn"
+      id="mobileJournalMenuBtn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobileJournalMenu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
-  <main class="mood-shell">   
-  <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
-  <aside class="mood-left-panel">
-    <h2 class="mood-left-title">Journal Resources</h2>
+  <div
+    class="mobile-menu-overlay hidden"
+    id="mobileJournalMenuOverlay"
+    aria-hidden="true"
+  ></div>
 
-    <details class="mood-resource-card">
-      <summary>✍️ Free Writing Support</summary>
-      <ul class="resource-list">
-        <li>What's been on my mind lately?</li>
-        <li>What am I thinking about right now?</li>
-        <li>What do I wish I could say out loud?</li>
-      </ul>
-    </details>
+  <nav
+    class="mobile-workout-menu hidden"
+    id="mobileJournalMenu"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-menu-header">
+      <div>
+        <div class="mobile-menu-brand">𝒜lignn</div>
+        <div class="mobile-menu-tagline">A place for you</div>
+      </div>
 
-    <details class="mood-resource-card">
-      <summary>💭 Reflection Starters</summary>
-      <ul class="resource-list">
-        <li>What am I feeling right now?</li>
-        <li>What influenced my mood today?</li>
-        <li>What went well today?</li>
-        <li>What is one thing I learned about myself?</li>
-      </ul>
-    </details>
-
-    <details class="mood-resource-card">
-      <summary>❤️ Emotional Release Prompts</summary>
-      <ul class="resource-list">
-        <li>What am I carrying that feels heavy?</li>
-        <li>What do I need to let go of?</li>
-        <li>What would I say if I knew I wouldn't be judged?</li>
-        <li>What emotion needs more space today?</li>
-      </ul>
-    </details>
-  </aside>
-
-  <section class="mood-center-panel">
-    <div class="mood-page-header">
-      <h1>Journal</h1>
-      <p>Write freely. No prompt required.</p>
+      <button
+        class="mobile-menu-close"
+        id="mobileJournalMenuClose"
+        type="button"
+        aria-label="Close navigation menu"
+      >
+        ×
+      </button>
     </div>
 
-    <section class="mood-form-card">
-      <div class="moodSection">
-        <label class="label" for="titleInput">Title optional</label>
-        <input id="titleInput" class="input" placeholder="e.g. Today felt heavy" />
+    <div class="mobile-menu-groups">
+      <section class="mobile-menu-group">
+        <h2 class="mobile-menu-label">Main</h2>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./dashboard.html">Home</a>
+          <a class="mobile-nav-link" href="./mood.html">Mood</a>
+          <a class="mobile-nav-link" href="./checkin.html">Check-In</a>
+          <a class="mobile-nav-link active" href="./journal.html">Journal</a>
+          <a class="mobile-nav-link" href="./reflection.html">Reflection</a>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+  <p class="mobile-menu-label">Workout Plans</p>
+
+  <div class="mobile-menu-links">
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=build-muscle"
+    >
+      Build Muscle
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=fat-loss"
+    >
+      Fat Loss
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=maintenance"
+    >
+      Maintain
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=progressive-overload"
+    >
+      Progressive Overload
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=nutrition"
+    >
+      Nutrition
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=recovery"
+    >
+      Recovery
+    </a>
+  </div>
+</section>
+
+      <section class="mobile-menu-group">
+        <h2 class="mobile-menu-label">Settings</h2>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./history.html">History</a>
+          <a class="mobile-nav-link" href="./profile.html">Profile</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-menu-logout-area">
+      <button
+        id="mobileJournalLogoutBtn"
+        class="mobile-menu-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </div>
+  </nav>
+
+  <main class="mood-shell">
+
+    <aside class="mood-left-panel">
+      <h2 class="mood-left-title">Journal Resources</h2>
+
+      <details class="mood-resource-card">
+        <summary>✍️ Free Writing Support</summary>
+
+        <ul class="resource-list">
+          <li>What's been on my mind lately?</li>
+          <li>What am I thinking about right now?</li>
+          <li>What do I wish I could say out loud?</li>
+        </ul>
+      </details>
+
+      <details class="mood-resource-card">
+        <summary>💭 Reflection Starters</summary>
+
+        <ul class="resource-list">
+          <li>What am I feeling right now?</li>
+          <li>What influenced my mood today?</li>
+          <li>What went well today?</li>
+          <li>What is one thing I learned about myself?</li>
+        </ul>
+      </details>
+
+      <details class="mood-resource-card">
+        <summary>❤️ Emotional Release Prompts</summary>
+
+        <ul class="resource-list">
+          <li>What am I carrying that feels heavy?</li>
+          <li>What do I need to let go of?</li>
+          <li>What would I say if I knew I wouldn't be judged?</li>
+          <li>What emotion needs more space today?</li>
+        </ul>
+      </details>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>Journal</h1>
+        <p>Write freely. No prompt required.</p>
       </div>
 
-      <div class="moodSection">
-        <label class="label" for="contentInput">Journal Entry</label>
-        <textarea id="contentInput" class="textarea mood-notes-box" rows="8" placeholder="Write what's on your mind..."></textarea>
-      </div>
+      <section class="mood-form-card">
+        <div class="moodSection">
+          <label class="label" for="titleInput">Title optional</label>
 
-      <div class="row end">
-        <button id="saveJournalBtn" class="primary">Save Journal Entry</button>
-      </div>
+          <input
+            id="titleInput"
+            class="input"
+            type="text"
+            placeholder="e.g. Today felt heavy"
+          />
+        </div>
 
-      <div id="journalStatus" class="status muted">Status: idle</div>
+        <div class="moodSection">
+          <label class="label" for="contentInput">Journal Entry</label>
+
+          <textarea
+            id="contentInput"
+            class="textarea mood-notes-box journal-entry-input"
+            rows="10"
+            placeholder="Write what's on your mind..."
+          ></textarea>
+
+          <div id="journalWordCount" class="journal-word-count">
+            0 words
+          </div>
+        </div>
+
+        <div class="row end">
+          <button id="saveJournalBtn" class="primary" type="button">
+            Save Journal
+          </button>
+        </div>
+
+        <div id="journalStatus" class="status muted" aria-live="polite"></div>
+      </section>
     </section>
-  </section>
 
-  <aside class="app-right-panel">
-    <a class="dashboard-icon-link" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
-    <a class="dashboard-icon-link" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
-    <a class="dashboard-icon-link" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
-    <a class="dashboard-icon-link active" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
-    <a class="dashboard-icon-link" href="./reflection.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
-    <a class="dashboard-icon-link" href="./profile.html"><span class="dashboard-icon-circle">♙</span><span>Profile</span></a>
-    <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
-    <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
-  </aside>
-</main>
+    <aside class="app-right-panel">
+      <a class="dashboard-icon-link" href="./dashboard.html">
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./mood.html">
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./checkin.html">
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a class="dashboard-icon-link active" href="./journal.html">
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./reflection.html">
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./profile.html">
+        <span class="dashboard-icon-circle">♙</span>
+        <span>Profile</span>
+      </a>
+
+      <a class="dashboard-icon-link" href="./history.html">
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button id="logoutBtn" class="dashboard-side-logout" type="button">
+        Log out
+      </button>
+    </aside>
+  </main>
 
   <footer class="app-footer">
     <div class="footer-links">
-      <a href="about.html" class="footer-link">About</a>
-      <a href="contact.html" class="footer-link">Contact</a>
-      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+      <a href="./about.html" class="footer-link">About</a>
+      <a href="./contact.html" class="footer-link">Contact</a>
+      <a href="./crisis-support.html" class="footer-link">Crisis support</a>
     </div>
 
-     <p class="footer-copyright">
-    © 2026 𝒜lignn. All rights reserved.
-  </p>
+    <p class="footer-copyright">
+      © 2026 𝒜lignn. All rights reserved.
+    </p>
   </footer>
 
   <script src="./translations.js"></script>

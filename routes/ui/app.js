@@ -6,11 +6,17 @@ const promptText = document.getElementById("promptText");
 const answerInput = document.getElementById("answerInput");
 const statusEl = document.getElementById("status");
 const suggestionList = document.getElementById("suggestionList");
-const logoutBtnSide = document.getElementById("logoutBtnSide");
+
+const logoutBtnSide = document.getElementById("logoutBtn");
+const mobileReflectionLogoutBtn = document.getElementById(
+  "mobileReflectionLogoutBtn"
+);
 
 let selectedPrompt = null;
 
 function setStatus(msg) {
+  if (!statusEl) return;
+
   statusEl.textContent = `Status: ${msg}`;
 }
 
@@ -18,9 +24,82 @@ function logout() {
   clearSessionAndRedirect();
 }
 
+function setupMobileReflectionMenu() {
+  const menuButton = document.getElementById("mobileReflectionMenuBtn");
+  const menu = document.getElementById("mobileReflectionMenu");
+  const closeButton = document.getElementById(
+    "mobileReflectionMenuClose"
+  );
+  const overlay = document.getElementById(
+    "mobileReflectionMenuOverlay"
+  );
+
+  if (!menuButton || !menu || !overlay) return;
+
+  function openMenu() {
+    menu.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    document.body.classList.add("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu() {
+    menu.classList.add("hidden");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  menuButton.addEventListener("click", openMenu);
+
+  closeButton?.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", closeMenu);
+
+  menu.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  menu.querySelectorAll(".mobile-workout-link").forEach((button) => {
+    button.addEventListener("click", () => {
+      const plan = button.dataset.plan;
+
+      if (!plan) return;
+
+      window.location.href = `./workout-plan.html?plan=${plan}`;
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      !menu.classList.contains("hidden")
+    ) {
+      closeMenu();
+    }
+  });
+}
+
 async function apiGet(endpoint) {
-  const res = await fetch(`${BASE_URL}${endpoint}`);
-  return res.json();
+  const token = requireAuth();
+
+  if (!token) return null;
+
+  const res = await fetchWithAuth(`${BASE_URL}${endpoint}`, {
+    method: "GET"
+  });
+
+  if (!res) return null;
+
+  const data = await res.json();
+
+  return {
+    ok: res.ok,
+    data
+  };
 }
 
 async function apiPost(endpoint, body) {
@@ -43,6 +122,8 @@ async function apiPost(endpoint, body) {
 }
 
 function renderCurrentPrompt() {
+  if (!promptText) return;
+
   if (!selectedPrompt) {
     promptText.textContent = "Choose a feeling or roll the dice.";
     promptText.classList.add("muted");
@@ -54,6 +135,8 @@ function renderCurrentPrompt() {
 }
 
 function renderSuggestions(items) {
+  if (!suggestionList) return;
+
   suggestionList.innerHTML = "";
 
   if (!items || items.length === 0) {
@@ -63,25 +146,33 @@ function renderSuggestions(items) {
     return;
   }
 
-  items.forEach((p) => {
-    const card = document.createElement("div");
+  items.forEach((prompt) => {
+    const card = document.createElement("button");
+
+    card.type = "button";
     card.className = "suggestionCard";
 
     card.innerHTML = `
-      <div class="small"><b>${p.question}</b></div>
-      <div class="muted small">category: ${p.category}</div>
+      <span class="suggestion-question">
+        ${prompt.question}
+      </span>
+
+      <span class="suggestion-category">
+        ${prompt.category}
+      </span>
     `;
 
     card.addEventListener("click", () => {
       document
         .querySelectorAll(".suggestionCard")
-        .forEach((c) => c.classList.remove("selected"));
+        .forEach((item) => item.classList.remove("selected"));
 
       card.classList.add("selected");
 
-      selectedPrompt = p;
+      selectedPrompt = prompt;
+
       renderCurrentPrompt();
-      setStatus(`selected prompt: ${p.category}`);
+      setStatus(`selected prompt: ${prompt.category}`);
     });
 
     suggestionList.appendChild(card);
@@ -89,43 +180,71 @@ function renderSuggestions(items) {
 }
 
 async function rollDice() {
-  requireAuth();
-
   setStatus("rolling dice...");
 
-  const data = await apiGet("/api/prompts/random?type=reflection");
+  try {
+    const result = await apiGet(
+      "/api/prompts/random?type=reflection"
+    );
 
-  if (data.error) {
-    setStatus(`error: ${data.error}`);
-    return;
+    if (!result) return;
+
+    if (!result.ok) {
+      setStatus(result.data.error || "could not load a prompt");
+      return;
+    }
+
+    selectedPrompt = result.data.prompt;
+
+    document
+      .querySelectorAll(".pill")
+      .forEach((button) => button.classList.remove("active"));
+
+    document
+      .querySelectorAll(".suggestionCard")
+      .forEach((card) => card.classList.remove("selected"));
+
+    renderCurrentPrompt();
+    setStatus("dice prompt loaded");
+  } catch (err) {
+    setStatus("could not load a prompt");
+    console.error(err);
   }
-
-  selectedPrompt = data.prompt;
-  renderCurrentPrompt();
-  setStatus("dice prompt loaded");
 }
 
 async function loadSuggested(feeling) {
-  requireAuth();
+  setStatus(`loading suggestions for ${feeling}...`);
 
-  setStatus(`loading suggestions for: ${feeling}...`);
+  try {
+    const result = await apiGet(
+      `/api/prompts/suggested?type=reflection&feeling=${encodeURIComponent(
+        feeling
+      )}`
+    );
 
-  const data = await apiGet(
-    `/api/prompts/suggested?type=reflection&feeling=${encodeURIComponent(feeling)}`
-  );
+    if (!result) return;
 
-  if (data.error) {
+    if (!result.ok) {
+      renderSuggestions([]);
+      setStatus(result.data.error || "could not load suggestions");
+      return;
+    }
+
+    selectedPrompt = null;
+    renderCurrentPrompt();
+    renderSuggestions(result.data.suggested);
+
+    setStatus(`suggestions loaded: ${feeling}`);
+  } catch (err) {
     renderSuggestions([]);
-    setStatus(`error: ${data.error}`);
-    return;
+    setStatus("could not load suggestions");
+    console.error(err);
   }
-
-  renderSuggestions(data.suggested);
-  setStatus(`suggestions loaded: ${feeling}`);
 }
 
 async function saveReflection() {
   const token = requireAuth();
+
   if (!token) return;
 
   if (!selectedPrompt?.id) {
@@ -133,7 +252,7 @@ async function saveReflection() {
     return;
   }
 
-  const answer = answerInput.value.trim();
+  const answer = answerInput?.value.trim();
 
   if (!answer) {
     setStatus("write an answer first");
@@ -141,7 +260,10 @@ async function saveReflection() {
   }
 
   setStatus("saving reflection...");
-  saveBtn.disabled = true;
+
+  if (saveBtn) {
+    saveBtn.disabled = true;
+  }
 
   try {
     const result = await apiPost("/api/reflection/from-prompt", {
@@ -149,7 +271,9 @@ async function saveReflection() {
       answer
     });
 
-    saveBtn.disabled = false;
+    if (saveBtn) {
+      saveBtn.disabled = false;
+    }
 
     if (!result) return;
 
@@ -159,33 +283,50 @@ async function saveReflection() {
     }
 
     answerInput.value = "";
+    selectedPrompt = null;
+
+    document
+      .querySelectorAll(".pill")
+      .forEach((button) => button.classList.remove("active"));
+
+    renderSuggestions([]);
+    renderCurrentPrompt();
+
     setStatus("reflection saved");
   } catch (err) {
-    saveBtn.disabled = false;
+    if (saveBtn) {
+      saveBtn.disabled = false;
+    }
+
     setStatus("server error");
     console.error(err);
   }
 }
 
-diceBtn.addEventListener("click", rollDice);
-saveBtn.addEventListener("click", saveReflection);
+diceBtn?.addEventListener("click", rollDice);
+saveBtn?.addEventListener("click", saveReflection);
 
-document.querySelectorAll(".pill").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".pill").forEach((b) => {
-      b.classList.remove("active");
+document.querySelectorAll(".pill").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".pill").forEach((item) => {
+      item.classList.remove("active");
     });
 
-    btn.classList.add("active");
-    loadSuggested(btn.dataset.feeling);
+    button.classList.add("active");
+
+    loadSuggested(button.dataset.feeling);
   });
 });
 
-if (logoutBtnSide) {
-  logoutBtnSide.addEventListener("click", logout);
-}
+logoutBtnSide?.addEventListener("click", logout);
+mobileReflectionLogoutBtn?.addEventListener("click", logout);
+
+setupMobileReflectionMenu();
 
 window.addEventListener("DOMContentLoaded", () => {
-  requireAuth();
+  const token = requireAuth();
+
+  if (!token) return;
+
   renderCurrentPrompt();
 });

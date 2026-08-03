@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Workout Plan | 𝒜lignn</title>
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body class="workout-page">
   <div class="soul-bg">
-    <img id="workoutBgImage" class="soul-bg-image active-bg" src="./backgrounds/fitness.jpg" alt="">
+    <img
+      id="workoutBgImage"
+      class="soul-bg-image active-bg"
+      src="./backgrounds/fitness.jpg"
+      alt=""
+    />
 
     <video
       id="workoutBgVideo"
@@ -18,70 +29,302 @@
       autoplay
       muted
       loop
-      playsinline>
-    </video>
+      playsinline
+    ></video>
 
     <div class="soul-bg-overlay"></div>
   </div>
 
-  <button
-    id="mobileWorkoutMenuBtn"
-    class="mobile-workout-menu-btn"
-    type="button">
-    ☰
-  </button>
+  <header class="header dashboard-topbar workout-topbar">
+    <div>
+      <a
+        class="brandLink"
+        href="./dashboard.html"
+        aria-label="Go to dashboard"
+      >
+        <div class="brand">𝒜lignn</div>
+      </a>
 
-  <div class="mobile-workout-menu hidden" id="mobileWorkoutMenu">
-    <button class="mobile-menu-close" id="mobileWorkoutMenuClose" type="button">×</button>
+      <div class="tagline">A place for you</div>
+    </div>
 
-    <button class="mobile-workout-link" data-plan="build-muscle">Build Muscle</button>
-    <button class="mobile-workout-link" data-plan="fat-loss">Fat Loss</button>
-    <button class="mobile-workout-link" data-plan="maintenance">Maintain</button>
-    <button class="mobile-workout-link" data-plan="progressive-overload">Progressive Overload</button>
-    <button class="mobile-workout-link" data-plan="nutrition">Nutrition</button>
-    <button class="mobile-workout-link" data-plan="recovery">Recovery</button>
-  </div>
+    <button
+      id="mobileWorkoutMenuBtn"
+      class="mobile-menu-btn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobileWorkoutMenu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
 
-  <main class="workout-page-shell">
-    <div class="mobile-workout-back-row">
-      <button id="mobileBackBtn" class="mobile-back-btn" type="button">
-        ← Back
+  <div
+    id="mobileWorkoutMenuOverlay"
+    class="mobile-menu-overlay hidden"
+    aria-hidden="true"
+  ></div>
+
+  <nav
+    id="mobileWorkoutMenu"
+    class="mobile-workout-menu hidden"
+    aria-label="Mobile navigation"
+    aria-hidden="true"
+  >
+    <div class="mobile-menu-header">
+      <div>
+        <div class="mobile-menu-brand">𝒜lignn</div>
+        <div class="mobile-menu-tagline">A place for you</div>
+      </div>
+
+      <button
+        id="mobileWorkoutMenuClose"
+        class="mobile-menu-close"
+        type="button"
+        aria-label="Close navigation menu"
+      >
+        ×
       </button>
     </div>
 
+    <div class="mobile-menu-groups">
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Main</p>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./dashboard.html">
+            Home
+          </a>
+
+          <a class="mobile-nav-link" href="./mood.html">
+            Mood
+          </a>
+
+          <a class="mobile-nav-link" href="./checkin.html">
+            Check-In
+          </a>
+
+          <a class="mobile-nav-link" href="./journal.html">
+            Journal
+          </a>
+
+          <a class="mobile-nav-link" href="./reflection.html">
+            Reflection
+          </a>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Workout Plans</p>
+
+        <div class="mobile-menu-links">
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="build-muscle"
+          >
+            Build Muscle
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="fat-loss"
+          >
+            Fat Loss
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="maintenance"
+          >
+            Maintain
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="progressive-overload"
+          >
+            Progressive Overload
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="nutrition"
+          >
+            Nutrition
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="recovery"
+          >
+            Recovery
+          </button>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Settings</p>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./history.html">
+            History
+          </a>
+
+          <a class="mobile-nav-link" href="./profile.html">
+            Profile
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-menu-logout-area">
+      <button
+        id="mobileWorkoutLogoutBtn"
+        class="mobile-menu-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </div>
+  </nav>
+
+  <main class="workout-page-shell">
     <aside class="workout-left-sidebar">
-      <button id="backBtn" class="workout-back-btn">← Back to Dashboard</button>
+      <button
+        id="backBtn"
+        class="workout-back-btn"
+        type="button"
+      >
+        ← Back to Dashboard
+      </button>
 
       <div class="workout-sidebar-stack">
-        <button class="workout-category-btn" data-plan="build-muscle">Build Muscle</button>
-        <button class="workout-category-btn" data-plan="fat-loss">Fat Loss</button>
-        <button class="workout-category-btn" data-plan="maintenance">Maintain</button>
-        <button class="workout-category-btn" data-plan="progressive-overload">Progressive Overload</button>
-        <button class="workout-category-btn" data-plan="nutrition">Nutrition</button>
-        <button class="workout-category-btn" data-plan="recovery">Recovery</button>
+        <button
+          class="workout-category-btn"
+          type="button"
+          data-plan="build-muscle"
+        >
+          Build Muscle
+        </button>
+
+        <button
+          class="workout-category-btn"
+          type="button"
+          data-plan="fat-loss"
+        >
+          Fat Loss
+        </button>
+
+        <button
+          class="workout-category-btn"
+          type="button"
+          data-plan="maintenance"
+        >
+          Maintain
+        </button>
+
+        <button
+          class="workout-category-btn"
+          type="button"
+          data-plan="progressive-overload"
+        >
+          Progressive Overload
+        </button>
+
+        <button
+          class="workout-category-btn"
+          type="button"
+          data-plan="nutrition"
+        >
+          Nutrition
+        </button>
+
+        <button
+          class="workout-category-btn"
+          type="button"
+          data-plan="recovery"
+        >
+          Recovery
+        </button>
       </div>
     </aside>
 
     <section class="workout-main-content">
       <header class="workout-plan-heading">
-        <p id="planCategory" class="workout-category-label"></p>
+        <p
+          id="planCategory"
+          class="workout-category-label"
+        ></p>
+
         <h1 id="planTitle">Loading...</h1>
+
         <p id="planDescription"></p>
       </header>
 
-      <section class="workout-video-hero">
-        <h2 id="videoSectionTitle">Educational Videos</h2>
-        <div id="videosContainer" class="workout-video-slider"></div>
+      <section
+        class="workout-video-hero"
+        aria-labelledby="videoSectionTitle"
+      >
+        <h2 id="videoSectionTitle">
+          Educational Videos
+        </h2>
+
+        <div
+          id="videosContainer"
+          class="workout-video-slider"
+        ></div>
       </section>
 
-      <section class="workout-level-section">
-        <h2 id="levelSectionTitle">Choose Your Level</h2>
-        <div id="levelsContainer" class="workout-level-grid"></div>
+      <section
+        class="workout-level-section"
+        aria-labelledby="levelSectionTitle"
+      >
+        <h2 id="levelSectionTitle">
+          Choose Your Level
+        </h2>
+
+        <div
+          id="levelsContainer"
+          class="workout-level-grid"
+        ></div>
       </section>
 
-      <section id="selectedProgramContainer" class="selected-program-container"></section>
+      <section
+        id="selectedProgramContainer"
+        class="selected-program-container"
+        aria-live="polite"
+      ></section>
     </section>
   </main>
+
+  <footer class="app-footer workout-footer">
+    <div class="footer-links">
+      <a href="./about.html" class="footer-link">
+        About
+      </a>
+
+      <a href="./contact.html" class="footer-link">
+        Contact
+      </a>
+
+      <a href="./crisis-support.html" class="footer-link">
+        Crisis support
+      </a>
+    </div>
+
+    <p class="footer-copyright">
+      © 2026 𝒜lignn. All rights reserved.
+    </p>
+  </footer>
 
   <script src="./translations.js"></script>
   <script src="./auth.js"></script>

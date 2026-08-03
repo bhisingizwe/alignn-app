@@ -69,7 +69,7 @@
       <p class="mobile-menu-label" id="mobile-main-label">Main</p>
 
       <div class="mobile-menu-links">
-        <a class="mobile-nav-link" href="./dashboard.html">Home</a>
+        <a class="mobile-nav-link active" href="./dashboard.html">Home</a>
         <a class="mobile-nav-link" href="./mood.html">Mood</a>
         <a class="mobile-nav-link" href="./checkin.html">Check-In</a>
         <a class="mobile-nav-link" href="./journal.html">Journal</a>
@@ -77,61 +77,53 @@
       </div>
     </section>
 
-    <section class="mobile-menu-group" aria-labelledby="mobile-workout-label">
-      <p class="mobile-menu-label" id="mobile-workout-label">
-        Workout Plans
-      </p>
+    <section class="mobile-menu-group">
+  <p class="mobile-menu-label">Workout Plans</p>
 
-      <div class="mobile-menu-links">
-        <button
-          class="mobile-workout-link"
-          data-plan="build-muscle"
-          type="button"
-        >
-          Build Muscle
-        </button>
+  <div class="mobile-menu-links">
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=build-muscle"
+    >
+      Build Muscle
+    </a>
 
-        <button
-          class="mobile-workout-link"
-          data-plan="fat-loss"
-          type="button"
-        >
-          Fat Loss
-        </button>
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=fat-loss"
+    >
+      Fat Loss
+    </a>
 
-        <button
-          class="mobile-workout-link"
-          data-plan="maintenance"
-          type="button"
-        >
-          Maintain
-        </button>
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=maintenance"
+    >
+      Maintain
+    </a>
 
-        <button
-          class="mobile-workout-link"
-          data-plan="progressive-overload"
-          type="button"
-        >
-          Progressive Overload
-        </button>
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=progressive-overload"
+    >
+      Progressive Overload
+    </a>
 
-        <button
-          class="mobile-workout-link"
-          data-plan="nutrition"
-          type="button"
-        >
-          Nutrition
-        </button>
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=nutrition"
+    >
+      Nutrition
+    </a>
 
-        <button
-          class="mobile-workout-link"
-          data-plan="recovery"
-          type="button"
-        >
-          Recovery
-        </button>
-      </div>
-    </section>
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=recovery"
+    >
+      Recovery
+    </a>
+  </div>
+</section>
 
     <section class="mobile-menu-group" aria-labelledby="mobile-settings-label">
       <p class="mobile-menu-label" id="mobile-settings-label">Settings</p>
@@ -237,7 +229,7 @@
         </form>
       </section>
 
-      <div id="dashboardStatus" class="status muted">Status: idle</div>
+      <div id="dashboardStatus" class="status muted"></div>
 
       <section class="dashboard-stats-grid">
         <article class="dashboard-stat-card">

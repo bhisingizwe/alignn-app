@@ -2,181 +2,633 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Crisis Support | 𝒜lignn</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <link rel="stylesheet" href="./styles.css" />
 </head>
-<body>
 
-  <main class="crisis-page">
-    <div class="crisis-card">
-      <h1>Crisis Support</h1>
+<body class="crisis-support-page">
 
-      <p class="crisis-text">
-        If you need immediate support, choose your region.
+  <header class="crisis-topbar">
+    <div class="crisis-brand-block">
+      <a
+        href="./dashboard.html"
+        class="crisis-brand-link"
+      >
+        𝒜lignn
+      </a>
+
+      <p class="crisis-brand-tagline">
+        A place for you
       </p>
-
-      <div class="region-buttons">
-        <button onclick="showRegion('us')">United States</button>
-        <button onclick="showRegion('na')">North America</button>
-        <button onclick="showRegion('europe')">Europe</button>
-        <button onclick="showRegion('africa')">Africa</button>
-        <button onclick="showRegion('asia')">Asia</button>
-        <button onclick="showRegion('sa')">South America</button>
-        <button onclick="showRegion('me')">Middle East</button>
-        <button onclick="showRegion('oceania')">Oceania</button>
-      </div>
-
-      <div id="region-content" class="region-content">
-        <p>Select a region to view crisis support resources.</p>
-      </div>
-
-      <a href="dashboard.html" class="back-button">Back</a>
     </div>
+  </header>
+
+  <main class="crisis-support-shell">
+    <article class="crisis-support-card">
+
+      <section class="crisis-intro">
+        <p class="crisis-eyebrow">
+          Support is available
+        </p>
+
+        <h1>Crisis Support</h1>
+
+        <p class="crisis-reassurance">
+          You're not alone. Help is available.
+        </p>
+
+        <p class="crisis-description">
+          Choose your current location to find professional crisis
+          support resources.
+        </p>
+      </section>
+
+      <aside class="crisis-emergency-notice">
+        <div
+          class="crisis-emergency-icon"
+          aria-hidden="true"
+        >
+          !
+        </div>
+
+        <div>
+          <h2>
+            Are you or someone else in immediate danger?
+          </h2>
+
+          <p>
+            Contact your local emergency services now or go to the
+            nearest emergency department.
+          </p>
+        </div>
+      </aside>
+
+      <section class="crisis-region-section">
+        <div class="crisis-section-heading">
+          <div>
+            <p class="crisis-step-label">
+              Find support
+            </p>
+
+            <h2>Choose your location</h2>
+          </div>
+
+          <p>
+            Select the option that best matches where you are
+            currently located.
+          </p>
+        </div>
+
+        <div
+          class="region-buttons"
+          aria-label="Crisis-support locations"
+        >
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="us"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🇺🇸
+            </span>
+
+            <span class="region-button-copy">
+              <strong>United States</strong>
+              <small>988 and emergency support</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="international"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌍
+            </span>
+
+            <span class="region-button-copy">
+              <strong>International</strong>
+              <small>Search by country or region</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="north-america"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌎
+            </span>
+
+            <span class="region-button-copy">
+              <strong>North America</strong>
+              <small>Canada, Mexico, and nearby regions</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="europe"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌍
+            </span>
+
+            <span class="region-button-copy">
+              <strong>Europe</strong>
+              <small>Country-specific support</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="africa"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌍
+            </span>
+
+            <span class="region-button-copy">
+              <strong>Africa</strong>
+              <small>Country-specific support</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="asia"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌏
+            </span>
+
+            <span class="region-button-copy">
+              <strong>Asia</strong>
+              <small>Country-specific support</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="south-america"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌎
+            </span>
+
+            <span class="region-button-copy">
+              <strong>South America</strong>
+              <small>Country-specific support</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="middle-east"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌍
+            </span>
+
+            <span class="region-button-copy">
+              <strong>Middle East</strong>
+              <small>Country-specific support</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+
+          <button
+            class="region-button"
+            type="button"
+            data-region="oceania"
+            aria-pressed="false"
+          >
+            <span
+              class="region-button-icon"
+              aria-hidden="true"
+            >
+              🌏
+            </span>
+
+            <span class="region-button-copy">
+              <strong>Oceania</strong>
+              <small>Australia, New Zealand, and nearby regions</small>
+            </span>
+
+            <span
+              class="region-button-arrow"
+              aria-hidden="true"
+            >
+              ›
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="regionContent"
+        class="region-content"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div class="region-content-placeholder">
+          <span aria-hidden="true">♡</span>
+
+          <p>
+            Your selected crisis-support resources will appear here.
+          </p>
+        </div>
+      </section>
+
+      <section class="crisis-safety-note">
+        <h2>About these resources</h2>
+
+        <p>
+          These services are operated by independent organizations
+          and trained crisis-support professionals. 𝒜lignn does not
+          provide emergency, medical, diagnostic, or crisis-care
+          services.
+        </p>
+      </section>
+
+      <a
+  href="./login.html"
+  class="crisis-back-button"
+>
+  Back
+</a>
+
+    </article>
   </main>
 
   <script>
-    function showRegion(region) {
-      const content = document.getElementById("region-content");
+    const regionButtons =
+      document.querySelectorAll(".region-button");
 
-      if (region === "us") {
-        content.innerHTML = `
-          <h2>United States</h2>
-          <p><strong>988</strong> — Suicide & Crisis Lifeline (call/text/chat)</p>
-          <p><strong>911</strong> — Emergency</p>
-        `;
-      } else if (region === "na") {
-        content.innerHTML = `
-          <h2>North America</h2>
+    const regionContent =
+      document.getElementById("regionContent");
 
-          <p><strong>Canada</strong><br>
-          1-833-456-4566 — Talk Suicide Canada<br>
-          45645 — Text (hours vary)<br>
-          911 — Emergency</p>
+    const internationalDirectoryMarkup = `
+      <div class="crisis-results-header">
+        <div>
+          <p class="crisis-results-label">
+            International support
+          </p>
 
-          <p><strong>Mexico</strong><br>
-          800-273-8255 — SAPTEL (24/7)</p>
-        `;
-      } else if (region === "europe") {
-        content.innerHTML = `
-          <h2>Europe</h2>
+          <h2>Find help in your country</h2>
+        </div>
 
-          <p><strong>United Kingdom</strong><br>
-          116 123 — Samaritans (free, 24/7)</p>
+        <span class="crisis-results-icon" aria-hidden="true">
+          🌍
+        </span>
+      </div>
 
-          <p><strong>Ireland</strong><br>
-          116 123 — Samaritans Ireland</p>
+      <p class="crisis-results-intro">
+        Crisis-support numbers and availability can differ by
+        country. Use one of these international directories to find
+        current services near you.
+      </p>
 
-          <p><strong>European Union (EU)</strong><br>
-          112 — General emergency<br>
-          116 123 — Emotional Support Helpline (varies by country)</p>
+      <div class="crisis-resource-list">
+        <a
+          class="crisis-resource-card"
+          href="https://findahelpline.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="crisis-resource-symbol" aria-hidden="true">
+            ♡
+          </span>
 
-          <p><strong>France</strong><br>
-          3114 — Suicide Crisis Line</p>
+          <span class="crisis-resource-copy">
+            <strong>Find A Helpline</strong>
 
-          <p><strong>Germany</strong><br>
-          0800 111 0 111<br>
-          0800 111 0 222 — TelefonSeelsorge</p>
+            <small>
+              Search verified helplines by country and support need.
+            </small>
+          </span>
 
-          <p><strong>Spain</strong><br>
-          024 — Suicide Crisis Line</p>
+          <span class="crisis-resource-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
 
-          <p><strong>Italy</strong><br>
-          199 284 284 — Telefono Amico</p>
+        <a
+          class="crisis-resource-card"
+          href="https://befrienders.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="crisis-resource-symbol" aria-hidden="true">
+            ◯
+          </span>
 
-          <p><strong>Netherlands</strong><br>
-          113 or 0800 0113 — Suicide Prevention</p>
+          <span class="crisis-resource-copy">
+            <strong>Befrienders Worldwide</strong>
 
-          <p><strong>Sweden</strong><br>
-          90101 — Mind Suicide Line</p>
+            <small>
+              Find emotional-support centres and crisis resources.
+            </small>
+          </span>
 
-          <p><strong>Norway</strong><br>
-          116 123 — Mental Health Helpline</p>
+          <span class="crisis-resource-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </div>
+    `;
 
-          <p><strong>Switzerland</strong><br>
-          143 — Suicide Prevention</p>
-        `;
-      } else if (region === "africa") {
-        content.innerHTML = `
-          <h2>Africa</h2>
+    const regionContentMap = {
+      us: `
+        <div class="crisis-results-header">
+          <div>
+            <p class="crisis-results-label">
+              United States
+            </p>
 
-          <p><strong>South Africa</strong><br>
-          0800 567 567 — Suicide Crisis Line<br>
-          0800 12 13 14 — Lifeline</p>
+            <h2>Immediate crisis support</h2>
+          </div>
 
-          <p><strong>Kenya</strong><br>
-          1199 — Kenya Red Cross Mental Health (24/7)</p>
+          <span class="crisis-results-icon" aria-hidden="true">
+            🇺🇸
+          </span>
+        </div>
 
-          <p><strong>Nigeria</strong><br>
-          0800 800 6000 — Suicide Prevention Initiative<br>
-          <em>Availability may vary</em></p>
+        <p class="crisis-results-intro">
+          The 988 Suicide & Crisis Lifeline connects people with
+          trained crisis counselors.
+        </p>
 
-          <p><strong>Rwanda</strong><br>
-          3525 — RBC Mental Health Crisis Line</p>
-        `;
-      } else if (region === "asia") {
-        content.innerHTML = `
-          <h2>Asia</h2>
+        <div class="crisis-resource-list">
+          <a
+            class="crisis-resource-card crisis-primary-resource"
+            href="tel:988"
+          >
+            <span class="crisis-resource-symbol" aria-hidden="true">
+              ☎
+            </span>
 
-          <p><strong>India</strong><br>
-          9152987821 — Aasra (24/7)</p>
+            <span class="crisis-resource-copy">
+              <strong>Call 988</strong>
 
-          <p><strong>Philippines</strong><br>
-          0966-351-4518 — National Suicide Prevention Hotline<br>
-          1553 — Hopeline (landline)</p>
+              <small>
+                Speak with a crisis counselor.
+              </small>
+            </span>
 
-          <p><strong>Japan</strong><br>
-          03-5774-0992 — TELL Lifeline<br>
-          #8103 — Yorisoi Hotline</p>
+            <span class="crisis-resource-arrow" aria-hidden="true">
+              ›
+            </span>
+          </a>
 
-          <p><strong>South Korea</strong><br>
-          1577-0199 — National Lifeline<br>
-          1393 — Suicide Prevention Hotline</p>
+          <a
+            class="crisis-resource-card"
+            href="sms:988"
+          >
+            <span class="crisis-resource-symbol" aria-hidden="true">
+              ✉
+            </span>
 
-          <p><strong>China</strong><br>
-          800-810-1117 — Lifeline China<br>
-          010-8295-1332 — Beijing Suicide Research</p>
+            <span class="crisis-resource-copy">
+              <strong>Text 988</strong>
 
-          <p><strong>Singapore</strong><br>
-          1767 — Samaritans of Singapore</p>
-        `;
-      } else if (region === "sa") {
-        content.innerHTML = `
-          <h2>South America</h2>
+              <small>
+                Connect with a counselor by text.
+              </small>
+            </span>
 
-          <p><strong>Brazil</strong><br>
-          188 — CVV Suicide Hotline</p>
+            <span class="crisis-resource-arrow" aria-hidden="true">
+              ›
+            </span>
+          </a>
 
-          <p><strong>Argentina</strong><br>
-          135 — Buenos Aires<br>
-          (011) 5275-1135 — Nationwide</p>
-        `;
-      } else if (region === "me") {
-        content.innerHTML = `
-          <h2>Middle East</h2>
+          <a
+            class="crisis-resource-card"
+            href="https://988lifeline.org/chat/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="crisis-resource-symbol" aria-hidden="true">
+              ◯
+            </span>
 
-          <p><strong>Israel</strong><br>
-          1201 — ERAN Crisis Hotline</p>
+            <span class="crisis-resource-copy">
+              <strong>Chat with 988</strong>
 
-          <p><strong>Turkey</strong><br>
-          182 — Mental Health Hotline</p>
+              <small>
+                Open the official online crisis chat.
+              </small>
+            </span>
 
-          <p><strong>UAE</strong><br>
-          800-4673 — National Mental Health Support</p>
-        `;
-      } else if (region === "oceania") {
-        content.innerHTML = `
-          <h2>Oceania</h2>
+            <span class="crisis-resource-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
 
-          <p><strong>Australia</strong><br>
-          13 11 14 — Lifeline Australia</p>
+          <a
+            class="crisis-resource-card crisis-emergency-resource"
+            href="tel:911"
+          >
+            <span class="crisis-resource-symbol" aria-hidden="true">
+              !
+            </span>
 
-          <p><strong>New Zealand</strong><br>
-          1737 — Need to Talk? (call/text)</p>
-        `;
-      }
+            <span class="crisis-resource-copy">
+              <strong>Call 911</strong>
+
+              <small>
+                For immediate or life-threatening danger.
+              </small>
+            </span>
+
+            <span class="crisis-resource-arrow" aria-hidden="true">
+              ›
+            </span>
+          </a>
+        </div>
+      `,
+
+      international: internationalDirectoryMarkup,
+      "north-america": internationalDirectoryMarkup,
+      europe: internationalDirectoryMarkup,
+      africa: internationalDirectoryMarkup,
+      asia: internationalDirectoryMarkup,
+      "south-america": internationalDirectoryMarkup,
+      "middle-east": internationalDirectoryMarkup,
+      oceania: internationalDirectoryMarkup
+    };
+
+    function setActiveRegion(clickedButton) {
+      regionButtons.forEach((button) => {
+        const isActive = button === clickedButton;
+
+        button.classList.toggle("active", isActive);
+
+        button.setAttribute(
+          "aria-pressed",
+          String(isActive)
+        );
+      });
     }
+
+    function showRegion(button) {
+      const region = button.dataset.region;
+      const selectedMarkup = regionContentMap[region];
+
+      if (!selectedMarkup) {
+        return;
+      }
+
+      setActiveRegion(button);
+
+      regionContent.innerHTML = selectedMarkup;
+      regionContent.classList.add("has-results");
+
+      window.requestAnimationFrame(() => {
+        regionContent.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      });
+    }
+
+    regionButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        showRegion(button);
+      });
+    });
   </script>
+
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a
+        href="./about.html"
+        class="footer-link"
+      >
+        About
+      </a>
+
+      <a
+        href="./contact.html"
+        class="footer-link"
+      >
+        Contact
+      </a>
+
+      <a
+        href="./crisis-support.html"
+        class="footer-link"
+      >
+        Crisis support
+      </a>
+    </div>
+
+    <p class="footer-copyright">
+      © 2026 𝒜lignn. All rights reserved.
+    </p>
+  </footer>
 
 </body>
 </html>

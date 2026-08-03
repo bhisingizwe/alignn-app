@@ -3,24 +3,39 @@ const BASE_URL = "https://alignn-app.vercel.app";
 const profileName = document.getElementById("profileName");
 const profileEmail = document.getElementById("profileEmail");
 const profileStatus = document.getElementById("profileStatus");
-const logoutBtnSide = document.getElementById("logoutBtnSide");
 
-const accountDetailsCard = document.getElementById("accountDetailsCard");
+const editNameBtn = document.getElementById("editNameBtn");
 const nameEditBox = document.getElementById("nameEditBox");
-const displayNameInput = document.getElementById("displayNameInput");
+const displayNameInput =
+  document.getElementById("displayNameInput");
 const saveNameBtn = document.getElementById("saveNameBtn");
+const cancelNameBtn =
+  document.getElementById("cancelNameBtn");
 
-const deleteConfirmInput = document.getElementById("deleteConfirmInput");
-const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+const deleteConfirmInput =
+  document.getElementById("deleteConfirmInput");
+const deleteAccountBtn =
+  document.getElementById("deleteAccountBtn");
 
-const currentPasswordInput = document.getElementById("currentPasswordInput");
-const newProfilePasswordInput = document.getElementById("newProfilePasswordInput");
-const confirmPasswordInput = document.getElementById("confirmPasswordInput");
-const changePasswordBtn = document.getElementById("changePasswordBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const mobileProfileLogoutBtn =
+  document.getElementById("mobileProfileLogoutBtn");
 
-function setStatus(msg) {
-  if (profileStatus) {
-    profileStatus.textContent = `Status: ${msg}`;
+let loadedUser = null;
+
+function setStatus(message) {
+  if (!profileStatus) return;
+
+  // Only show real errors
+  if (
+    message.toLowerCase().includes("error") ||
+    message.toLowerCase().includes("failed")
+  ) {
+    profileStatus.textContent = message;
+    profileStatus.style.display = "block";
+  } else {
+    profileStatus.textContent = "";
+    profileStatus.style.display = "none";
   }
 }
 
@@ -28,263 +43,365 @@ function logout() {
   clearSessionAndRedirect();
 }
 
+function setupMobileProfileMenu() {
+  const menuButton =
+    document.getElementById("mobileProfileMenuBtn");
+  const menu =
+    document.getElementById("mobileProfileMenu");
+  const closeButton =
+    document.getElementById("mobileProfileMenuClose");
+  const overlay =
+    document.getElementById("mobileProfileMenuOverlay");
+
+  if (!menuButton || !menu || !overlay) return;
+
+  function openMenu() {
+    menu.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    document.body.classList.add("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu() {
+    menu.classList.add("hidden");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  menuButton.addEventListener("click", openMenu);
+
+  closeButton?.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", closeMenu);
+
+  menu
+    .querySelectorAll(".mobile-nav-link")
+    .forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+  menu
+    .querySelectorAll(".mobile-workout-link")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const plan = button.dataset.plan;
+
+        if (!plan) return;
+
+        window.location.href =
+          `./workout-plan.html?plan=${encodeURIComponent(plan)}`;
+      });
+    });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      !menu.classList.contains("hidden")
+    ) {
+      closeMenu();
+    }
+  });
+}
+
+function openNameEditor() {
+  if (
+    !nameEditBox ||
+    !displayNameInput ||
+    !editNameBtn
+  ) {
+    return;
+  }
+
+  const currentName = loadedUser?.name || "";
+
+  displayNameInput.value = currentName;
+  nameEditBox.classList.remove("hidden");
+
+  editNameBtn.setAttribute("aria-expanded", "true");
+  editNameBtn.textContent = "Editing";
+
+  displayNameInput.focus();
+}
+
+function closeNameEditor() {
+  if (
+    !nameEditBox ||
+    !displayNameInput ||
+    !editNameBtn
+  ) {
+    return;
+  }
+
+  nameEditBox.classList.add("hidden");
+  displayNameInput.value = "";
+
+  editNameBtn.setAttribute("aria-expanded", "false");
+  editNameBtn.textContent = "Edit";
+}
+
 async function loadProfile() {
   const token = requireAuth();
+
   if (!token) return;
 
   setStatus("loading profile...");
 
   try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me`, {
-      method: "GET"
-    });
+    const response = await fetchWithAuth(
+      `${BASE_URL}/api/auth/me`,
+      {
+        method: "GET"
+      }
+    );
 
-    if (!res) return;
+    if (!response) return;
 
-    const data = await res.json();
+    const data = await response.json();
 
-    if (!res.ok) {
-      if (profileName) profileName.textContent = "Unavailable";
-      if (profileEmail) profileEmail.textContent = "Unavailable";
-      setStatus(data.error || "failed to load profile");
+    if (!response.ok) {
+      profileName.textContent = "Unavailable";
+      profileEmail.textContent = "Unavailable";
+
+      setStatus(
+        data.error || "failed to load profile"
+      );
+
       return;
     }
 
-    const user = data.user;
-    saveUser(user);
+    loadedUser = data.user;
+    saveUser(loadedUser);
 
-    if (profileName) profileName.textContent = user.name || "No name added yet";
-    if (profileEmail) profileEmail.textContent = user.email || "No email available";
+    profileName.textContent =
+      loadedUser.name || "No name added yet";
 
-    setStatus("profile loaded");
-  } catch (err) {
-    console.error(err);
-    if (profileName) profileName.textContent = "Unavailable";
-    if (profileEmail) profileEmail.textContent = "Unavailable";
+    profileEmail.textContent =
+      loadedUser.email || "No email available";
+
+  setStatus("Profile loaded");
+  } catch (error) {
+    console.error(error);
+
+    profileName.textContent = "Unavailable";
+    profileEmail.textContent = "Unavailable";
+
     setStatus("server error");
-  }
-}
-
-async function changePassword() {
-  const token = requireAuth();
-  if (!token) return;
-
-  if (!currentPasswordInput || !newProfilePasswordInput || !confirmPasswordInput) {
-    setStatus("password form is missing from the page");
-    return;
-  }
-
-  const currentPassword = currentPasswordInput.value.trim();
-  const newPassword = newProfilePasswordInput.value.trim();
-  const confirmPassword = confirmPasswordInput.value.trim();
-
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    setStatus("fill out all password fields");
-    return;
-  }
-
-  if (newPassword.length < 6) {
-    setStatus("new password must be at least 6 characters");
-    return;
-  }
-
-  if (newPassword !== confirmPassword) {
-    setStatus("new passwords do not match");
-    return;
-  }
-
-  if (currentPassword === newPassword) {
-    setStatus("new password must be different");
-    return;
-  }
-
-  changePasswordBtn.disabled = true;
-  setStatus("updating password...");
-
-  try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me/password`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        currentPassword,
-        newPassword,
-        confirmPassword
-      })
-    });
-
-    if (!res) {
-      changePasswordBtn.disabled = false;
-      setStatus("request failed");
-      return;
-    }
-
-    const data = await res.json();
-    changePasswordBtn.disabled = false;
-
-    if (!res.ok) {
-      setStatus(data.error || "failed to update password");
-      return;
-    }
-
-    currentPasswordInput.value = "";
-    newProfilePasswordInput.value = "";
-    confirmPasswordInput.value = "";
-
-    setStatus("password updated successfully");
-  } catch (err) {
-    console.error(err);
-    changePasswordBtn.disabled = false;
-    setStatus("server error while updating password");
   }
 }
 
 async function saveDisplayName() {
   const token = requireAuth();
-  if (!token || !displayNameInput) return;
+
+  if (!token || !displayNameInput || !saveNameBtn) {
+    return;
+  }
 
   const name = displayNameInput.value.trim();
 
   if (!name) {
     setStatus("please enter a name");
+    displayNameInput.focus();
     return;
   }
 
+  if (name.length > 80) {
+    setStatus("name must be 80 characters or fewer");
+    return;
+  }
+
+  saveNameBtn.disabled = true;
   setStatus("saving name...");
 
   try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me/name`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name })
-    });
+    const response = await fetchWithAuth(
+      `${BASE_URL}/api/auth/me/name`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name })
+      }
+    );
 
-    if (!res) return;
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      setStatus(data.error || "failed to save name");
+    if (!response) {
+      saveNameBtn.disabled = false;
       return;
     }
 
-    if (profileName) profileName.textContent = data.user.name || "No name added yet";
-    saveUser(data.user);
-    setStatus("name saved");
+    const data = await response.json();
 
-    if (nameEditBox) nameEditBox.classList.add("hidden");
-  } catch (err) {
-    console.error(err);
+    saveNameBtn.disabled = false;
+
+    if (!response.ok) {
+      setStatus(
+        data.error || "failed to save name"
+      );
+
+      return;
+    }
+
+    loadedUser = data.user;
+    saveUser(loadedUser);
+
+    profileName.textContent =
+      loadedUser.name || "No name added yet";
+
+    closeNameEditor();
+    setStatus("name saved");
+  } catch (error) {
+    console.error(error);
+
+    saveNameBtn.disabled = false;
     setStatus("server error while saving name");
   }
 }
 
 async function deleteAccount() {
   const token = requireAuth();
-  if (!token || !deleteConfirmInput || !deleteAccountBtn) return;
 
-  const confirmText = deleteConfirmInput.value.trim();
-
-  if (confirmText !== "DELETE") {
-    setStatus("type DELETE to confirm account deletion");
+  if (
+    !token ||
+    !deleteConfirmInput ||
+    !deleteAccountBtn
+  ) {
     return;
   }
 
-  const confirmed = confirm(
-    "Are you sure you want to permanently delete your 𝒜lignn account? This cannot be undone."
+  const confirmText =
+    deleteConfirmInput.value.trim();
+
+  if (confirmText !== "DELETE") {
+    setStatus(
+      "type DELETE to confirm account deletion"
+    );
+
+    return;
+  }
+
+  const confirmed = window.confirm(
+    "Are you sure you want to permanently delete your Alignn account and all saved data? This action cannot be undone."
   );
 
-  if (!confirmed) return;
+  if (!confirmed) {
+    setStatus("account deletion cancelled");
+    return;
+  }
 
   deleteAccountBtn.disabled = true;
   setStatus("deleting account...");
 
   try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/auth/me`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ confirmText })
-    });
+    const response = await fetchWithAuth(
+      `${BASE_URL}/api/auth/me`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ confirmText })
+      }
+    );
 
-    const data = await res.json();
-
-    if (!res.ok) {
+    if (!response) {
       deleteAccountBtn.disabled = false;
-      setStatus(data.error || "failed to delete account");
+      return;
+    }
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      deleteAccountBtn.disabled = false;
+
+      setStatus(
+        data.error || "failed to delete account"
+      );
+
       return;
     }
 
     localStorage.clear();
-    alert("Your 𝒜lignn account has been deleted.");
+
+    window.alert(
+      "Your Alignn account has been deleted."
+    );
+
     window.location.replace("./signup.html");
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
+
     deleteAccountBtn.disabled = false;
-    setStatus("server error while deleting account");
+
+    setStatus(
+      "server error while deleting account"
+    );
   }
 }
 
-if (accountDetailsCard) {
-  accountDetailsCard.addEventListener("click", () => {
-    if (!nameEditBox || !displayNameInput || !profileName) return;
+editNameBtn?.addEventListener("click", () => {
+  const isOpen =
+    !nameEditBox.classList.contains("hidden");
 
-    nameEditBox.classList.toggle("hidden");
+  if (isOpen) {
+    closeNameEditor();
+  } else {
+    openNameEditor();
+  }
+});
 
-    if (!nameEditBox.classList.contains("hidden")) {
-      const currentName = profileName.textContent;
+cancelNameBtn?.addEventListener(
+  "click",
+  closeNameEditor
+);
 
-      displayNameInput.value =
-        currentName &&
-        currentName !== "No name added yet" &&
-        currentName !== "Loading..." &&
-        currentName !== "Unavailable"
-          ? currentName
-          : "";
+saveNameBtn?.addEventListener(
+  "click",
+  saveDisplayName
+);
 
-      displayNameInput.focus();
-    }
-  });
-}
-
-if (saveNameBtn) {
-  saveNameBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    saveDisplayName();
-  });
-}
-
-if (displayNameInput) {
-  displayNameInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
+displayNameInput?.addEventListener(
+  "keydown",
+  (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
       saveDisplayName();
     }
-  });
-}
 
-if (nameEditBox) {
-  nameEditBox.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-}
+    if (event.key === "Escape") {
+      closeNameEditor();
+    }
+  }
+);
 
-if (logoutBtnSide) {
-  logoutBtnSide.addEventListener("click", logout);
-}
+deleteConfirmInput?.addEventListener(
+  "input",
+  () => {
+    const isConfirmed =
+      deleteConfirmInput.value.trim() === "DELETE";
 
-if (deleteAccountBtn) {
-  deleteAccountBtn.addEventListener("click", deleteAccount);
-}
+    deleteAccountBtn.disabled = !isConfirmed;
+  }
+);
 
-if (changePasswordBtn) {
-  changePasswordBtn.addEventListener("click", changePassword);
-}
+deleteAccountBtn?.addEventListener(
+  "click",
+  deleteAccount
+);
 
-window.addEventListener("DOMContentLoaded", () => {
-  loadProfile();
-});
+logoutBtn?.addEventListener("click", logout);
+
+mobileProfileLogoutBtn?.addEventListener(
+  "click",
+  logout
+);
+
+setupMobileProfileMenu();
+
+window.addEventListener(
+  "DOMContentLoaded",
+  loadProfile
+);

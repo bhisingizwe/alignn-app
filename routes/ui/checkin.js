@@ -3,38 +3,107 @@ const BASE_URL = "https://alignn-app.vercel.app";
 const mentalStateInput = document.getElementById("mentalStateInput");
 const reflectionInput = document.getElementById("reflectionInput");
 const saveCheckinBtn = document.getElementById("saveCheckinBtn");
-const loadCheckinHistoryBtn = document.getElementById("loadCheckinHistoryBtn");
 const checkinStatus = document.getElementById("checkinStatus");
-const checkinHistoryList = document.getElementById("checkinHistoryList");
-const logoutBtnSide = document.getElementById("logoutBtnSide");
 
-function setStatus(msg) {
-  checkinStatus.textContent = `Status: ${msg}`;
-}
+const logoutBtn = document.getElementById("logoutBtn");
+const mobileCheckinLogoutBtn = document.getElementById(
+  "mobileCheckinLogoutBtn"
+);
 
-function formatDate(dateString) {
-  const date = new Date(dateString);
+function setStatus(message) {
+  if (!checkinStatus) return;
 
-  return date.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
+  checkinStatus.textContent = `Status: ${message}`;
 }
 
 function logout() {
   clearSessionAndRedirect();
 }
 
+function setupMobileCheckinMenu() {
+  const menuButton = document.getElementById("mobileCheckinMenuBtn");
+  const menu = document.getElementById("mobileCheckinMenu");
+  const closeButton = document.getElementById(
+    "mobileCheckinMenuClose"
+  );
+  const overlay = document.getElementById(
+    "mobileCheckinMenuOverlay"
+  );
+
+  if (!menuButton || !menu || !overlay) return;
+
+  function openMenu() {
+    menu.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+
+    document.body.classList.add("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu() {
+    menu.classList.add("hidden");
+    overlay.classList.add("hidden");
+
+    document.body.classList.remove("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  menuButton.addEventListener("click", openMenu);
+
+  closeButton?.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", closeMenu);
+
+  menu.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  menu
+    .querySelectorAll(".mobile-workout-link")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const plan = button.dataset.plan;
+
+        if (!plan) return;
+
+        window.location.href =
+          `./workout-plan.html?plan=${encodeURIComponent(plan)}`;
+      });
+    });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      !menu.classList.contains("hidden")
+    ) {
+      closeMenu();
+    }
+  });
+}
+
 async function saveCheckin() {
   const token = requireAuth();
+
   if (!token) return;
 
-  const mental_state = mentalStateInput.value.trim();
+  if (
+    !mentalStateInput ||
+    !reflectionInput ||
+    !saveCheckinBtn
+  ) {
+    console.error("Required Check-In form elements are missing.");
+    return;
+  }
+
+  const mentalState = mentalStateInput.value.trim();
   const reflection = reflectionInput.value.trim();
 
-  if (!mental_state) {
+  if (!mentalState) {
     setStatus("Enter your mental state first");
+    mentalStateInput.focus();
     return;
   }
 
@@ -42,107 +111,55 @@ async function saveCheckin() {
   saveCheckinBtn.disabled = true;
 
   try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/checkin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        mental_state,
-        reflection
-      })
-    });
+    const response = await fetchWithAuth(
+      `${BASE_URL}/api/checkin`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          mental_state: mentalState,
+          reflection
+        })
+      }
+    );
 
-    if (!res) {
-      saveCheckinBtn.disabled = false;
-      return;
-    }
+    if (!response) return;
 
-    const data = await res.json();
-    saveCheckinBtn.disabled = false;
+    const data = await response.json();
 
-    if (!res.ok) {
+    if (!response.ok) {
       setStatus(data.error || "Failed to save check-in");
       return;
     }
 
     mentalStateInput.value = "";
     reflectionInput.value = "";
+
     setStatus("check-in saved");
-
-    loadCheckinHistory();
-  } catch (err) {
+  } catch (error) {
+    console.error("Check-In save error:", error);
+    setStatus("server error");
+  } finally {
     saveCheckinBtn.disabled = false;
-    setStatus("server error");
-    console.error(err);
   }
 }
 
-async function loadCheckinHistory() {
-  const token = requireAuth();
-  if (!token) return;
+saveCheckinBtn?.addEventListener("click", saveCheckin);
 
-  setStatus("loading check-in history...");
-  loadCheckinHistoryBtn.disabled = true;
-
-  try {
-    const res = await fetchWithAuth(`${BASE_URL}/api/checkin`, {
-      method: "GET"
-    });
-
-    if (!res) {
-      loadCheckinHistoryBtn.disabled = false;
-      return;
-    }
-
-    const data = await res.json();
-    loadCheckinHistoryBtn.disabled = false;
-
-    if (!res.ok) {
-      setStatus(data.error || "failed to load check-ins");
-      return;
-    }
-
-    const checkins = data.checkins || [];
-
-    if (checkins.length === 0) {
-      checkinHistoryList.innerHTML = `
-        <div class="muted small">No check-ins found yet.</div>
-      `;
-      setStatus("no check-ins yet");
-      return;
-    }
-
-    checkinHistoryList.innerHTML = "";
-
-    checkins.forEach((item) => {
-      const card = document.createElement("div");
-      card.className = "historyCard";
-
-      card.innerHTML = `
-        <div class="historyDate">${formatDate(item.created_at)}</div>
-        <div class="historyPrompt">Mental state: ${item.mental_state}</div>
-        <div class="historyAnswer">${item.reflection || "No reflection added."}</div>
-      `;
-
-      checkinHistoryList.appendChild(card);
-    });
-
-    setStatus(`loaded ${checkins.length} check-in(s)`);
-  } catch (err) {
-    loadCheckinHistoryBtn.disabled = false;
-    setStatus("server error");
-    console.error(err);
+mentalStateInput?.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    saveCheckin();
   }
-}
+});
 
-saveCheckinBtn.addEventListener("click", saveCheckin);
-loadCheckinHistoryBtn.addEventListener("click", loadCheckinHistory);
+logoutBtn?.addEventListener("click", logout);
+mobileCheckinLogoutBtn?.addEventListener("click", logout);
 
-if (logoutBtnSide) {
-  logoutBtnSide.addEventListener("click", logout);
-}
+setupMobileCheckinMenu();
 
 window.addEventListener("DOMContentLoaded", () => {
-  loadCheckinHistory();
+  requireAuth();
 });

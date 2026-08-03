@@ -11,7 +11,9 @@ const intensityInput = document.getElementById("intensityInput");
 const notesInput = document.getElementById("notesInput");
 const moodHistoryList = document.getElementById("moodHistoryList");
 const moodButtons = document.querySelectorAll(".moodBtn");
-const logoutBtnSide = document.getElementById("logoutBtnSide");
+const logoutBtnSide = document.getElementById("logoutBtn");
+const mobileMoodLogoutBtn = document.getElementById("mobileMoodLogoutBtn");
+
 
 let selectedMood = null;
 let moodChartInstance = null;
@@ -35,6 +37,58 @@ function formatDate(dateString) {
 
 function logout() {
   clearSessionAndRedirect();
+}
+
+function setupMobileMoodMenu() {
+  const menuButton = document.getElementById("mobileMoodMenuBtn");
+  const menu = document.getElementById("mobileMoodMenu");
+  const closeButton = document.getElementById("mobileMoodMenuClose");
+  const overlay = document.getElementById("mobileMoodMenuOverlay");
+
+  if (!menuButton || !menu || !overlay) return;
+
+  function openMenu() {
+    menu.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    document.body.classList.add("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu() {
+    menu.classList.add("hidden");
+    overlay.classList.add("hidden");
+    document.body.classList.remove("mobile-menu-open");
+
+    menuButton.setAttribute("aria-expanded", "false");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  menuButton.addEventListener("click", openMenu);
+
+  closeButton?.addEventListener("click", closeMenu);
+  overlay.addEventListener("click", closeMenu);
+
+  menu.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  menu.querySelectorAll(".mobile-workout-link").forEach((button) => {
+    button.addEventListener("click", () => {
+      const plan = button.dataset.plan;
+
+      if (!plan) return;
+
+      window.location.href = `./workout-plan.html?plan=${plan}`;
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !menu.classList.contains("hidden")) {
+      closeMenu();
+    }
+  });
 }
 
 function getMoodColor(mood) {
@@ -160,7 +214,6 @@ async function saveMood() {
     setStatus("mood saved");
 
     loadMoodStats();
-    loadMoodHistory();
   } catch (err) {
     saveMoodBtn.disabled = false;
     setStatus("failed to save mood");
@@ -169,6 +222,8 @@ async function saveMood() {
 }
 
 async function loadMoodHistory() {
+  if (!loadMoodHistoryBtn || !moodHistoryList) return;
+
   const token = requireAuth();
   if (!token) return;
 
@@ -196,7 +251,8 @@ async function loadMoodHistory() {
     const moods = data.moods || [];
 
     if (moods.length === 0) {
-      moodHistoryList.innerHTML = `<div class="muted small">No mood entries found yet.</div>`;
+      moodHistoryList.innerHTML =
+        `<div class="muted small">No mood entries found yet.</div>`;
       setStatus("no moods yet");
       return;
     }
@@ -217,7 +273,9 @@ async function loadMoodHistory() {
       moodHistoryList.appendChild(card);
     });
 
-    setStatus(`loaded ${moods.length} mood entr${moods.length === 1 ? "y" : "ies"}`);
+    setStatus(
+      `loaded ${moods.length} mood entr${moods.length === 1 ? "y" : "ies"}`
+    );
   } catch (err) {
     loadMoodHistoryBtn.disabled = false;
     setStatus("failed to load mood history");
@@ -268,13 +326,47 @@ moodButtons.forEach((btn) => {
   });
 });
 
+if (saveMoodBtn) {
+  saveMoodBtn.addEventListener("click", saveMood);
+}
+
+if (loadMoodHistoryBtn) {
+  loadMoodHistoryBtn.addEventListener("click", loadMoodHistory);
+}
+
+if (loadMoodStatsBtn) {
+  loadMoodStatsBtn.addEventListener("click", loadMoodStats);
+}
+
+if (logoutBtnSide) {
+  logoutBtnSide.addEventListener("click", logout);
+}
+
+if (mobileMoodLogoutBtn) {
+  mobileMoodLogoutBtn.addEventListener("click", logout);
+}
+
+setupMobileMoodMenu();
+
+window.addEventListener("DOMContentLoaded", () => {
+  loadMoodStats();
+});
+
 saveMoodBtn.addEventListener("click", saveMood);
-loadMoodHistoryBtn.addEventListener("click", loadMoodHistory);
+if (loadMoodHistoryBtn) {
+  loadMoodHistoryBtn.addEventListener("click", loadMoodHistory);
+}
 loadMoodStatsBtn.addEventListener("click", loadMoodStats);
 
 if (logoutBtnSide) {
   logoutBtnSide.addEventListener("click", logout);
 }
+
+if (mobileMoodLogoutBtn) {
+  mobileMoodLogoutBtn.addEventListener("click", logout);
+}
+
+setupMobileMoodMenu();
 
 window.addEventListener("DOMContentLoaded", () => {
   loadMoodStats();

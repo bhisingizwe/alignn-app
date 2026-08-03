@@ -2,119 +2,482 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>𝒜lignn — Profile</title>
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body class="profile-page">
   <div class="soul-bg">
-    <img class="soul-bg-image" src="./backgrounds/profile.jpg" alt="">
+    <img
+      class="soul-bg-image"
+      src="./backgrounds/profile.jpg"
+      alt=""
+    />
+
     <div class="soul-bg-overlay"></div>
   </div>
 
   <header class="header dashboard-topbar">
     <div>
-      <a class="brandLink" href="./dashboard.html">
+      <a
+        class="brandLink"
+        href="./dashboard.html"
+        aria-label="Go to Alignn dashboard"
+      >
         <div class="brand">𝒜lignn</div>
       </a>
+
       <div class="tagline">A place for you</div>
     </div>
+
+    <button
+      id="mobileProfileMenuBtn"
+      class="mobile-menu-btn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobileProfileMenu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
-<main class="mood-shell profile-shell">
-  <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+  <div
+    id="mobileProfileMenuOverlay"
+    class="mobile-menu-overlay hidden"
+    aria-hidden="true"
+  ></div>
 
-  <section class="mood-center-panel">
-    <div class="mood-page-header">
-      <h1>Profile</h1>
-      <p>Manage your account details and preferences.</p>
+  <nav
+    id="mobileProfileMenu"
+    class="mobile-workout-menu hidden"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-menu-header">
+      <div>
+        <div class="mobile-menu-brand">𝒜lignn</div>
+        <div class="mobile-menu-tagline">A place for you</div>
+      </div>
+
+      <button
+        id="mobileProfileMenuClose"
+        class="mobile-menu-close"
+        type="button"
+        aria-label="Close navigation menu"
+      >
+        ×
+      </button>
     </div>
 
-    <section class="mood-form-card">
-      <div class="profile-option-card profile-account-card" id="accountDetailsCard">
-        <div class="profile-option-icon">👤</div>
+    <div class="mobile-menu-groups">
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Main</p>
 
-        <div>
-          <h2>Account Details</h2>
-          <p><strong>Name:</strong> <span id="profileName">Loading...</span></p>
-          <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./dashboard.html">
+            Home
+          </a>
 
-          <div id="nameEditBox" class="name-edit-box hidden">
-            <label for="displayNameInput" class="label">Display name</label>
-            <input id="displayNameInput" class="input" type="text" placeholder="Enter your name" />
+          <a class="mobile-nav-link" href="./mood.html">
+            Mood
+          </a>
 
-            <button id="saveNameBtn" class="primary profile-language-save" type="button">
-              Save Name
+          <a class="mobile-nav-link" href="./checkin.html">
+            Check-In
+          </a>
+
+          <a class="mobile-nav-link" href="./journal.html">
+            Journal
+          </a>
+
+          <a class="mobile-nav-link" href="./reflection.html">
+            Reflection
+          </a>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Workout Plans</p>
+
+        <div class="mobile-menu-links">
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="build-muscle"
+          >
+            Build Muscle
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="fat-loss"
+          >
+            Fat Loss
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="maintain"
+          >
+            Maintain
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="progressive-overload"
+          >
+            Progressive Overload
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="nutrition"
+          >
+            Nutrition
+          </button>
+
+          <button
+            class="mobile-workout-link"
+            type="button"
+            data-plan="recovery"
+          >
+            Recovery
+          </button>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Settings</p>
+
+        <div class="mobile-menu-links">
+          <a class="mobile-nav-link" href="./history.html">
+            History
+          </a>
+
+          <a
+            class="mobile-nav-link active"
+            href="./profile.html"
+            aria-current="page"
+          >
+            Profile
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-menu-logout-area">
+      <button
+        id="mobileProfileLogoutBtn"
+        class="mobile-menu-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </div>
+  </nav>
+
+  <main class="profile-shell">
+    <section class="profile-main-panel">
+      <div class="mood-page-header profile-page-header">
+        <h1>Profile</h1>
+
+        <p>
+          Manage your account details and preferences.
+        </p>
+      </div>
+
+      <section class="profile-settings-card">
+
+        <article
+          id="accountDetailsCard"
+          class="profile-setting-section profile-account-section"
+        >
+          <div class="profile-setting-header">
+            <div class="profile-option-icon" aria-hidden="true">
+              ♙
+            </div>
+
+            <div class="profile-setting-copy">
+              <h2>Account Details</h2>
+
+              <p>
+                View and update the name connected to your
+                account.
+              </p>
+            </div>
+
+            <button
+              id="editNameBtn"
+              class="profile-secondary-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="nameEditBox"
+            >
+              Edit
             </button>
           </div>
 
-          <p class="muted small profile-note">
-            Click account details to add or change your display name.
-          </p>
-        </div>
-      </div>
+          <div class="profile-account-information">
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">
+                Name
+              </span>
 
-      <div class="profile-option-card">
-        <div class="profile-option-icon">🔒</div>
+              <span
+                id="profileName"
+                class="profile-detail-value"
+              >
+                Loading...
+              </span>
+            </div>
 
-        <div>
-          <h2>Change Password</h2>
-          <p>Update your password through the reset page.</p>
-        </div>
+            <div class="profile-detail-row">
+              <span class="profile-detail-label">
+                Email
+              </span>
 
-        <a href="./forgot-password.html" class="primary profile-action-btn">Change</a>
-      </div>
+              <span
+                id="profileEmail"
+                class="profile-detail-value"
+              >
+                Loading...
+              </span>
+            </div>
+          </div>
 
-      <div class="profile-option-card danger-zone-card">
-        <div class="profile-option-icon danger-icon">⚠️</div>
+          <div
+            id="nameEditBox"
+            class="name-edit-box hidden"
+          >
+            <label
+              for="displayNameInput"
+              class="label"
+            >
+              Display name
+            </label>
 
-        <div>
-          <h2>Delete Account</h2>
-          <p>
-            Permanently delete your 𝒜lignn account and saved data.
-            This action cannot be undone.
-          </p>
+            <input
+              id="displayNameInput"
+              class="input"
+              type="text"
+              maxlength="80"
+              autocomplete="name"
+              placeholder="Enter your display name"
+            />
+
+            <div class="profile-inline-actions">
+              <button
+                id="cancelNameBtn"
+                class="profile-secondary-btn"
+                type="button"
+              >
+                Cancel
+              </button>
+
+              <button
+                id="saveNameBtn"
+                class="primary"
+                type="button"
+              >
+                Save Name
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <div class="profile-section-divider"></div>
+
+        <article class="profile-setting-section">
+          <div class="profile-setting-header">
+            <div class="profile-option-icon" aria-hidden="true">
+              ◈
+            </div>
+
+            <div class="profile-setting-copy">
+              <h2>Change Password</h2>
+
+              <p>
+                Update your password through Alignn’s secure
+                password reset page.
+              </p>
+            </div>
+
+            <a
+              href="./forgot-password.html"
+              class="primary profile-action-btn"
+            >
+              Change
+            </a>
+          </div>
+        </article>
+
+        <div class="profile-section-divider"></div>
+
+        <article class="profile-setting-section danger-zone-card">
+          <div class="profile-setting-header profile-danger-header">
+            <div
+              class="profile-option-icon danger-icon"
+              aria-hidden="true"
+            >
+              !
+            </div>
+
+            <div class="profile-setting-copy">
+              <h2>Delete Account</h2>
+
+              <p>
+                Permanently delete your Alignn account and
+                all saved information. This action cannot be
+                undone.
+              </p>
+            </div>
+          </div>
 
           <div class="delete-account-box">
-            <label for="deleteConfirmInput" class="label">Type DELETE to confirm</label>
-            <input id="deleteConfirmInput" class="input" type="text" placeholder="Type DELETE" />
+            <label
+              for="deleteConfirmInput"
+              class="label"
+            >
+              Type DELETE to confirm
+            </label>
 
-            <button id="deleteAccountBtn" class="danger-btn" type="button">
+            <input
+              id="deleteConfirmInput"
+              class="input"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Type DELETE"
+            />
+
+            <button
+              id="deleteAccountBtn"
+              class="danger-btn"
+              type="button"
+              disabled
+            >
               Delete My Account
             </button>
           </div>
+        </article>
+
+        <div
+          id="profileStatus"
+          class="status muted"
+          aria-live="polite"
+        >
         </div>
-      </div>
-
-      <div id="profileStatus" class="status muted">Status: idle</div>
+      </section>
     </section>
-  </section>
 
-  <aside class="app-right-panel">
-    <a class="dashboard-icon-link" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
-    <a class="dashboard-icon-link" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
-    <a class="dashboard-icon-link" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
-    <a class="dashboard-icon-link" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
-    <a class="dashboard-icon-link" href="./reflection.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
-    <a class="dashboard-icon-link active" href="./profile.html"><span class="dashboard-icon-circle">♙</span><span>Profile</span></a>
-    <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
-    <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
-  </aside>
-</main>
+    <aside
+      class="app-right-panel"
+      aria-label="Page navigation"
+    >
+      <a
+        class="dashboard-icon-link"
+        href="./dashboard.html"
+      >
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./mood.html"
+      >
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./checkin.html"
+      >
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./journal.html"
+      >
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./reflection.html"
+      >
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link active"
+        href="./profile.html"
+        aria-current="page"
+      >
+        <span class="dashboard-icon-circle">♙</span>
+        <span>Profile</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./history.html"
+      >
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button
+        id="logoutBtn"
+        class="dashboard-side-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </aside>
+  </main>
 
   <footer class="app-footer">
     <div class="footer-links">
-      <a href="about.html" class="footer-link">About</a>
-      <a href="contact.html" class="footer-link">Contact</a>
-      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+      <a href="./about.html" class="footer-link">
+        About
+      </a>
+
+      <a href="./contact.html" class="footer-link">
+        Contact
+      </a>
+
+      <a
+        href="./crisis-support.html"
+        class="footer-link"
+      >
+        Crisis support
+      </a>
     </div>
 
-     <p class="footer-copyright">
-    © 2026 𝒜lignn. All rights reserved.
-  </p>
+    <p class="footer-copyright">
+      © 2026 𝒜lignn. All rights reserved.
+    </p>
   </footer>
 
+  <script src="./translations.js"></script>
   <script src="./auth.js"></script>
   <script src="./profile.js"></script>
 </body>

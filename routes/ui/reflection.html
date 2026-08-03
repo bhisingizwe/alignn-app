@@ -2,139 +2,533 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>𝒜lignn — Reflection</title>
+
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body class="reflection-page">
   <div class="soul-bg">
-    <video class="soul-bg-video" autoplay muted loop playsinline>
-      <source src="./backgrounds/reflection.mp4" type="video/mp4">
+    <video
+      class="soul-bg-video"
+      autoplay
+      muted
+      loop
+      playsinline
+    >
+      <source
+        src="./backgrounds/reflection.mp4"
+        type="video/mp4"
+      />
     </video>
+
     <div class="soul-bg-overlay"></div>
   </div>
 
   <header class="header dashboard-topbar">
     <div>
-      <a class="brandLink" href="./dashboard.html">
+      <a
+        class="brandLink"
+        href="./dashboard.html"
+        aria-label="Go to Alignn dashboard"
+      >
         <div class="brand">𝒜lignn</div>
       </a>
+
       <div class="tagline">A place for you</div>
     </div>
+
+    <button
+      id="mobileReflectionMenuBtn"
+      class="mobile-menu-btn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-controls="mobileReflectionMenu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </header>
 
-<main class="mood-shell">
-<a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
+  <div
+    id="mobileReflectionMenuOverlay"
+    class="mobile-menu-overlay hidden"
+    aria-hidden="true"
+  ></div>
 
-  <aside class="mood-left-panel">
-    <h2 class="mood-left-title">Reflection Resources</h2>
+  <nav
+    id="mobileReflectionMenu"
+    class="mobile-workout-menu hidden"
+    aria-label="Mobile navigation"
+  >
+    <div class="mobile-menu-header">
+      <div>
+        <div class="mobile-menu-brand">𝒜lignn</div>
+        <div class="mobile-menu-tagline">A place for you</div>
+      </div>
 
-    <details class="mood-resource-card">
-      <summary>💭 Guided Reflection Prompts</summary>
-      <ul class="resource-list">
-        <li>What am I feeling right now?</li>
-        <li>What may be contributing to this feeling?</li>
-        <li>What do I need today?</li>
-        <li>What is one small next step I can take?</li>
-      </ul>
-    </details>
-
-    <details class="mood-resource-card">
-      <summary>❤️ Emotional Processing Support</summary>
-      <ul class="resource-list">
-        <li>Name the emotion without judging it.</li>
-        <li>Notice where you feel it in your body.</li>
-        <li>Remind yourself emotions are temporary.</li>
-        <li>Ask yourself what this emotion may be trying to tell you.</li>
-      </ul>
-    </details>
-
-    <details class="mood-resource-card">
-      <summary>🌱 Grounding Questions</summary>
-      <ul class="resource-list">
-        <li>What are 3 things I can see right now?</li>
-        <li>What is one thing I can hear?</li>
-        <li>What is one thing I can touch?</li>
-        <li>What is within my control today?</li>
-      </ul>
-    </details>
-  </aside>
-
-  <section class="mood-center-panel">
-    <div class="mood-page-header">
-      <h1>Reflection</h1>
-      <p>Pick how you feel or roll the dice. Then write what’s real.</p>
+      <button
+        id="mobileReflectionMenuClose"
+        class="mobile-menu-close"
+        type="button"
+        aria-label="Close navigation menu"
+      >
+        ×
+      </button>
     </div>
 
-    <section class="mood-form-card">
-      <div class="row">
-        <div class="feelings">
-          <button class="pill" data-feeling="anxious">Anxious</button>
-          <button class="pill" data-feeling="lonely">Lonely</button>
-          <button class="pill" data-feeling="overwhelmed">Overwhelmed</button>
-          <button class="pill" data-feeling="sad">Sad</button>
-          <button class="pill" data-feeling="numb">Numb</button>
-          <button class="pill" data-feeling="angry">Angry</button>
-          <button class="pill" data-feeling="stuck">Stuck</button>
-          <button class="pill" data-feeling="hopeful">Hopeful</button>
-          <button class="pill" data-feeling="happy">Happy</button>
+    <div class="mobile-menu-groups">
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Main</p>
+
+        <div class="mobile-menu-links">
+          <a
+            class="mobile-nav-link"
+            href="./dashboard.html"
+          >
+            Home
+          </a>
+
+          <a
+            class="mobile-nav-link"
+            href="./mood.html"
+          >
+            Mood
+          </a>
+
+          <a
+            class="mobile-nav-link"
+            href="./checkin.html"
+          >
+            Check-In
+          </a>
+
+          <a
+            class="mobile-nav-link"
+            href="./journal.html"
+          >
+            Journal
+          </a>
+
+          <a
+            class="mobile-nav-link active"
+            href="./reflection.html"
+            aria-current="page"
+          >
+            Reflection
+          </a>
+        </div>
+      </section>
+
+      <section class="mobile-menu-group">
+  <p class="mobile-menu-label">Workout Plans</p>
+
+  <div class="mobile-menu-links">
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=build-muscle"
+    >
+      Build Muscle
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=fat-loss"
+    >
+      Fat Loss
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=maintenance"
+    >
+      Maintain
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=progressive-overload"
+    >
+      Progressive Overload
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=nutrition"
+    >
+      Nutrition
+    </a>
+
+    <a
+      class="mobile-workout-link"
+      href="./workout-plan.html?plan=recovery"
+    >
+      Recovery
+    </a>
+  </div>
+</section>
+
+      <section class="mobile-menu-group">
+        <p class="mobile-menu-label">Settings</p>
+
+        <div class="mobile-menu-links">
+          <a
+            class="mobile-nav-link"
+            href="./history.html"
+          >
+            History
+          </a>
+
+          <a
+            class="mobile-nav-link"
+            href="./profile.html"
+          >
+            Profile
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-menu-logout-area">
+      <button
+        id="mobileReflectionLogoutBtn"
+        class="mobile-menu-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </div>
+  </nav>
+
+  <main class="mood-shell">
+
+    <aside class="mood-left-panel">
+      <h2 class="mood-left-title">
+        Reflection Resources
+      </h2>
+
+      <details class="mood-resource-card">
+        <summary>
+          💭 Guided Reflection Prompts
+        </summary>
+
+        <ul class="resource-list">
+          <li>What am I feeling right now?</li>
+          <li>What may be contributing to this feeling?</li>
+          <li>What do I need today?</li>
+          <li>What is one small next step I can take?</li>
+        </ul>
+      </details>
+
+      <details class="mood-resource-card">
+        <summary>
+          ❤️ Emotional Processing Support
+        </summary>
+
+        <ul class="resource-list">
+          <li>Name the emotion without judging it.</li>
+          <li>Notice where you feel it in your body.</li>
+          <li>Remind yourself that emotions are temporary.</li>
+          <li>
+            Ask what this emotion may be trying to tell you.
+          </li>
+        </ul>
+      </details>
+
+      <details class="mood-resource-card">
+        <summary>
+          🌱 Grounding Questions
+        </summary>
+
+        <ul class="resource-list">
+          <li>What are three things I can see right now?</li>
+          <li>What is one thing I can hear?</li>
+          <li>What is one thing I can touch?</li>
+          <li>What is within my control today?</li>
+        </ul>
+      </details>
+    </aside>
+
+    <section class="mood-center-panel">
+      <div class="mood-page-header">
+        <h1>Reflection</h1>
+
+        <p>
+          Pick how you feel or roll the dice. Then write
+          what’s real.
+        </p>
+      </div>
+
+      <section class="mood-form-card">
+
+        <div class="reflection-feeling-row">
+          <div
+            class="feelings"
+            aria-label="Choose how you are feeling"
+          >
+            <button
+              class="pill"
+              type="button"
+              data-feeling="anxious"
+            >
+              Anxious
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="lonely"
+            >
+              Lonely
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="overwhelmed"
+            >
+              Overwhelmed
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="sad"
+            >
+              Sad
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="numb"
+            >
+              Numb
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="angry"
+            >
+              Angry
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="stuck"
+            >
+              Stuck
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="hopeful"
+            >
+              Hopeful
+            </button>
+
+            <button
+              class="pill"
+              type="button"
+              data-feeling="happy"
+            >
+              Happy
+            </button>
+          </div>
+
+          <button
+            id="diceBtn"
+            class="dice"
+            type="button"
+            aria-label="Choose a random reflection prompt"
+            title="Choose a random reflection prompt"
+          >
+            🎲
+          </button>
         </div>
 
-        <button id="diceBtn" class="dice">🎲</button>
-      </div>
+        <div class="divider"></div>
 
-      <div class="divider"></div>
+        <div
+          id="promptArea"
+          class="promptArea"
+          aria-live="polite"
+        >
+          <div class="promptLabel">
+            Current prompt
+          </div>
 
-      <div id="promptArea" class="promptArea">
-        <div class="promptLabel">Current prompt</div>
-        <div id="promptText" class="promptText muted">Choose a feeling or roll the dice.</div>
-      </div>
-
-      <div class="suggestions">
-        <div class="promptLabel">Suggested prompts</div>
-        <div id="suggestionList" class="suggestionList">
-          <div class="muted small">Suggestions will appear here.</div>
+          <div
+            id="promptText"
+            class="promptText muted"
+          >
+            Choose a feeling or roll the dice.
+          </div>
         </div>
-      </div>
 
-      <div class="moodSection">
-        <label class="label" for="answerInput">Your answer</label>
-        <textarea id="answerInput" class="textarea mood-notes-box" rows="7" placeholder="Write what you can. No pressure."></textarea>
-      </div>
+        <div class="suggestions">
+          <div class="promptLabel">
+            Suggested prompts
+          </div>
 
-      <div class="row end">
-        <button id="saveBtn" class="primary">Save Reflection</button>
-      </div>
+          <div
+            id="suggestionList"
+            class="suggestionList"
+            aria-live="polite"
+          >
+            <div class="muted small">
+              Suggestions will appear here.
+            </div>
+          </div>
+        </div>
 
-      <div id="status" class="status muted">Status: idle</div>
+        <div class="moodSection reflection-answer-section">
+          <label
+            class="label"
+            for="answerInput"
+          >
+            Your answer
+          </label>
+
+          <textarea
+            id="answerInput"
+            class="textarea mood-notes-box"
+            rows="7"
+            placeholder="Write what you can. No pressure."
+          ></textarea>
+        </div>
+
+        <div class="row end">
+          <button
+            id="saveBtn"
+            class="primary"
+            type="button"
+          >
+            Save Reflection
+          </button>
+        </div>
+
+        <div
+          id="status"
+          class="status muted"
+          aria-live="polite"
+        >
+        </div>
+      </section>
     </section>
-  </section>
 
-  <aside class="app-right-panel">
-    <a class="dashboard-icon-link" href="./dashboard.html"><span class="dashboard-icon-circle">⌂</span><span>Home</span></a>
-    <a class="dashboard-icon-link" href="./mood.html"><span class="dashboard-icon-circle">✦</span><span>Mood</span></a>
-    <a class="dashboard-icon-link" href="./checkin.html"><span class="dashboard-icon-circle">☾</span><span>Check-In</span></a>
-    <a class="dashboard-icon-link" href="./journal.html"><span class="dashboard-icon-circle">✎</span><span>Journal</span></a>
-    <a class="dashboard-icon-link active" href="./reflection.html"><span class="dashboard-icon-circle">◎</span><span>Reflection</span></a>
-    <a class="dashboard-icon-link" href="./profile.html"><span class="dashboard-icon-circle">♙</span><span>Profile</span></a>
-    <a class="dashboard-icon-link" href="./history.html"><span class="dashboard-icon-circle">⌛</span><span>History</span></a>
-    <button id="logoutBtn" class="dashboard-side-logout">Log out</button>
-  </aside>
-</main>
+    <aside
+      class="app-right-panel"
+      aria-label="Page navigation"
+    >
+      <a
+        class="dashboard-icon-link"
+        href="./dashboard.html"
+      >
+        <span class="dashboard-icon-circle">⌂</span>
+        <span>Home</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./mood.html"
+      >
+        <span class="dashboard-icon-circle">✦</span>
+        <span>Mood</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./checkin.html"
+      >
+        <span class="dashboard-icon-circle">☾</span>
+        <span>Check-In</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./journal.html"
+      >
+        <span class="dashboard-icon-circle">✎</span>
+        <span>Journal</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link active"
+        href="./reflection.html"
+        aria-current="page"
+      >
+        <span class="dashboard-icon-circle">◎</span>
+        <span>Reflection</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./profile.html"
+      >
+        <span class="dashboard-icon-circle">♙</span>
+        <span>Profile</span>
+      </a>
+
+      <a
+        class="dashboard-icon-link"
+        href="./history.html"
+      >
+        <span class="dashboard-icon-circle">⌛</span>
+        <span>History</span>
+      </a>
+
+      <button
+        id="logoutBtn"
+        class="dashboard-side-logout"
+        type="button"
+      >
+        Log out
+      </button>
+    </aside>
+  </main>
 
   <footer class="app-footer">
     <div class="footer-links">
-      <a href="about.html" class="footer-link">About</a>
-      <a href="contact.html" class="footer-link">Contact</a>
-      <a href="crisis-support.html" class="footer-link">Crisis support</a>
+      <a
+        href="./about.html"
+        class="footer-link"
+      >
+        About
+      </a>
+
+      <a
+        href="./contact.html"
+        class="footer-link"
+      >
+        Contact
+      </a>
+
+      <a
+        href="./crisis-support.html"
+        class="footer-link"
+      >
+        Crisis support
+      </a>
     </div>
 
-     <p class="footer-copyright">
-    © 2026 𝒜lignn. All rights reserved.
-  </p>
+    <p class="footer-copyright">
+      © 2026 𝒜lignn. All rights reserved.
+    </p>
   </footer>
 
+  <script src="./translations.js"></script>
   <script src="./auth.js"></script>
   <script src="./app.js"></script>
 </body>

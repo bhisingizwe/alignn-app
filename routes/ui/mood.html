@@ -14,16 +14,145 @@
   </div>
 
   <header class="header dashboard-topbar">
+  <div>
+    <a class="brandLink" href="./dashboard.html">
+      <div class="brand">𝒜lignn</div>
+    </a>
+    <div class="tagline">A place for you</div>
+  </div>
+
+  <button
+    class="mobile-menu-btn"
+    id="mobileMoodMenuBtn"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-expanded="false"
+    aria-controls="mobileMoodMenu"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div
+  class="mobile-menu-overlay hidden"
+  id="mobileMoodMenuOverlay"
+  aria-hidden="true"
+></div>
+
+<nav
+  class="mobile-workout-menu hidden"
+  id="mobileMoodMenu"
+  aria-label="Mobile navigation"
+>
+  <div class="mobile-menu-header">
     <div>
-      <a class="brandLink" href="./dashboard.html">
-        <div class="brand">𝒜lignn</div>
-      </a>
-      <div class="tagline">A place for you</div>
+      <div class="mobile-menu-brand">𝒜lignn</div>
+      <div class="mobile-menu-tagline">A place for you</div>
     </div>
-  </header>
+
+    <button
+      class="mobile-menu-close"
+      id="mobileMoodMenuClose"
+      type="button"
+      aria-label="Close navigation menu"
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="mobile-menu-groups">
+    <section class="mobile-menu-group" aria-labelledby="mood-menu-main">
+      <p class="mobile-menu-label" id="mood-menu-main">Main</p>
+
+      <div class="mobile-menu-links">
+        <a class="mobile-nav-link" href="./dashboard.html">Home</a>
+        <a class="mobile-nav-link active" href="./mood.html">Mood</a>
+        <a class="mobile-nav-link" href="./checkin.html">Check-In</a>
+        <a class="mobile-nav-link" href="./journal.html">Journal</a>
+        <a class="mobile-nav-link" href="./reflection.html">Reflection</a>
+      </div>
+    </section>
+
+    <section class="mobile-menu-group" aria-labelledby="mood-menu-workouts">
+      <p class="mobile-menu-label" id="mood-menu-workouts">
+        Workout Plans
+      </p>
+
+      <div class="mobile-menu-links">
+        <button
+          class="mobile-workout-link"
+          data-plan="build-muscle"
+          type="button"
+        >
+          Build Muscle
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="fat-loss"
+          type="button"
+        >
+          Fat Loss
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="maintenance"
+          type="button"
+        >
+          Maintain
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="progressive-overload"
+          type="button"
+        >
+          Progressive Overload
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="nutrition"
+          type="button"
+        >
+          Nutrition
+        </button>
+
+        <button
+          class="mobile-workout-link"
+          data-plan="recovery"
+          type="button"
+        >
+          Recovery
+        </button>
+      </div>
+    </section>
+
+    <section class="mobile-menu-group" aria-labelledby="mood-menu-settings">
+      <p class="mobile-menu-label" id="mood-menu-settings">Settings</p>
+
+      <div class="mobile-menu-links">
+        <a class="mobile-nav-link" href="./history.html">History</a>
+        <a class="mobile-nav-link" href="./profile.html">Profile</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="mobile-menu-logout-area">
+    <button
+      class="mobile-menu-logout"
+      id="mobileMoodLogoutBtn"
+      type="button"
+    >
+      Log out
+    </button>
+  </div>
+</nav>
 
   <main class="mood-shell">
-  <a href="./dashboard.html" class="back-dashboard-link">← Back to Dashboard</a>
   <aside class="mood-left-panel">
     <h2 class="mood-left-title">Mood Resources</h2>
 
@@ -113,7 +242,7 @@
         <button id="saveMoodBtn" class="primary">Save Mood</button>
       </div>
 
-      <div id="moodStatus" class="status muted">Status: idle</div>
+      <div id="moodStatus" class="status muted"></div>
     </section>
 
     <section class="mood-insights-section">
@@ -122,7 +251,7 @@
         <button id="loadMoodStatsBtn" class="primary secondaryBtn">Load Mood Insights</button>
       </div>
 
-      <div id="moodStatsStatus" class="status muted">Status: idle</div>
+      <div id="moodStatsStatus" class="status muted"></div>
 
       <div class="moodChartCard">
         <canvas id="moodChart"></canvas>

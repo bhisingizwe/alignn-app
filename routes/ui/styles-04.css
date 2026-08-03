@@ -1,0 +1,1268 @@
+/* ALIGNN CSS — sequential part 4 of 7
+   Original lines 4381–5644.
+   Keep all files in this exact order. */
+
+/* =====================================================
+   PROFILE PAGE — UPDATED LAYOUT
+===================================================== */
+
+.profile-page .profile-shell {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-main-panel {
+  min-width: 0;
+  width: 100%;
+}
+
+.profile-page-header {
+  width: 100%;
+  text-align: center;
+}
+
+.profile-settings-card {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 32px;
+  padding: 30px;
+  background:
+    linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.38),
+      rgba(255, 255, 255, 0.12)
+    );
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.68),
+    0 24px 60px rgba(35, 100, 165, 0.12);
+  backdrop-filter:
+    blur(40px)
+    saturate(185%);
+  -webkit-backdrop-filter:
+    blur(40px)
+    saturate(185%);
+}
+
+.profile-setting-section {
+  width: 100%;
+}
+
+.profile-setting-header {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-setting-copy {
+  min-width: 0;
+}
+
+.profile-setting-copy h2 {
+  margin: 0 0 7px;
+  color: var(--text-main);
+  font-size: 1.35rem;
+}
+
+.profile-setting-copy p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.profile-option-icon {
+  width: 58px;
+  height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(77, 146, 217, 0.15);
+  border-radius: 50%;
+  color: var(--sky-600);
+  background: rgba(234, 246, 255, 0.84);
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.profile-account-information {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  margin-left: 84px;
+}
+
+.profile-detail-row {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 14px;
+  align-items: baseline;
+}
+
+.profile-detail-label {
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.profile-detail-value {
+  min-width: 0;
+  color: var(--text-main);
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.profile-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 10px 17px;
+  color: var(--sky-700);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 10px 24px rgba(35, 100, 165, 0.08);
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-secondary-btn:hover {
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.name-edit-box {
+  margin: 22px 0 0 84px;
+  padding: 20px;
+  border: 1px solid rgba(77, 146, 217, 0.16);
+  border-radius: 22px;
+  background: rgba(234, 246, 255, 0.44);
+}
+
+.profile-inline-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.profile-section-divider {
+  height: 1px;
+  margin: 27px 0;
+  background: rgba(77, 146, 217, 0.15);
+}
+
+.profile-action-btn {
+  flex-shrink: 0;
+  min-width: 110px;
+}
+
+.profile-danger-header {
+  grid-template-columns: 64px minmax(0, 1fr);
+}
+
+.danger-zone-card .profile-setting-copy h2 {
+  color: #b73c3c;
+}
+
+.danger-icon {
+  color: #c94545;
+  border-color: rgba(201, 69, 69, 0.18);
+  background: rgba(255, 235, 235, 0.76);
+}
+
+.delete-account-box {
+  margin: 22px 0 0 84px;
+}
+
+.danger-btn {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 14px;
+  border: 1px solid rgba(201, 69, 69, 0.26);
+  border-radius: 16px;
+  padding: 12px 18px;
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      #df6262,
+      #bd3f3f
+    );
+  box-shadow:
+    0 14px 30px rgba(189, 63, 63, 0.2);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.danger-btn:disabled {
+  opacity: 0.45;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Desktop Profile */
+
+@media (min-width: 901px) {
+  .profile-page .mobile-menu-btn,
+  .profile-page .mobile-menu-overlay,
+  .profile-page .mobile-workout-menu {
+    display: none !important;
+  }
+
+  .profile-page .profile-shell {
+    width: min(1080px, calc(100% - 64px));
+    margin: 34px auto 0;
+    display: grid;
+    grid-template-columns:
+      minmax(0, 820px)
+      130px;
+    justify-content: center;
+    gap: 42px;
+    align-items: start;
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+
+  .profile-page .profile-page-header {
+    margin-bottom: 34px;
+  }
+
+  .profile-page .profile-page-header h1 {
+    font-size: clamp(3.5rem, 5vw, 5rem);
+  }
+
+  .profile-page .app-right-panel {
+    display: flex !important;
+  }
+}
+
+/* Mobile Profile */
+
+@media (max-width: 700px) {
+  body.profile-page {
+    min-height: 100vh;
+    display: block;
+    padding: 0;
+    background:
+      radial-gradient(
+        circle at 10% 8%,
+        rgba(200, 230, 255, 0.8),
+        transparent 32%
+      ),
+      linear-gradient(
+        180deg,
+        var(--sky-50) 0%,
+        #ffffff 100%
+      );
+  }
+
+  .profile-page .soul-bg-image {
+    display: none !important;
+  }
+
+  .profile-page .soul-bg-overlay {
+    background:
+      radial-gradient(
+        circle at 90% 8%,
+        rgba(169, 215, 255, 0.45),
+        transparent 34%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248, 252, 255, 0.97),
+        rgba(255, 255, 255, 0.93)
+      );
+  }
+
+  .profile-page .dashboard-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    min-height: 84px;
+    padding: 16px 18px;
+    align-items: center;
+    background: rgba(248, 252, 255, 0.86);
+    border-bottom:
+      1px solid rgba(77, 146, 217, 0.14);
+    backdrop-filter:
+      blur(22px)
+      saturate(170%);
+    -webkit-backdrop-filter:
+      blur(22px)
+      saturate(170%);
+  }
+
+  .profile-page .brand {
+    font-size: 1.8rem;
+  }
+
+  .profile-page .tagline {
+    margin-top: 1px;
+    font-size: 0.78rem;
+  }
+
+  .profile-page .mobile-menu-btn {
+    position: fixed;
+    top: 15px;
+    right: 16px;
+    z-index: 130;
+    width: 54px;
+    height: 54px;
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    border:
+      1px solid rgba(77, 146, 217, 0.22);
+    border-radius: 50%;
+    color: var(--text-main);
+    background:
+      rgba(255, 255, 255, 0.76);
+    box-shadow:
+      inset 0 1px
+        rgba(255, 255, 255, 0.8),
+      0 12px 28px
+        rgba(35, 100, 165, 0.16);
+    backdrop-filter:
+      blur(22px)
+      saturate(180%);
+    -webkit-backdrop-filter:
+      blur(22px)
+      saturate(180%);
+    cursor: pointer;
+  }
+
+  .profile-page .mobile-menu-btn span {
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text-main);
+  }
+
+  .profile-page .profile-shell {
+    width: calc(100% - 28px);
+    margin: 18px auto 0;
+    display: block;
+    transform: none !important;
+  }
+
+  .profile-page .app-right-panel {
+    display: none !important;
+  }
+
+  .profile-page .profile-page-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 12px auto 28px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .profile-page .profile-page-header h1 {
+    width: 100%;
+    margin: 0;
+    font-size:
+      clamp(2.6rem, 12vw, 3.7rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-align: center;
+  }
+
+  .profile-page .profile-page-header p {
+    width: 100%;
+    max-width: 340px;
+    margin: 14px auto 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .profile-settings-card {
+    padding: 20px;
+    border-radius: 26px;
+  }
+
+  .profile-setting-header {
+    grid-template-columns:
+      52px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .profile-setting-header > :last-child {
+    grid-column: 1 / -1;
+  }
+
+  .profile-option-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.15rem;
+  }
+
+  .profile-setting-copy h2 {
+    font-size: 1.18rem;
+  }
+
+  .profile-setting-copy p {
+    font-size: 0.88rem;
+  }
+
+  .profile-secondary-btn,
+  .profile-action-btn {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  .profile-account-information,
+  .name-edit-box,
+  .delete-account-box {
+    margin-left: 0;
+  }
+
+  .profile-account-information {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 18px;
+    background:
+      rgba(234, 246, 255, 0.46);
+  }
+
+  .profile-detail-row {
+    grid-template-columns: 90px auto;
+    column-gap: 18px;
+  }
+
+  .name-edit-box {
+    padding: 16px;
+  }
+
+  .profile-inline-actions {
+    flex-direction: column-reverse;
+  }
+
+  .profile-inline-actions button {
+    width: 100%;
+  }
+
+  .profile-danger-header {
+    grid-template-columns:
+      52px minmax(0, 1fr);
+  }
+
+  .profile-page .app-footer {
+    margin-top: 32px;
+    padding: 24px 18px 28px;
+  }
+
+  .profile-page .footer-links {
+    gap: 14px;
+  }
+
+  .profile-page .footer-link {
+    font-size: 0.82rem;
+  }
+
+  .profile-page .footer-copyright {
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .profile-page .profile-shell {
+    width: calc(100% - 22px);
+  }
+
+  .profile-settings-card {
+    padding: 16px;
+  }
+}
+
+/* =====================================================
+   HISTORY PAGE
+===================================================== */
+
+.history-page .history-shell {
+  grid-template-columns: minmax(0, 900px) 130px;
+  justify-content: center;
+}
+
+.history-page .mood-center-panel {
+  width: 100%;
+}
+
+.history-page .history-top-row {
+  margin-top: 4px;
+}
+
+.history-page .history-top-row h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.7rem;
+}
+
+.history-page .history-summary-card {
+  width: 100%;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  padding: 26px;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+}
+
+.history-page .history-summary-card h3 {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.15;
+}
+
+.history-latest-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 24px 0;
+}
+
+.history-latest-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.history-latest-date {
+  color: var(--text-main);
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.history-entry-count {
+  margin: auto 0 0 !important;
+  color: var(--sky-600) !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+}
+
+.history-page .history-summary-card.active {
+  border-color: rgba(77, 146, 217, 0.58) !important;
+  background:
+    linear-gradient(
+      140deg,
+      rgba(220, 239, 255, 0.72),
+      rgba(255, 255, 255, 0.3)
+    ) !important;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.8),
+    0 24px 60px rgba(35, 100, 165, 0.2);
+  transform: translateY(-4px);
+}
+
+.history-detail-section {
+  scroll-margin-top: 110px;
+  margin-top: 34px;
+  padding-top: 12px;
+}
+
+.history-detail-section h2 {
+  margin: 0 0 18px;
+  color: var(--text-main);
+  font-size: 1.7rem;
+}
+
+.history-page .historyList {
+  display: grid;
+  gap: 16px;
+}
+
+.history-page .historyCard {
+  padding: 22px;
+  border-radius: 24px;
+}
+
+.history-page .historyDate {
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.history-page .historyPrompt {
+  margin-bottom: 10px;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+.history-page .historyAnswer {
+  margin-top: 5px;
+  color: var(--text-soft);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.history-empty-message {
+  padding: 24px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 20px;
+  text-align: center;
+}
+
+/* =====================================================
+   MOBILE HISTORY PAGE - UPDATED
+===================================================== */
+
+@media (max-width: 700px) {
+  body.history-page {
+    min-height: 100vh;
+    display: block;
+    padding: 0;
+    background:
+      radial-gradient(
+        circle at 10% 8%,
+        rgba(200, 230, 255, 0.8),
+        transparent 32%
+      ),
+      linear-gradient(
+        180deg,
+        var(--sky-50) 0%,
+        #ffffff 100%
+      );
+  }
+
+  .history-page .soul-bg-video {
+    display: none !important;
+  }
+
+  .history-page .soul-bg-overlay {
+    background:
+      radial-gradient(
+        circle at 90% 8%,
+        rgba(169, 215, 255, 0.45),
+        transparent 34%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248, 252, 255, 0.97),
+        rgba(255, 255, 255, 0.93)
+      );
+  }
+
+  .history-page .dashboard-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    min-height: 84px;
+    padding: 16px 18px;
+    align-items: center;
+    background: rgba(248, 252, 255, 0.86);
+    border-bottom: 1px solid rgba(77, 146, 217, 0.14);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+  }
+
+  .history-page .brand {
+    font-size: 1.8rem;
+  }
+
+  .history-page .tagline {
+    margin-top: 1px;
+    font-size: 0.78rem;
+  }
+
+  .history-page .mobile-menu-btn {
+    position: fixed;
+    top: 15px;
+    right: 16px;
+    z-index: 130;
+    width: 54px;
+    height: 54px;
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    border: 1px solid rgba(77, 146, 217, 0.22);
+    border-radius: 50%;
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.8),
+      0 12px 28px rgba(35, 100, 165, 0.16);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    cursor: pointer;
+  }
+
+  .history-page .mobile-menu-btn span {
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text-main);
+  }
+
+  .history-page .history-shell {
+    width: calc(100% - 28px);
+    margin: 18px auto 0;
+    display: flex !important;
+    flex-direction: column;
+    gap: 18px;
+    transform: none !important;
+  }
+
+  .history-page .mood-center-panel {
+  width: 100%;
+  order: 1;
+  gap: 0;
+}
+
+  .history-page .app-right-panel {
+    display: none !important;
+  }
+
+  .history-page .back-dashboard-link {
+    display: none !important;
+  }
+
+  .history-page .mood-page-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto 24px;
+  padding: 0 10px;
+  text-align: center;
+}
+
+  .history-page .mood-page-header h1 {
+    width: 100%;
+    margin: 0;
+    font-size: clamp(2.6rem, 12vw, 3.7rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-align: center;
+  }
+
+  .history-page .mood-page-header p {
+    width: 100%;
+    max-width: 355px;
+    margin: 14px auto 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .history-page .history-top-row {
+  width: 100%;
+  display: block;
+  margin: 0 0 18px;
+}
+
+.history-page .history-top-row h2 {
+  margin: 0;
+  text-align: left;
+  font-size: 1.65rem;
+}
+
+  .history-page #loadHistoryBtn {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .history-page #historyStatus {
+    text-align: center;
+  }
+
+  .history-page .history-summary-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 0;
+}
+
+  .history-page .history-summary-card {
+    min-height: 180px;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .history-page .history-summary-card h3 {
+    font-size: 1.12rem;
+  }
+
+  .history-latest-block {
+    margin: 18px 0;
+  }
+
+  .history-latest-label {
+    font-size: 0.68rem;
+  }
+
+  .history-latest-date {
+    font-size: 0.86rem;
+    line-height: 1.4;
+  }
+
+  .history-entry-count {
+    font-size: 0.84rem !important;
+  }
+
+  .history-detail-section {
+    scroll-margin-top: 100px;
+    margin-top: 22px;
+  }
+
+  .history-detail-section h2 {
+    font-size: 1.45rem;
+    text-align: center;
+  }
+
+  .history-page .historyCard {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .history-page .app-footer {
+    margin-top: 32px;
+    padding: 24px 18px 28px;
+  }
+}
+
+@media (max-width: 380px) {
+  .history-page .history-shell {
+    width: calc(100% - 22px);
+  }
+
+  .history-page .history-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-page .history-summary-card {
+    min-height: 165px;
+  }
+}
+
+/* =====================================================
+   MOBILE WORKOUT PLAN LAYOUT
+===================================================== */
+
+@media (min-width: 701px) {
+  .workout-page .workout-topbar,
+  .workout-page .mobile-menu-btn,
+  .workout-page .mobile-menu-overlay,
+  .workout-page .mobile-workout-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  body.workout-page {
+    min-height: 100vh;
+    display: block;
+    padding: 0;
+    background:
+      radial-gradient(
+        circle at 10% 8%,
+        rgba(200, 230, 255, 0.8),
+        transparent 32%
+      ),
+      linear-gradient(
+        180deg,
+        var(--sky-50) 0%,
+        #ffffff 100%
+      );
+  }
+
+  body.workout-page.mobile-menu-open {
+    overflow: hidden;
+  }
+
+  .workout-page .soul-bg-image,
+  .workout-page .soul-bg-video {
+    display: none !important;
+  }
+
+  .workout-page .soul-bg-overlay {
+    background:
+      radial-gradient(
+        circle at 90% 8%,
+        rgba(169, 215, 255, 0.45),
+        transparent 34%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(248, 252, 255, 0.97),
+        rgba(255, 255, 255, 0.93)
+      );
+  }
+
+  .workout-page .workout-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    background: rgba(248, 252, 255, 0.86);
+    border-bottom:
+      1px solid rgba(77, 146, 217, 0.14);
+    backdrop-filter:
+      blur(22px)
+      saturate(170%);
+    -webkit-backdrop-filter:
+      blur(22px)
+      saturate(170%);
+  }
+
+  .workout-page .brand {
+    font-size: 1.8rem;
+  }
+
+  .workout-page .tagline {
+    margin-top: 1px;
+    font-size: 0.78rem;
+  }
+
+  .workout-page .mobile-menu-btn {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    display: inline-flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border:
+      1px solid rgba(77, 146, 217, 0.22);
+    border-radius: 50%;
+    padding: 0;
+    color: var(--text-main);
+    background:
+      rgba(255, 255, 255, 0.76);
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.8),
+      0 12px 28px rgba(35, 100, 165, 0.16);
+    backdrop-filter:
+      blur(22px)
+      saturate(180%);
+    -webkit-backdrop-filter:
+      blur(22px)
+      saturate(180%);
+    cursor: pointer;
+  }
+
+  .workout-page .mobile-menu-btn span {
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--text-main);
+  }
+
+  .workout-page .workout-page-shell {
+    width: calc(100% - 28px) !important;
+    margin: 20px auto 0 !important;
+    display: block !important;
+    transform: none !important;
+  }
+
+  .workout-page .workout-left-sidebar {
+    display: none !important;
+  }
+
+  .workout-page .workout-main-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    transform: none !important;
+  }
+
+  .workout-page .workout-plan-heading {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 12px auto 26px !important;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .workout-page .workout-category-label {
+    display: none !important;
+  }
+
+  .workout-page .workout-plan-heading h1 {
+    width: 100%;
+    margin: 0;
+    font-size:
+      clamp(2.6rem, 12vw, 3.7rem) !important;
+    font-weight: 750 !important;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-align: center;
+  }
+
+  .workout-page .workout-plan-heading p {
+    width: 100%;
+    max-width: 350px !important;
+    margin: 14px auto 0 !important;
+    color: var(--text-soft);
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+    text-align: center;
+  }
+
+  .workout-page .workout-video-hero {
+    width: 100%;
+    min-height: 0 !important;
+    margin: 0 auto 28px !important;
+    overflow: hidden;
+    border-radius: 26px !important;
+  }
+
+  .workout-page .workout-video-slider,
+  .workout-page .workout-videos-grid,
+  .workout-page .video-carousel {
+    width: 100%;
+    min-height: 0;
+  }
+
+  .workout-page .workout-video-card,
+  .workout-page .workout-video-card.active-video {
+    width: 100%;
+    height: 205px !important;
+    min-height: 205px;
+    display: block;
+    overflow: hidden;
+    border-radius: 26px;
+  }
+
+  .workout-page .workout-video-card img,
+  .workout-page .workout-video-card.active-video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .workout-page .video-dots {
+    bottom: 12px;
+    padding: 6px 10px;
+  }
+
+  .workout-page .workout-level-section {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .workout-page .workout-level-section h2 {
+    display: block !important;
+    margin: 0 0 18px;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 850;
+    line-height: 1.2;
+    text-align: left;
+  }
+
+  .workout-page .workout-level-section h2::before,
+  .workout-page .workout-level-section h2::after {
+    display: none;
+  }
+
+  .workout-page .workout-level-grid {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    margin: 0 !important;
+  }
+
+  .workout-page .workout-level-choice {
+    position: relative;
+    width: 100%;
+    min-height: 92px !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: center;
+    border-radius: 22px !important;
+    padding: 18px 54px 18px 20px !important;
+    text-align: left !important;
+  }
+
+  .workout-page .workout-level-choice::after {
+    content: "›";
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    color: var(--sky-600);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    transform: translateY(-50%);
+  }
+
+  .workout-page .workout-level-choice h3 {
+    width: 100%;
+    margin: 0 0 6px !important;
+    color: var(--text-main);
+    font-size: 1.15rem !important;
+    font-weight: 850 !important;
+    line-height: 1.2;
+    text-align: left !important;
+  }
+
+  .workout-page .workout-level-choice p {
+    width: 100%;
+    max-width: none !important;
+    margin: 0 !important;
+    color: var(--text-soft);
+    font-size: 0.84rem !important;
+    line-height: 1.45;
+    text-align: left !important;
+  }
+
+  .workout-page .workout-level-choice.active {
+    border-color:
+      rgba(77, 146, 217, 0.5) !important;
+    background:
+      linear-gradient(
+        140deg,
+        rgba(220, 239, 255, 0.75),
+        rgba(255, 255, 255, 0.32)
+      ) !important;
+    transform: none !important;
+  }
+
+  .workout-page .selected-program-container {
+    width: 100%;
+    margin: 22px auto 0 !important;
+    padding: 20px !important;
+    border-radius: 24px !important;
+  }
+
+  .workout-page .selected-program-container:empty {
+    display: none !important;
+  }
+
+  .workout-page .outline-section {
+    margin-top: 20px;
+  }
+
+  .workout-page .outline-section:first-child {
+    margin-top: 0;
+  }
+
+  .workout-page .outline-section h4 {
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+  }
+
+  .workout-page .outline-section ul {
+    padding-left: 20px;
+  }
+
+  .workout-page .outline-section li {
+    margin-bottom: 9px;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .workout-page .workout-empty-box {
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .workout-page .workout-footer {
+    margin-top: 34px;
+    padding: 24px 18px 28px;
+  }
+
+  .workout-page .footer-links {
+    gap: 14px;
+  }
+
+  .workout-page .footer-link {
+    font-size: 0.82rem;
+  }
+
+  .workout-page .footer-copyright {
+    font-size: 0.74rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .workout-page .workout-page-shell {
+    width: calc(100% - 22px) !important;
+  }
+
+  .workout-page .workout-video-card,
+  .workout-page .workout-video-card.active-video {
+    height: 185px !important;
+    min-height: 185px;
+  }
+
+  .workout-page .workout-level-choice {
+    min-height: 88px !important;
+    padding:
+      16px 48px 16px 17px !important;
+  }
+}
+
+/* =====================================================
+   DESKTOP WORKOUT LEVEL — SELECTED STATE
+===================================================== */
+
+@media (min-width: 701px) {
+  .workout-page .workout-level-choice.active {
+    border: 2px solid rgba(77, 146, 217, 0.72) !important;
+
+    background:
+      linear-gradient(
+        140deg,
+        rgba(169, 215, 255, 0.72),
+        rgba(220, 239, 255, 0.58)
+      ) !important;
+
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.8),
+      0 20px 42px rgba(35, 100, 165, 0.24) !important;
+
+    transform: translateY(-4px) !important;
+  }
+
+  .workout-page .workout-level-choice.active h3 {
+    color: var(--sky-700) !important;
+    font-weight: 850 !important;
+  }
+
+  .workout-page .workout-level-choice.active p {
+    color: #285b91 !important;
+    font-weight: 650 !important;
+  }
+}
+
+
