@@ -4,82 +4,155 @@ const signupForm = document.getElementById("signupForm");
 const nameInput = document.getElementById("nameInput");
 const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
-const createAccountBtn = document.getElementById("createAccountBtn");
-const loginPageBtn = document.getElementById("loginPageBtn");
-const signupStatus = document.getElementById("signupStatus");
-const termsCheckbox = document.getElementById("termsCheckbox");
+const createAccountBtn =
+  document.getElementById("createAccountBtn");
+const signupStatus =
+  document.getElementById("signupStatus");
+const termsCheckbox =
+  document.getElementById("termsCheckbox");
 
 if (isLoggedIn()) {
-  window.location.href = "./dashboard.html";
+  window.location.replace("./dashboard.html");
 }
 
-function setStatus(msg) {
-  signupStatus.textContent = `Status: ${msg}`;
-}
-
-signupForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim().toLowerCase();
-  const password = passwordInput.value.trim();
-
-  if (!name || !email || !password) {
-    setStatus("enter name, email, and password first");
+function setStatus(message, type = "info") {
+  if (!signupStatus) {
     return;
   }
 
-  if (!termsCheckbox.checked) {
-  setStatus("please confirm that you are at least 16 and agree to the terms");
-  return;
+  signupStatus.textContent = message;
+  signupStatus.classList.remove(
+    "success",
+    "error",
+    "info"
+  );
+  signupStatus.classList.add(type);
 }
 
-  createAccountBtn.disabled = true;
-  loginPageBtn.disabled = true;
-  setStatus("creating account...");
+function setSubmitting(isSubmitting) {
+  if (!createAccountBtn) {
+    return;
+  }
 
-  try {
-    const res = await fetch(`${BASE_URL}/api/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, password })
-    });
+  createAccountBtn.disabled = isSubmitting;
+  createAccountBtn.textContent = isSubmitting
+    ? "Creating Account..."
+    : "Create Account";
+}
 
-    const data = await res.json();
+if (!signupForm) {
+  console.error(
+    'Signup form not found. Expected id="signupForm".'
+  );
+} else {
+  signupForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    createAccountBtn.disabled = false;
-    loginPageBtn.disabled = false;
+    const name = nameInput?.value.trim() || "";
+    const email =
+      emailInput?.value.trim().toLowerCase() || "";
+    const password =
+      passwordInput?.value.trim() || "";
 
-    if (!res.ok) {
-      setStatus(data.error || "sign up failed");
+    if (!name) {
+      setStatus(
+        "Please enter your name.",
+        "error"
+      );
+      nameInput?.focus();
       return;
     }
 
-    if (data.token) {
-      saveToken(data.token);
+    if (!email) {
+      setStatus(
+        "Please enter your email address.",
+        "error"
+      );
+      emailInput?.focus();
+      return;
     }
 
-    if (data.user) {
-      saveUser(data.user);
+    if (!password) {
+      setStatus(
+        "Please enter a password.",
+        "error"
+      );
+      passwordInput?.focus();
+      return;
     }
 
-    localStorage.setItem("savedEmail", email);
+    if (!termsCheckbox?.checked) {
+      setStatus(
+        "Please confirm that you are at least 16 and agree to the Terms of Service and Privacy Policy.",
+        "error"
+      );
+      termsCheckbox?.focus();
+      return;
+    }
 
-    setStatus("account created successfully");
+    setSubmitting(true);
+    setStatus("Creating your account...", "info");
 
-    setTimeout(() => {
-      window.location.href = "./dashboard.html";
-    }, 700);
-  } catch (err) {
-    createAccountBtn.disabled = false;
-    loginPageBtn.disabled = false;
-    setStatus("server error");
-    console.error(err);
-  }
-});
+    try {
+      const response = await fetch(
+        `${BASE_URL}/api/auth/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password
+          })
+        }
+      );
 
-loginPageBtn.addEventListener("click", () => {
-  window.location.href = "./login.html";
-});
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
+
+      if (!response.ok) {
+        setStatus(
+          data.error ||
+            "We could not create your account. Please try again.",
+          "error"
+        );
+        return;
+      }
+
+      if (data.token) {
+        saveToken(data.token);
+      }
+
+      if (data.user) {
+        saveUser(data.user);
+      }
+
+      localStorage.setItem("savedEmail", email);
+
+      setStatus(
+        "Your account has been created.",
+        "success"
+      );
+
+      window.setTimeout(() => {
+        window.location.replace("./dashboard.html");
+      }, 700);
+    } catch (error) {
+      console.error("Signup error:", error);
+
+      setStatus(
+        "We could not connect to the server. Please try again.",
+        "error"
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  });
+}
