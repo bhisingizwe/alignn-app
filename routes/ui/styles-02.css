@@ -1428,4 +1428,12 @@
   }
 }
 
+@media (min-width: 901px) {
+  .forgot-password-layout .auth-card {
+    margin-inline: auto;
+  }
 
+  .forgot-password-layout .title {
+    font-size: 2.5rem;
+  }
+}
