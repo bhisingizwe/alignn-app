@@ -979,8 +979,7 @@
 
   .workout-page .recovery-resource-video-list {
     display: grid;
-    grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 18px;
   }
 
@@ -1004,7 +1003,7 @@
   .workout-page
   .recovery-video-thumbnail-wrapper {
     width: 100%;
-    height: 145px;
+    height: auto;
     overflow: hidden;
     background: var(--sky-100);
   }
